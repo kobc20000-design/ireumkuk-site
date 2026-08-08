@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🧮 청약 도구 모음 - 이름콕</title>
-<meta name="description" content="청약 준비에 필요한 계산기를 모았습니다. 모든 계산은 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.">
+<title>청약통장 납입 시뮬레이터 - 이름콕</title>
+<meta name="description" content="공공분양 저축총액 목표까지 얼마나 걸리는지, 민영주택 지역별 예치금은 얼마인지 확인합니다.">
 <style>
 
 * { box-sizing: border-box; }
@@ -70,11 +70,92 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <body>
 <header class="apt-site-header"><div class="apt-nav-wrap"><a href="/" class="apt-logo">이름콕</a><nav class="apt-nav"><div class="apt-nav-item"><a href="/apt/" class="">분양모집공고</a><div class="apt-nav-dropdown"><a href="/apt/calendar/">📅 분양달력</a><a href="/apt/">📋 모집공고 분석</a></div></div><div class="apt-nav-item"><a href="/rate/" class="">경쟁률</a><div class="apt-nav-dropdown"><a href="/rate/">단지별 경쟁률</a><a href="/rate/">커트라인</a><a href="/tools/gajeom/">내 가점 계산기</a></div></div><div class="apt-nav-item"><a href="/price/" class="">분양가</a><div class="apt-nav-dropdown"><a href="/price/pyeong/">평당 분양가 랭킹</a><a href="/price/">분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-item"><a href="/etc/" class="">기타</a><div class="apt-nav-dropdown"><a href="/etc/unranked/">미분양·무순위 추적기</a><a href="/apt/calendar/">청약 캘린더</a></div></div><div class="apt-nav-item"><a href="/tools/" class="active">도구</a><div class="apt-nav-dropdown"><a href="/tools/gajeom/">청약 가점 계산기</a><a href="/tools/special/">특별공급 자격 자가진단</a><a href="/tools/bankbook/">청약통장 납입 시뮬레이터</a><a href="/tools/option/">옵션 조합 시뮬레이터</a><a href="/tools/tax/">취득세 계산기</a><a href="/tools/dsr/">DSR 한도 계산기</a><a href="/tools/margin/">안전마진 계산기</a></div></div></nav></div></header>
 <div class="apt-wrap">
-<h1>🧮 청약 도구 모음</h1>
-<div class="tool-desc">청약 준비에 필요한 계산기를 모았습니다. 모든 계산은 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</div>
-<div class="tool-list"><a class="tool-card" href="/tools/gajeom/"><div class="tool-card-t">청약 가점 계산기</div><div class="tool-card-d">무주택 기간·부양가족 수·청약통장 가입기간으로 내 청약 가점(84점 만점)을 계산합니다. 가장 많이 찾는 계산기입니다.</div></a><a class="tool-card" href="/tools/special/"><div class="tool-card-t">특별공급 자격 자가진단</div><div class="tool-card-d">신생아·신혼부부·다자녀·생애최초·노부모부양 중 내가 지원할 수 있는 특별공급 유형을 진단합니다.</div></a><a class="tool-card" href="/tools/bankbook/"><div class="tool-card-t">청약통장 납입 시뮬레이터</div><div class="tool-card-d">공공분양 저축총액 목표까지 얼마나 걸리는지, 민영주택 지역별 예치금은 얼마인지 확인합니다.</div></a><a class="tool-card" href="/tools/option/"><div class="tool-card-t">옵션 조합 시뮬레이터</div><div class="tool-card-d">발코니 확장·시스템에어컨·중문 등 유상옵션을 조합해 실제 부담하게 될 총 분양가를 계산합니다.</div></a><a class="tool-card" href="/tools/tax/"><div class="tool-card-t">취득세 계산기</div><div class="tool-card-d">분양가·전용면적·보유 주택 수·조정지역 여부에 따른 취득세와 지방교육세, 농어촌특별세를 계산합니다.</div></a><a class="tool-card" href="/tools/dsr/"><div class="tool-card-t">DSR 한도 계산기</div><div class="tool-card-d">연소득과 기존 대출을 넣어 스트레스 DSR 기준으로 받을 수 있는 최대 대출 금액을 계산합니다.</div></a><a class="tool-card" href="/tools/margin/"><div class="tool-card-t">안전마진 계산기</div><div class="tool-card-d">옵션·중도금 이자·취득세까지 포함한 실제 총 취득비용과 인근 시세를 비교해 안전마진을 계산합니다.</div></a></div>
+<h1>청약통장 납입 시뮬레이터</h1>
+<div class="tool-desc">공공분양 저축총액 목표까지 얼마나 걸리는지, 민영주택 지역별 예치금은 얼마인지 확인합니다.</div>
+
+<div class="card">
+<h2>공공분양 — 저축총액 시뮬레이션</h2>
+<div class="f-row"><label>현재 납입 인정금액</label><input type="number" id="b-current" value="0"><span class="unit">만원</span></div>
+<div class="f-row"><label>매월 납입액</label><input type="number" id="b-monthly" value="25"><span class="unit">만원</span></div>
+<div class="f-row"><label>목표 저축총액</label><input type="number" id="b-target" value="1500"><span class="unit">만원</span></div>
+<div class="f-hint">2024년 11월부터 월 납입 인정 한도가 <b>10만원 → 25만원</b>으로 올랐습니다. 25만원 초과분은 인정되지 않습니다.</div>
+<button class="calc-btn" onclick="calcBankbook()">계산하기</button>
+<div class="result hidden" id="b-result">
+<div class="result-main">목표 저축총액 도달까지</div>
+<div class="result-big"><span id="b-months">0</span></div>
+<div class="result-sub" id="b-detail"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>민영주택 — 지역별 예치금 기준</h2>
+<div class="f-row">
+<label>거주 지역</label>
+<select id="b-region" onchange="renderDeposit()">
+<option value="0">서울 / 부산</option>
+<option value="1">기타 광역시</option>
+<option value="2">기타 시·군</option>
+</select>
+</div>
+<table class="rt" id="b-deposit"></table>
+<div class="f-hint" style="margin-left:0;margin-top:10px">
+입주자모집공고일 <b>이전까지</b> 해당 예치금이 들어있어야 하며, 한 번에 넣어도 인정됩니다.
+</div>
+</div>
+
+<div class="disclaimer">
+공공분양(국민주택)은 <b>저축총액·납입횟수</b>로, 민영주택은 <b>지역별 예치금</b>으로 자격을 판단합니다.
+전용 40㎡ 초과 공공분양은 저축총액이 많은 순, 40㎡ 이하는 납입횟수가 많은 순으로 당첨자를 정합니다.
+예치금 기준은 변경될 수 있으니 청약 전 청약홈에서 최신 기준을 확인하세요.
+</div>
+
 </div>
 <footer class="apt-site-footer">이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
+<script>
+const DEPOSITS = [
+  {name:'서울 / 부산',   v:[300, 600, 1000, 1500]},
+  {name:'기타 광역시',   v:[250, 400, 700, 1000]},
+  {name:'기타 시·군',    v:[200, 300, 400, 500]}
+];
+const AREAS = ['85㎡ 이하', '102㎡ 이하', '135㎡ 이하', '모든 면적'];
 
+function renderDeposit() {
+  const r = DEPOSITS[+document.getElementById('b-region').value];
+  let html = '<tr><th>전용면적</th><th>필요 예치금</th></tr>';
+  AREAS.forEach((a, i) => {
+    html += '<tr><td>' + a + '</td><td>' + r.v[i].toLocaleString() + '만원</td></tr>';
+  });
+  document.getElementById('b-deposit').innerHTML = html;
+}
+
+function calcBankbook() {
+  const cur = +document.getElementById('b-current').value || 0;
+  let mon = +document.getElementById('b-monthly').value || 0;
+  const tgt = +document.getElementById('b-target').value || 0;
+  let capped = '';
+  if (mon > 25) { capped = ' (월 25만원까지만 인정되어 25만원으로 계산했습니다)'; mon = 25; }
+
+  if (cur >= tgt) {
+    document.getElementById('b-months').textContent = '이미 달성';
+    document.getElementById('b-detail').innerHTML = '현재 인정금액 <b>' + cur.toLocaleString() + '만원</b>으로 목표를 이미 넘었습니다.';
+  } else if (mon <= 0) {
+    document.getElementById('b-months').textContent = '계산 불가';
+    document.getElementById('b-detail').innerHTML = '월 납입액을 1만원 이상 입력해 주세요.';
+  } else {
+    const need = tgt - cur;
+    const months = Math.ceil(need / mon);
+    const y = Math.floor(months / 12), m = months % 12;
+    document.getElementById('b-months').textContent =
+      (y ? y + '년 ' : '') + (m ? m + '개월' : (y ? '' : '0개월'));
+    const d = new Date(); d.setMonth(d.getMonth() + months);
+    document.getElementById('b-detail').innerHTML =
+      '앞으로 <b>' + need.toLocaleString() + '만원</b>을 더 넣어야 합니다.' + capped + '<br>' +
+      '매월 <b>' + mon + '만원</b>씩 납입하면 <b>' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월</b>경 도달합니다. ' +
+      '(총 ' + months + '회 납입)';
+  }
+  document.getElementById('b-result').classList.remove('hidden');
+}
+renderDeposit();
+</script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🧮 청약 도구 모음 - 이름콕</title>
-<meta name="description" content="청약 준비에 필요한 계산기를 모았습니다. 모든 계산은 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.">
+<title>청약 가점 계산기 - 이름콕</title>
+<meta name="description" content="무주택 기간·부양가족 수·청약통장 가입기간으로 내 청약 가점(84점 만점)을 계산합니다. 가장 많이 찾는 계산기입니다.">
 <style>
 
 * { box-sizing: border-box; }
@@ -70,11 +70,113 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <body>
 <header class="apt-site-header"><div class="apt-nav-wrap"><a href="/" class="apt-logo">이름콕</a><nav class="apt-nav"><div class="apt-nav-item"><a href="/apt/" class="">분양모집공고</a><div class="apt-nav-dropdown"><a href="/apt/calendar/">📅 분양달력</a><a href="/apt/">📋 모집공고 분석</a></div></div><div class="apt-nav-item"><a href="/rate/" class="">경쟁률</a><div class="apt-nav-dropdown"><a href="/rate/">단지별 경쟁률</a><a href="/rate/">커트라인</a><a href="/tools/gajeom/">내 가점 계산기</a></div></div><div class="apt-nav-item"><a href="/price/" class="">분양가</a><div class="apt-nav-dropdown"><a href="/price/pyeong/">평당 분양가 랭킹</a><a href="/price/">분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-item"><a href="/etc/" class="">기타</a><div class="apt-nav-dropdown"><a href="/etc/unranked/">미분양·무순위 추적기</a><a href="/apt/calendar/">청약 캘린더</a></div></div><div class="apt-nav-item"><a href="/tools/" class="active">도구</a><div class="apt-nav-dropdown"><a href="/tools/gajeom/">청약 가점 계산기</a><a href="/tools/special/">특별공급 자격 자가진단</a><a href="/tools/bankbook/">청약통장 납입 시뮬레이터</a><a href="/tools/option/">옵션 조합 시뮬레이터</a><a href="/tools/tax/">취득세 계산기</a><a href="/tools/dsr/">DSR 한도 계산기</a><a href="/tools/margin/">안전마진 계산기</a></div></div></nav></div></header>
 <div class="apt-wrap">
-<h1>🧮 청약 도구 모음</h1>
-<div class="tool-desc">청약 준비에 필요한 계산기를 모았습니다. 모든 계산은 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</div>
-<div class="tool-list"><a class="tool-card" href="/tools/gajeom/"><div class="tool-card-t">청약 가점 계산기</div><div class="tool-card-d">무주택 기간·부양가족 수·청약통장 가입기간으로 내 청약 가점(84점 만점)을 계산합니다. 가장 많이 찾는 계산기입니다.</div></a><a class="tool-card" href="/tools/special/"><div class="tool-card-t">특별공급 자격 자가진단</div><div class="tool-card-d">신생아·신혼부부·다자녀·생애최초·노부모부양 중 내가 지원할 수 있는 특별공급 유형을 진단합니다.</div></a><a class="tool-card" href="/tools/bankbook/"><div class="tool-card-t">청약통장 납입 시뮬레이터</div><div class="tool-card-d">공공분양 저축총액 목표까지 얼마나 걸리는지, 민영주택 지역별 예치금은 얼마인지 확인합니다.</div></a><a class="tool-card" href="/tools/option/"><div class="tool-card-t">옵션 조합 시뮬레이터</div><div class="tool-card-d">발코니 확장·시스템에어컨·중문 등 유상옵션을 조합해 실제 부담하게 될 총 분양가를 계산합니다.</div></a><a class="tool-card" href="/tools/tax/"><div class="tool-card-t">취득세 계산기</div><div class="tool-card-d">분양가·전용면적·보유 주택 수·조정지역 여부에 따른 취득세와 지방교육세, 농어촌특별세를 계산합니다.</div></a><a class="tool-card" href="/tools/dsr/"><div class="tool-card-t">DSR 한도 계산기</div><div class="tool-card-d">연소득과 기존 대출을 넣어 스트레스 DSR 기준으로 받을 수 있는 최대 대출 금액을 계산합니다.</div></a><a class="tool-card" href="/tools/margin/"><div class="tool-card-t">안전마진 계산기</div><div class="tool-card-d">옵션·중도금 이자·취득세까지 포함한 실제 총 취득비용과 인근 시세를 비교해 안전마진을 계산합니다.</div></a></div>
+<h1>청약 가점 계산기</h1>
+<div class="tool-desc">무주택 기간·부양가족 수·청약통장 가입기간으로 내 청약 가점(84점 만점)을 계산합니다. 가장 많이 찾는 계산기입니다.</div>
+
+<div class="card">
+<h2>1. 무주택 기간 <span style="font-weight:400;color:#888;font-size:13px">(최대 32점)</span></h2>
+<div class="f-row">
+<label>무주택 기간</label>
+<select id="g-house">
+<option value="0">30세 미만 미혼 무주택자 (0점)</option>
+<option value="2">1년 미만 (2점)</option>
+<option value="4">1년 이상 ~ 2년 미만 (4점)</option>
+<option value="6">2년 이상 ~ 3년 미만 (6점)</option>
+<option value="8">3년 이상 ~ 4년 미만 (8점)</option>
+<option value="10">4년 이상 ~ 5년 미만 (10점)</option>
+<option value="12">5년 이상 ~ 6년 미만 (12점)</option>
+<option value="14">6년 이상 ~ 7년 미만 (14점)</option>
+<option value="16">7년 이상 ~ 8년 미만 (16점)</option>
+<option value="18">8년 이상 ~ 9년 미만 (18점)</option>
+<option value="20">9년 이상 ~ 10년 미만 (20점)</option>
+<option value="22">10년 이상 ~ 11년 미만 (22점)</option>
+<option value="24">11년 이상 ~ 12년 미만 (24점)</option>
+<option value="26">12년 이상 ~ 13년 미만 (26점)</option>
+<option value="28">13년 이상 ~ 14년 미만 (28점)</option>
+<option value="30">14년 이상 ~ 15년 미만 (30점)</option>
+<option value="32">15년 이상 (32점)</option>
+</select>
+</div>
+<div class="f-hint">만 30세부터 기산하되, 30세 이전 혼인 시 혼인신고일부터 계산합니다.</div>
+</div>
+
+<div class="card">
+<h2>2. 부양가족 수 <span style="font-weight:400;color:#888;font-size:13px">(최대 35점)</span></h2>
+<div class="f-row">
+<label>부양가족 수 (본인 제외)</label>
+<select id="g-family">
+<option value="5">0명 (5점)</option>
+<option value="10">1명 (10점)</option>
+<option value="15">2명 (15점)</option>
+<option value="20">3명 (20점)</option>
+<option value="25">4명 (25점)</option>
+<option value="30">5명 (30점)</option>
+<option value="35">6명 이상 (35점)</option>
+</select>
+</div>
+<div class="f-hint">배우자, 주민등록등본상 직계존속(3년 이상 계속 부양) 및 직계비속(미혼자녀)을 포함합니다.</div>
+</div>
+
+<div class="card">
+<h2>3. 청약통장 가입기간 <span style="font-weight:400;color:#888;font-size:13px">(최대 17점)</span></h2>
+<div class="f-row">
+<label>가입 기간</label>
+<select id="g-account">
+<option value="1">6개월 미만 (1점)</option>
+<option value="2">6개월 이상 ~ 1년 미만 (2점)</option>
+<option value="3">1년 이상 ~ 2년 미만 (3점)</option>
+<option value="4">2년 이상 ~ 3년 미만 (4점)</option>
+<option value="5">3년 이상 ~ 4년 미만 (5점)</option>
+<option value="6">4년 이상 ~ 5년 미만 (6점)</option>
+<option value="7">5년 이상 ~ 6년 미만 (7점)</option>
+<option value="8">6년 이상 ~ 7년 미만 (8점)</option>
+<option value="9">7년 이상 ~ 8년 미만 (9점)</option>
+<option value="10">8년 이상 ~ 9년 미만 (10점)</option>
+<option value="11">9년 이상 ~ 10년 미만 (11점)</option>
+<option value="12">10년 이상 ~ 11년 미만 (12점)</option>
+<option value="13">11년 이상 ~ 12년 미만 (13점)</option>
+<option value="14">12년 이상 ~ 13년 미만 (14점)</option>
+<option value="15">13년 이상 ~ 14년 미만 (15점)</option>
+<option value="16">14년 이상 ~ 15년 미만 (16점)</option>
+<option value="17">15년 이상 (17점)</option>
+</select>
+</div>
+</div>
+
+<button class="calc-btn" onclick="calcGajeom()">가점 계산하기</button>
+
+<div class="result hidden" id="g-result">
+<div class="result-main">내 청약 가점</div>
+<div class="result-big"><span id="g-total">0</span>점 <span style="font-size:18px;opacity:.6">/ 84점</span></div>
+<div class="result-sub" id="g-detail"></div>
+</div>
+
+<div class="disclaimer">
+가점은 <b>무주택기간(32) + 부양가족수(35) + 청약통장 가입기간(17) = 최대 84점</b>으로 계산됩니다.
+부양가족 수 배점이 가장 크므로 세대 구성에 따라 점수 차이가 큽니다.
+실제 청약 시에는 청약홈에서 자동 산정된 점수가 적용되며, 잘못 입력하면 부적격 처리될 수 있으니 반드시 청약홈에서 최종 확인하세요.
+</div>
+
 </div>
 <footer class="apt-site-footer">이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
-
+<script>
+function calcGajeom() {
+  const h = +document.getElementById('g-house').value;
+  const f = +document.getElementById('g-family').value;
+  const a = +document.getElementById('g-account').value;
+  const total = h + f + a;
+  document.getElementById('g-total').textContent = total;
+  let grade;
+  if (total >= 70) grade = '수도권 인기 단지도 노려볼 수 있는 <b>최상위권</b>입니다.';
+  else if (total >= 60) grade = '수도권 일반 단지에서 <b>경쟁력 있는 점수</b>입니다.';
+  else if (total >= 50) grade = '비규제·외곽 단지나 <b>추첨제 물량</b>을 함께 노리는 것이 유리합니다.';
+  else if (total >= 40) grade = '가점제보다 <b>추첨제 비율이 높은 타입</b>(85㎡ 초과 등)을 노리세요.';
+  else grade = '가점 경쟁은 어렵습니다. <b>추첨제·특별공급·무순위</b> 위주로 접근하세요.';
+  document.getElementById('g-detail').innerHTML =
+    '무주택 기간 <b>' + h + '점</b> · 부양가족 <b>' + f + '점</b> · 통장 가입기간 <b>' + a + '점</b><br>' + grade;
+  document.getElementById('g-result').classList.remove('hidden');
+  document.getElementById('g-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+</script>
 </body>
 </html>

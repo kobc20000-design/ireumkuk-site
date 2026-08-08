@@ -3,39 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>분양가 - 이름콕</title>
+<title>💰 분양가 - 이름콕</title>
+<meta name="description" content="분양가를 다양한 각도로 뜯어봅니다.">
 <style>
+
 * { box-sizing: border-box; }
 body { font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif; margin: 0; padding: 0; background: #f4f5f7; color: #222; }
-.apt-wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 60px; }
-h1 { font-size: 24px; margin: 0 0 8px; }
-.apt-badge { display: inline-block; background: #EBEDF0; color: #555; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-bottom: 24px; }
-.apt-cat-group { background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 18px 22px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-.apt-cat-group-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; color: #13294B; }
-.apt-cat-group ul { margin: 0; padding-left: 18px; color: #444; line-height: 1.9; }
+.apt-wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 60px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+.tool-desc { color: #666; font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
+.card { background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 22px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.card h2 { font-size: 17px; margin: 0 0 14px; color: #13294B; }
+.f-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.f-row label { flex: 0 0 190px; font-size: 14px; font-weight: 600; color: #333; }
+.f-row input[type=number], .f-row input[type=text], .f-row select { flex: 1; min-width: 150px; padding: 9px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: inherit; }
+.f-row .unit { font-size: 13px; color: #888; }
+.f-hint { font-size: 12px; color: #999; margin: -6px 0 12px 202px; }
+button.calc-btn { background: #13294B; color: #fff; border: none; border-radius: 8px; padding: 13px 26px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
+button.calc-btn:hover { background: #1d3a68; }
+.result { background: #13294B; color: #fff; border-radius: 10px; padding: 22px; margin-top: 16px; }
+.result.hidden { display: none; }
+.result-main { font-size: 15px; opacity: .85; margin-bottom: 4px; }
+.result-big { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+.result-sub { margin-top: 14px; font-size: 14px; line-height: 1.9; opacity: .92; }
+.result-sub b { color: #FFD966; }
+table.rt { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14px; }
+table.rt th, table.rt td { padding: 9px 10px; border-bottom: 1px solid #eee; text-align: right; }
+table.rt th { background: #f7f8fa; font-weight: 700; text-align: center; }
+table.rt td:first-child, table.rt th:first-child { text-align: left; }
+table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
+.chk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.chk-item { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; padding: 10px 12px; border: 1px solid #eee; border-radius: 8px; cursor: pointer; line-height: 1.5; }
+.chk-item:hover { background: #fafbfc; }
+.chk-item input { margin-top: 3px; }
+.verdict { padding: 14px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; }
+.verdict.ok { background: #E7F6EC; border-left: 4px solid #1D9A54; }
+.verdict.no { background: #FDECEC; border-left: 4px solid #D33; }
+.verdict.maybe { background: #FFF6E5; border-left: 4px solid #E8A33D; }
+.tool-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.tool-card { display: block; background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 18px 20px; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.tool-card:hover { border-color: #13294B; }
+.tool-card-t { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.tool-card-d { font-size: 13px; color: #777; line-height: 1.6; }
+.tool-card.soon { opacity: .55; }
+.badge-soon { display: inline-block; background: #EBEDF0; color: #666; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
+.disclaimer { font-size: 12px; color: #999; line-height: 1.8; margin-top: 18px; padding: 14px 16px; background: #fafafa; border-radius: 8px; }
 .apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
+.searchbox { width: 100%; padding: 11px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; margin-bottom: 14px; font-family: inherit; }
+
 
 .apt-site-header { background: #fff; border-bottom: 1px solid #eaeaea; padding: 0 20px; }
-.apt-nav-wrap { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 14px 0; }
+.apt-nav-wrap { max-width: 860px; margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 14px 0; }
 .apt-logo { font-weight: 800; font-size: 18px; color: #13294B; text-decoration: none; }
 .apt-nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .apt-nav-item { position: relative; }
 .apt-nav-item > a { color: #444; text-decoration: none; font-size: 14px; font-weight: 600; padding: 14px 2px; display: inline-block; border-bottom: 2px solid transparent; }
 .apt-nav-item > a:hover, .apt-nav-item > a.active { color: #13294B; border-bottom-color: #13294B; }
-.apt-nav-dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #eaeaea; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 190px; padding: 6px 0; z-index: 20; }
+.apt-nav-dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #eaeaea; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 210px; padding: 6px 0; z-index: 20; }
 .apt-nav-item:hover .apt-nav-dropdown { display: block; }
 .apt-nav-dropdown a { display: block; padding: 9px 16px; font-size: 13px; color: #444; text-decoration: none; white-space: nowrap; }
 .apt-nav-dropdown a:hover { background: #f4f5f7; color: #13294B; }
 
+
 </style>
 </head>
 <body>
-<header class="apt-site-header"><div class="apt-nav-wrap"><a href="/" class="apt-logo">이름콕</a><nav class="apt-nav"><div class="apt-nav-item"><a href="/apt/" class="">분양모집공고</a><div class="apt-nav-dropdown"><a href="/apt/calendar/">📅 분양달력</a><a href="/apt/">📋 모집공고 분석</a></div></div><div class="apt-nav-item"><a href="/rate/" class="">경쟁률</a><div class="apt-nav-dropdown"><a href="/rate/">단지별 경쟁률</a><a href="/rate/">커트라인</a><a href="/rate/">본인 가점으로 비교해보기</a></div></div><div class="apt-nav-item"><a href="/price/" class="active">분양가</a><div class="apt-nav-dropdown"><a href="/price/">분양가 대비 얼마나 올랐나</a><a href="/price/">평당 분양가</a></div></div><div class="apt-nav-item"><a href="/etc/" class="">기타</a><div class="apt-nav-dropdown"><a href="/etc/">미분양 및 무순위 추적기</a><a href="/etc/">청약 캘린더</a></div></div><div class="apt-nav-item"><a href="/tools/" class="">도구</a><div class="apt-nav-dropdown"><a href="/tools/">특별공급 자격 자가진단</a><a href="/tools/">청약통장 납입 시뮬레이터</a><a href="/tools/">옵션 조합 시뮬레이터</a><a href="/tools/">취득세 / DSR 한도 계산기</a><a href="/tools/">안전마진 계산기</a><a href="/tools/">로또 청약 랭킹</a></div></div></nav></div></header>
+<header class="apt-site-header"><div class="apt-nav-wrap"><a href="/" class="apt-logo">이름콕</a><nav class="apt-nav"><div class="apt-nav-item"><a href="/apt/" class="">분양모집공고</a><div class="apt-nav-dropdown"><a href="/apt/calendar/">📅 분양달력</a><a href="/apt/">📋 모집공고 분석</a></div></div><div class="apt-nav-item"><a href="/rate/" class="">경쟁률</a><div class="apt-nav-dropdown"><a href="/rate/">단지별 경쟁률</a><a href="/rate/">커트라인</a><a href="/tools/gajeom/">내 가점 계산기</a></div></div><div class="apt-nav-item"><a href="/price/" class="active">분양가</a><div class="apt-nav-dropdown"><a href="/price/pyeong/">평당 분양가 랭킹</a><a href="/price/">분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-item"><a href="/etc/" class="">기타</a><div class="apt-nav-dropdown"><a href="/etc/unranked/">미분양·무순위 추적기</a><a href="/apt/calendar/">청약 캘린더</a></div></div><div class="apt-nav-item"><a href="/tools/" class="">도구</a><div class="apt-nav-dropdown"><a href="/tools/gajeom/">청약 가점 계산기</a><a href="/tools/special/">특별공급 자격 자가진단</a><a href="/tools/bankbook/">청약통장 납입 시뮬레이터</a><a href="/tools/option/">옵션 조합 시뮬레이터</a><a href="/tools/tax/">취득세 계산기</a><a href="/tools/dsr/">DSR 한도 계산기</a><a href="/tools/margin/">안전마진 계산기</a></div></div></nav></div></header>
 <div class="apt-wrap">
-<h1>분양가</h1>
-<div class="apt-badge">🚧 준비중</div>
-<div class="apt-cat-group"><div class="apt-cat-group-title">제공 예정 콘텐츠</div><ul><li>분양가 대비 얼마나 올랐나</li><li>평당 분양가</li></ul></div>
+<h1>💰 분양가</h1>
+<div class="tool-desc">분양가를 다양한 각도로 뜯어봅니다.</div>
+<div class="tool-list"><a class="tool-card" href="/price/pyeong/"><div class="tool-card-t">평당 분양가 랭킹</div><div class="tool-card-d">최근 분양 단지의 평당 분양가를 비교하고 검색합니다.</div></a><div class="tool-card soon"><div class="tool-card-t">분양가 대비 얼마나 올랐나<span class="badge-soon">준비중</span></div><div class="tool-card-d">과거 분양가와 현재 실거래가를 비교해 상승률을 보여줍니다.</div></div></div>
 </div>
-<footer class="apt-site-footer">이름콕 · 순차적으로 공개될 예정입니다.</footer>
+<footer class="apt-site-footer">이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
+
 </body>
 </html>
