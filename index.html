@@ -3,77 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>첫눈소프트 | 이름콕</title>
+<title>청약 정보 - 이름콕</title>
+<meta name="description" content="분양 공고 분석 총정리 - 일정, 세대수, 분양가, 자금 스케줄">
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    background: #fdfaf6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.7;
-  }
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 60px 24px;
-  }
-  h1 {
-    font-size: 28px;
-    margin-bottom: 4px;
-  }
-  .tagline {
-    font-size: 18px;
-    color: #b8860b;
-    margin-bottom: 32px;
-  }
-  p {
-    font-size: 16px;
-  }
-  .features {
-    list-style: none;
-    padding: 0;
-    margin: 24px 0;
-  }
-  .features li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-  }
-  .contact {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid #ddd;
-    font-size: 14px;
-    color: #666;
-  }
-  .contact div {
-    margin-bottom: 4px;
-  }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif; margin: 0; padding: 0; background: #f4f5f7; color: #222; }
+.apt-site-header { background: #fff; border-bottom: 1px solid #eaeaea; padding: 16px 20px; }
+.apt-site-header a { font-weight: 800; font-size: 18px; color: #13294B; text-decoration: none; }
+.apt-wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 60px; }
+h1 { font-size: 24px; margin: 0 0 24px; }
+.apt-card-list { display: flex; flex-direction: column; gap: 12px; }
+.apt-card { display: block; background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 16px 20px; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.apt-card:hover { border-color: #13294B; }
+.apt-card-date { font-size: 12px; color: #888; margin-bottom: 4px; }
+.apt-card-title { font-size: 17px; font-weight: 700; }
+.apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>첫눈소프트</h1>
-    <div class="tagline">우리 아이의 평생 이름, 사주와 함께 정성껏 짓다</div>
+<header class="apt-site-header"><a href="/apt/">이름콕 청약정보</a></header>
+<div class="apt-wrap">
+<h1>📋 분양 공고 분석 총정리</h1>
+<div class="apt-card-list">
+<a class="apt-card" href="/apt/공덕역자이르네/">
+<div class="apt-card-date">2026.08.08</div>
+<div class="apt-card-title">공덕역자이르네</div>
+</a>
+</div>
 
-    <p>
-      '이름콕'은 아기의 출생 예정일 또는 사주 정보를 바탕으로
-      전통 작명 원리(오행·음령·수리)에 맞는 이름을 자동으로 추천해주는
-      작명 서비스입니다.
-    </p>
-
-    <h3>주요 기능</h3>
-    <ul class="features">
-      <li>사주 기반 이름 자동 추천</li>
-      <li>원하는 이름의 최적 한자 조합 찾기</li>
-      <li>자연분만 예정 부모를 위한 길일(택일) 추천</li>
-    </ul>
-
-    <div class="contact">
-      <div>상호명: 첫눈소프트</div>
-      <div>사업자등록번호: 731-47-01296</div>
-      <div>문의: name.gyeol@gmail.com</div>
-    </div>
-  </div>
+</div>
+<footer class="apt-site-footer">이름콕 · 본 게시글은 모집공고문을 바탕으로 자동 분석되었으며, 정확한 내용은 반드시 원문 공고를 확인하세요.</footer>
 </body>
 </html>
