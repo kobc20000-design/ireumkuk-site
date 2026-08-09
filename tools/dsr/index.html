@@ -49,6 +49,14 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .badge-soon { display: inline-block; background: #EBEDF0; color: #666; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
 .disclaimer { font-size: 12px; color: #999; line-height: 1.8; margin-top: 18px; padding: 14px 16px; background: #fafafa; border-radius: 8px; }
 .apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
+.apt-site-footer a { color: #888; text-decoration: none; }
+.apt-site-footer a:hover { color: #13294B; text-decoration: underline; }
+.legal-body h2 { font-size: 17px; color: #13294B; margin: 26px 0 10px; }
+.legal-body p, .legal-body li { font-size: 14px; line-height: 1.9; color: #333; }
+.legal-body ul { padding-left: 20px; margin: 8px 0; }
+.legal-body table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 13px; }
+.legal-body table th, .legal-body table td { border: 1px solid #eee; padding: 8px 10px; text-align: left; }
+.legal-body table th { background: #f7f8fa; }
 .searchbox { width: 100%; padding: 11px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; margin-bottom: 14px; font-family: inherit; }
 
 
@@ -107,7 +115,7 @@ DSR(총부채원리금상환비율)은 <b>연간 원리금 상환액 ÷ 연소�
 </div>
 
 </div>
-<footer class="apt-site-footer">이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
+<footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
 function calcDsr() {
   const income = +document.getElementById('d-income').value || 0;
