@@ -1,0 +1,39 @@
+name: 사이트 데이터 매일 갱신
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # 매일 03:00 KST (UTC 18:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ireumkuk-site 체크아웃
+        uses: actions/checkout@v4
+        with:
+          path: ireumkuk-site
+
+      - name: apply 체크아웃
+        uses: actions/checkout@v4
+        with:
+          repository: kobc20000-design/apply
+          path: apply
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 의존성 설치
+        run: pip install requests python-dotenv
+
+      - name: 사이트 빌드 + 배포
+        working-directory: apply
+        env:
+          APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
+          SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
+        run: python build_site.py --push
