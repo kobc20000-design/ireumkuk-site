@@ -73,20 +73,20 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .apt-nav-dropdown a:hover { background: #f4f5f7; color: #13294B; }
 
 
-.cal-panel { background:#fff; border:1px solid #eaeaea; border-radius:10px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.apt-wrap { max-width:1320px; }
+.cal-panel { background:#fff; border:1px solid #eaeaea; border-radius:10px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow-x:auto; }
 .cal-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
 .cal-toolbar button { background:#EBEDF0; border:none; border-radius:6px; padding:8px 14px; font-size:14px; cursor:pointer; font-weight:700; color:#13294B; font-family:inherit; }
 .cal-toolbar button:hover { background:#dfe1e5; }
 #cal-title { font-size:17px; font-weight:800; }
-.cal-panel { overflow-x:auto; }
-.cal-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; min-width:560px; }
-.cal-head div { text-align:center; font-size:12px; color:#888; font-weight:700; padding:4px 0; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; min-width:900px; }
+.cal-head div { text-align:center; font-size:13px; color:#888; font-weight:700; padding:4px 0; }
 .cal-head div:first-child { color:#d33; }
-.cal-cell { min-height:92px; min-width:0; border:1px solid #f0f0f0; border-radius:6px; padding:4px; }
+.cal-cell { min-height:120px; min-width:0; border:1px solid #f0f0f0; border-radius:6px; padding:6px; }
 .cal-cell.empty { border:none; }
 .cal-cell.today { border-color:#13294B; background:#f8fafd; }
-.cal-daynum { font-size:12px; color:#555; font-weight:700; margin-bottom:3px; }
-.cal-ev { display:block; border-radius:4px; padding:2px 5px; margin-bottom:2px; text-decoration:none; font-size:10px; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cal-daynum { font-size:13px; color:#555; font-weight:700; margin-bottom:4px; }
+.cal-ev { display:block; border-radius:4px; padding:3px 6px; margin-bottom:3px; text-decoration:none; font-size:12px; line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .cal-ev.notice { background:#EBEDF0; color:#333; }
 .cal-ev.apply { background:#13294B; color:#fff; }
 .cal-ev.result { background:#D33; color:#fff; }
