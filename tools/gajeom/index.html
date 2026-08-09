@@ -159,6 +159,11 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <div class="result-sub" id="g-detail"></div>
 </div>
 
+<div class="card hidden" id="g-match-card" style="margin-top:16px">
+<h2>이 점수로 당첨권이었던 최근 단지</h2>
+<div id="g-match-body" style="font-size:14px;color:#666">불러오는 중...</div>
+</div>
+
 <div class="disclaimer">
 가점은 <b>무주택기간(32) + 부양가족수(35) + 청약통장 가입기간(17) = 최대 84점</b>으로 계산됩니다.
 부양가족 수 배점이 가장 크므로 세대 구성에 따라 점수 차이가 큽니다.
@@ -168,6 +173,8 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
+let _gRate = null;
+
 function calcGajeom() {
   const h = +document.getElementById('g-house').value;
   const f = +document.getElementById('g-family').value;
@@ -184,6 +191,45 @@ function calcGajeom() {
     '무주택 기간 <b>' + h + '점</b> · 부양가족 <b>' + f + '점</b> · 통장 가입기간 <b>' + a + '점</b><br>' + grade;
   document.getElementById('g-result').classList.remove('hidden');
   document.getElementById('g-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+  showGMatch(total);
+}
+
+function showGMatch(total) {
+  const card = document.getElementById('g-match-card');
+  const body = document.getElementById('g-match-body');
+  card.classList.remove('hidden');
+  body.textContent = '불러오는 중...';
+  const render = () => {
+    const ok = _gRate.filter(r => r.lwet != null && r.lwet > 0 && r.lwet <= total);
+    ok.sort((x, y) => y.date.localeCompare(x.date));
+    if (!ok.length) {
+      body.innerHTML = '최근 데이터 중 이 점수로 당첨권이었던 단지를 찾지 못했습니다. ' +
+        '가점 경쟁이 치열한 시기였거나, 표본이 아직 적을 수 있습니다. ' +
+        '<a href="/rate/" style="color:#13294B">전체 경쟁률·커트라인 보기 →</a>';
+      return;
+    }
+    const seen = new Set();
+    const rows = [];
+    for (const r of ok) {
+      const k = r.name + r.ty;
+      if (seen.has(k)) continue;
+      seen.add(k);
+      rows.push(r);
+      if (rows.length >= 8) break;
+    }
+    body.innerHTML = '<div style="margin-bottom:10px">최근 데이터 기준, <b>' + total + '점</b>이면 아래 단지들의 최저당첨가점을 넘습니다.</div>' +
+      rows.map(r =>
+        '<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px">' +
+        '<span>' + (r.url ? '<a href="' + r.url + '" target="_blank" style="color:#222;text-decoration:none">' + r.name + '</a>' : r.name) +
+        ' <span style="color:#999">' + r.ty + '</span></span>' +
+        '<span style="white-space:nowrap"><b style="color:#13294B">최저 ' + r.lwet + '점</b> · ' + r.date + '</span>' +
+        '</div>'
+      ).join('') +
+      '<div style="margin-top:10px;font-size:12px"><a href="/rate/" style="color:#13294B">전체 경쟁률·커트라인 보기 →</a></div>';
+  };
+  if (_gRate) { render(); return; }
+  fetch('/data/rate.json').then(r => r.json()).then(d => { _gRate = d; render(); })
+    .catch(() => { body.textContent = '데이터를 불러오지 못했습니다.'; });
 }
 </script>
 </body>

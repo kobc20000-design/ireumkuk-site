@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📊 경쟁률 - 이름콕</title>
-<meta name="description" content="경쟁률과 커트라인 데이터는 공공 API 승인 후 순차 공개됩니다.">
+<title>📊 단지별 경쟁률·커트라인 - 이름콕</title>
+<meta name="description" content="최근 분양 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.">
 <style>
 
 * { box-sizing: border-box; }
@@ -78,11 +78,70 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <body>
 <header class="apt-site-header"><div class="apt-nav-wrap"><a href="/" class="apt-logo">이름콕</a><nav class="apt-nav"><div class="apt-nav-item"><a href="/apt/" class="">분양모집공고</a><div class="apt-nav-dropdown"><a href="/apt/calendar/">📅 분양달력</a><a href="/apt/">📋 모집공고 분석</a></div></div><div class="apt-nav-item"><a href="/rate/" class="active">경쟁률</a><div class="apt-nav-dropdown"><a href="/rate/">단지별 경쟁률</a><a href="/rate/">커트라인</a><a href="/tools/gajeom/">내 가점 계산기</a></div></div><div class="apt-nav-item"><a href="/price/" class="">분양가</a><div class="apt-nav-dropdown"><a href="/price/pyeong/">평당 분양가 랭킹</a><a href="/price/">분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-item"><a href="/etc/" class="">기타</a><div class="apt-nav-dropdown"><a href="/etc/unranked/">미분양·무순위 추적기</a><a href="/apt/calendar/">청약 캘린더</a></div></div><div class="apt-nav-item"><a href="/tools/" class="">도구</a><div class="apt-nav-dropdown"><a href="/tools/gajeom/">청약 가점 계산기</a><a href="/tools/special/">특별공급 자격 자가진단</a><a href="/tools/bankbook/">청약통장 납입 시뮬레이터</a><a href="/tools/option/">옵션 조합 시뮬레이터</a><a href="/tools/tax/">취득세 계산기</a><a href="/tools/dsr/">DSR 한도 계산기</a><a href="/tools/margin/">안전마진 계산기</a></div></div></nav></div></header>
 <div class="apt-wrap">
-<h1>📊 경쟁률</h1>
-<div class="tool-desc">경쟁률과 커트라인 데이터는 공공 API 승인 후 순차 공개됩니다.</div>
-<div class="tool-list"><a class="tool-card" href="/tools/gajeom/"><div class="tool-card-t">내 가점 계산기</div><div class="tool-card-d">무주택기간·부양가족·통장기간으로 청약 가점을 계산합니다.</div></a><div class="tool-card soon"><div class="tool-card-t">단지별 경쟁률<span class="badge-soon">준비중</span></div><div class="tool-card-d">타입별 청약 경쟁률을 정리해 보여줍니다.</div></div><div class="tool-card soon"><div class="tool-card-t">커트라인<span class="badge-soon">준비중</span></div><div class="tool-card-d">단지·타입별 최저 당첨 가점을 모아 보여줍니다.</div></div><div class="tool-card soon"><div class="tool-card-t">본인 가점으로 비교해보기<span class="badge-soon">준비중</span></div><div class="tool-card-d">내 가점이 과거 커트라인 분포에서 어디쯤인지 알려줍니다.</div></div></div>
+<h1>📊 단지별 경쟁률·커트라인</h1>
+<div class="tool-desc">최근 분양 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.</div>
+
+<div class="f-row" style="margin-bottom:10px">
+<label style="flex:0 0 auto">내 가점</label>
+<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" style="max-width:120px" oninput="renderR()">
+<span class="unit">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/" style="color:#13294B">가점 계산기</a></span>
+</div>
+<input class="searchbox" id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
+<div class="f-row" style="margin-bottom:16px">
+<label style="flex:0 0 auto">정렬</label>
+<select id="r-sort" onchange="renderR()" style="max-width:220px">
+<option value="rate-desc">경쟁률 높은 순</option>
+<option value="rate-asc">경쟁률 낮은 순</option>
+<option value="lwet-desc">커트라인 높은 순</option>
+<option value="lwet-asc">커트라인 낮은 순</option>
+<option value="date-desc">최근 공고 순</option>
+</select>
+<span class="unit" id="r-count"></span>
+</div>
+<div class="card" style="padding:0;overflow-x:auto">
+<table class="rt" id="r-table" style="margin:0"></table>
+</div>
+<div class="disclaimer">
+경쟁률·최저당첨가점은 <b>해당지역·1순위</b> 기준을 우선 표시하며, 해당 조건 신청이 없으면 다른 조건값으로 대체됩니다.
+표시되는 값은 대부분 <b>일반공급 가점제</b> 기준이며, 추첨제 물량·특별공급은 최저가점이 0 또는 공란으로 나올 수 있습니다.
+반드시 청약홈 원문에서 타입·순위·거주지역별 정확한 수치를 다시 확인하세요. 출처: 한국부동산원 청약홈 공공 API.
+</div>
+
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
-
+<script>
+let _R=[];
+fetch('/data/rate.json').then(r=>r.json()).then(d=>{_R=d;renderR();}).catch(()=>{});
+function renderR(){
+  const q=(document.getElementById('r-search').value||'').trim();
+  const sort=document.getElementById('r-sort').value;
+  const myRaw=document.getElementById('r-myscore').value;
+  const my=myRaw===''?null:+myRaw;
+  let rows=_R.filter(r=>!q||r.name.includes(q)||r.addr.includes(q));
+  if(sort==='rate-desc') rows.sort((a,b)=>(b.rate??-1)-(a.rate??-1));
+  else if(sort==='rate-asc') rows.sort((a,b)=>(a.rate??999999)-(b.rate??999999));
+  else if(sort==='lwet-desc') rows.sort((a,b)=>(b.lwet??-1)-(a.lwet??-1));
+  else if(sort==='lwet-asc') rows.sort((a,b)=>(a.lwet??999)-(b.lwet??999));
+  else rows.sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('r-count').textContent = rows.length.toLocaleString()+'건';
+  let h='<tr><th>단지명</th><th>주택형</th><th>거주지역·순위</th><th>경쟁률</th><th>접수건수</th><th>최저가점</th><th>공고일</th></tr>';
+  rows.slice(0,300).forEach(r=>{
+    const nm = r.url ? '<a href="'+r.url+'" target="_blank" style="color:#13294B">'+r.name+'</a>' : r.name;
+    let rowStyle='';
+    if(my!==null && r.lwet!=null && r.lwet>0){
+      rowStyle = my>=r.lwet ? 'background:#E7F6EC' : 'background:#FDECEC';
+    }
+    h+='<tr style="'+rowStyle+'"><td>'+nm+'<div style="font-size:11px;color:#999">'+(r.addr||'').slice(0,30)+'</div></td>'+
+       '<td style="text-align:center">'+r.ty+'</td>'+
+       '<td style="text-align:center;font-size:12px">'+(r.reside||'-')+' · '+r.rank+'순위</td>'+
+       '<td style="font-weight:700;color:#13294B">'+(r.rate!=null?r.rate.toFixed(2)+':1':'-')+'</td>'+
+       '<td>'+(+r.req||0).toLocaleString()+'명</td>'+
+       '<td>'+(r.lwet!=null&&r.lwet>0?r.lwet+'점':'-')+'</td>'+
+       '<td style="text-align:center;font-size:12px;color:#888">'+r.date+'</td></tr>';
+  });
+  if(rows.length>300) h+='<tr><td colspan="7" style="text-align:center;color:#999">상위 300건만 표시됩니다</td></tr>';
+  document.getElementById('r-table').innerHTML=h;
+}
+</script>
 </body>
 </html>
