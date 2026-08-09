@@ -1,8 +1,8 @@
-name: 사이트 데이터 매일 갱신
+name: 사이트 데이터 매시간 갱신
 
 on:
   schedule:
-    - cron: '0 18 * * *'   # 매일 03:00 KST (UTC 18:00)
+    - cron: '0 * * * *'   # 매시 정각
   workflow_dispatch:
 
 permissions:
@@ -22,6 +22,7 @@ jobs:
         with:
           repository: kobc20000-design/apply
           path: apply
+          token: ${{ secrets.APPLY_PUSH_TOKEN }}
 
       - name: Python 설정
         uses: actions/setup-python@v5
@@ -31,9 +32,23 @@ jobs:
       - name: 의존성 설치
         run: pip install requests python-dotenv
 
-      - name: 사이트 빌드 + 배포
+      - name: 신규 공고 알림 카드 발행 (notify_bot.py)
+        working-directory: apply
+        env:
+          APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
+          SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
+        run: python notify_bot.py
+
+      - name: 사이트 데이터 빌드 + 배포 (build_site.py)
         working-directory: apply
         env:
           APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
           SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
         run: python build_site.py --push
+
+      - name: apply 상태 파일(pending/seen) 커밋
+        working-directory: apply
+        run: |
+          git -c user.email=kobc20000@gmail.com -c user.name=이름콕 add pending_announcements.json seen_announcements.json
+          git -c user.email=kobc20000@gmail.com -c user.name=이름콕 commit -m "notify_bot 상태 갱신" || echo "변경 없음"
+          git push
