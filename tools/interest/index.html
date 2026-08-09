@@ -82,6 +82,18 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <div class="tool-desc">중도금 회차별 납부일과 금리를 입력하면 입주 시점까지의 예상 이자 총액을 계산합니다.</div>
 
 <div class="card">
+<h2>단지에서 자동 채우기 <span style="font-weight:400;font-size:13px;color:#888">(선택, 입주 전 APT만 제공)</span></h2>
+<div class="f-row"><label>단지 검색</label>
+<input type="text" id="i-danji-search" list="i-danji-list" placeholder="단지명을 입력하세요" style="max-width:320px" oninput="onDanjiPick()" autocomplete="off">
+<datalist id="i-danji-list"></datalist>
+</div>
+<div class="f-row" id="i-ty-row" style="display:none"><label>주택형</label>
+<select id="i-ty-select" onchange="applyDanjiFill()"></select>
+</div>
+<div class="f-hint" id="i-danji-hint" style="margin-left:0"></div>
+</div>
+
+<div class="card">
 <h2>기본 정보</h2>
 <div class="f-row"><label>분양가</label><input type="number" id="i-price" value="50000"><span class="unit">만원</span></div>
 <div class="f-row"><label>입주예정월</label><input type="month" id="i-movein"></div>
@@ -118,6 +130,60 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>이름콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
+let _midterm = [];
+fetch('/data/midterm.json').then(r => r.ok ? r.json() : []).then(list => {
+  _midterm = list || [];
+  const dl = document.getElementById('i-danji-list');
+  _midterm.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d.name;
+    dl.appendChild(opt);
+  });
+}).catch(() => {});
+
+function onDanjiPick() {
+  const val = document.getElementById('i-danji-search').value;
+  const d = _midterm.find(x => x.name === val);
+  const tyRow = document.getElementById('i-ty-row');
+  const tySelect = document.getElementById('i-ty-select');
+  if (!d) {
+    tyRow.style.display = 'none';
+    document.getElementById('i-danji-hint').textContent = '';
+    return;
+  }
+  tySelect.innerHTML = d.types.map(t =>
+    '<option value="' + t.ty + '">' + t.ty + ' · ' + t.amt.toLocaleString() + '만원</option>'
+  ).join('');
+  tyRow.style.display = '';
+  applyDanjiFill();
+}
+
+function applyDanjiFill() {
+  const val = document.getElementById('i-danji-search').value;
+  const d = _midterm.find(x => x.name === val);
+  if (!d) return;
+  const chosenTy = document.getElementById('i-ty-select').value;
+  const t = d.types.find(x => x.ty === chosenTy) || d.types[0];
+  if (!t) return;
+  document.getElementById('i-price').value = t.amt;
+  document.getElementById('i-movein').value = d.movein;
+  fillEstimatedDates(d.contract, d.movein + '-01');
+  document.getElementById('i-danji-hint').textContent =
+    '회차 납부일은 계약시작일(' + d.contract + ')~입주예정월 사이 균등 분배한 추정치입니다. 실제 회차 날짜·금리는 반드시 모집공고문으로 확인하세요.';
+}
+
+function fillEstimatedDates(startStr, endStr) {
+  const start = new Date(startStr), end = new Date(endStr);
+  const rows = [...document.querySelectorAll('#i-table tr')].slice(1);
+  const n = rows.length;
+  if (!(end > start) || n === 0) return;
+  const totalMs = end.getTime() - start.getTime();
+  rows.forEach((tr, idx) => {
+    const t = start.getTime() + totalMs * ((idx + 1) / (n + 1));
+    tr.querySelector('.i-date').value = new Date(t).toISOString().slice(0, 10);
+  });
+}
+
 let _iRowN = 0;
 function addIRow(label, ratio) {
   _iRowN++;
