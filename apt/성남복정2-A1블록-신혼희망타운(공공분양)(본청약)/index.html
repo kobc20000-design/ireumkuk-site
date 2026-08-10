@@ -3,30 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>방금 접수된 공고 - 청약콕</title>
-<meta name="description" content="상세 분석 전, 방금 접수가 시작된 분양 공고 목록입니다.">
+<title>성남복정2 A1블록 신혼희망타운(공공분양)(본청약) 분양 정보 - 청약콕</title>
 <style>
 * { box-sizing: border-box; }
 body { font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif; margin: 0; padding: 0; background: #f4f5f7; color: #222; }
 .apt-wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 60px; }
-h1 { font-size: 24px; margin: 0 0 8px; }
-.apt-sub { color: #666; font-size: 14px; margin: 0 0 20px; }
-.apt-sub a { color: #13294B; }
-.apt-card-list { display: flex; flex-direction: column; gap: 12px; }
-.apt-card { display: block; background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 16px 20px; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-.apt-card:hover { border-color: #13294B; }
-.apt-card-date { font-size: 12px; color: #888; margin-bottom: 4px; }
-.apt-card-title { font-size: 17px; font-weight: 700; }
+.apt-date { color: #888; font-size: 13px; margin-bottom: 6px; }
+h1 { font-size: 26px; margin: 0 0 8px; }
+.apt-badge { display: inline-block; background: #FEF3C7; color: #92400E; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-bottom: 20px; }
+table.apt-table-kv2 { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+table.apt-table-kv2 td.kv-label { background: #EBEDF0; font-weight: 700; width: 30%; padding: 10px 12px; }
+table.apt-table-kv2 td.kv-value { background: #fff; padding: 10px 12px; }
+.apt-notice-link { display: inline-block; margin-top: 16px; background: #13294B; color: #fff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 8px; }
 .apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
 .apt-site-footer a { color: #888; text-decoration: none; }
 .apt-site-footer a:hover { color: #13294B; text-decoration: underline; }
 
 .apt-shell { display: flex; align-items: flex-start; min-height: 100vh; background: #F4F6F9; }
-.apt-sidebar { width: 224px; flex: none; background: #13294B; padding: 20px 12px 24px; position: sticky; top: 0; align-self: flex-start; min-height: 100vh; overflow: hidden; transition: width .18s ease, padding .18s ease; }
-.apt-sidebar-inner { width: 200px; }
-.apt-collapse-btn { width: 30px; height: 30px; flex: none; border: none; border-radius: 7px; cursor: pointer; background: rgba(255,255,255,.09); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.apt-collapse-btn:hover { background: rgba(255,255,255,.18); }
-.apt-collapse-btn svg { width: 16px; height: 16px; }
+.apt-sidebar { width: 224px; flex: none; background: #13294B; padding: 20px 12px 24px; position: sticky; top: 0; align-self: flex-start; min-height: 100vh; }
 .apt-sidebar .apt-logo { display: block; color: #fff; font-weight: 800; font-size: 16px; text-decoration: none; margin: 0 6px 18px; }
 .apt-nav-group + .apt-nav-group { margin-top: 2px; }
 .apt-nav-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 8px; border-radius: 7px; font-size: 13.5px; font-weight: 700; color: #c7d1e0; text-align: left; }
@@ -40,25 +34,19 @@ h1 { font-size: 24px; margin: 0 0 8px; }
 .apt-nav-ic { width: 18px; height: 18px; flex: none; border-radius: 5px; background: rgba(255,255,255,.09); display: flex; align-items: center; justify-content: center; }
 .apt-nav-ic i { width: 6px; height: 6px; border-radius: 2px; background: rgba(255,255,255,.55); display: block; }
 .apt-main { flex: 1; min-width: 0; }
-.apt-shell.apt-collapsed .apt-sidebar { width: 56px; padding-left: 13px; padding-right: 13px; }
-.apt-shell.apt-collapsed .apt-logo,
-.apt-shell.apt-collapsed .apt-nav-group { display: none; }
 @media (max-width: 760px) {
   .apt-shell { flex-direction: column; }
-  .apt-sidebar { width: 100% !important; position: static; min-height: 0; padding: 14px 12px !important; }
+  .apt-sidebar { width: 100%; position: static; min-height: 0; }
   .apt-nav-sub { padding-left: 4px; }
-  .apt-shell.apt-collapsed .apt-logo,
-  .apt-shell.apt-collapsed .apt-nav-group { display: flex; }
 }
 
 </style>
 </head>
 <body>
-<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner">
-<button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<div class="apt-shell"><aside class="apt-sidebar">
 <a href="/" class="apt-logo">청약콕</a>
 <div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">분양모집공고<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>📅 분양달력</a><a href="/apt/"><span class="apt-nav-ic"><i></i></span>📋 모집공고 분석</a><a href="/apt/new/"><span class="apt-nav-ic"><i></i></span>🆕 방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/rate/"><span class="apt-nav-ic"><i></i></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><i></i></span>커트라인</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>내 가점 계산기</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><i></i></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><i></i></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><i></i></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><i></i></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><i></i></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><i></i></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><i></i></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><i></i></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><i></i></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><i></i></span>안전마진 계산기</a></div></div>
-</div></aside>
+</aside>
 <script>
 function _aptNavToggle(btn) {
   var panel = btn.parentElement.querySelector('.apt-nav-sub');
@@ -67,25 +55,16 @@ function _aptNavToggle(btn) {
   document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });
   if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
 }
-function _aptSidebarToggle() {
-  var shell = document.querySelector('.apt-shell');
-  var collapsed = shell.classList.toggle('apt-collapsed');
-  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}
-}
 </script>
 <main class="apt-main">
 <div class="apt-wrap">
-<h1>🆕 방금 접수된 공고</h1>
-<p class="apt-sub">아직 상세 분석 전인 공고입니다. 분석 글이 올라오면 <a href="/apt/">모집공고 분석</a>으로 자동 이동합니다.</p>
-<div class="apt-card-list">
-<a class="apt-card" href="/apt/성남복정2-A1블록-신혼희망타운(공공분양)(본청약)/">
-<div class="apt-card-date">2026.08.10</div>
-<div class="apt-card-title">성남복정2 A1블록 신혼희망타운(공공분양)(본청약)</div>
-</a>
+<div class="apt-date">2026.08.10</div>
+<h1>성남복정2 A1블록 신혼희망타운(공공분양)(본청약)</h1>
+<div class="apt-badge">🆕 공고 접수 · 상세 분석 준비중</div>
+<table class="apt-table-kv2"><tbody><tr><td class="kv-label">유형</td><td class="kv-value">신혼희망타운</td></tr><tr><td class="kv-label">위치</td><td class="kv-value">경기도 성남시 수정구 신흥동 81-8</td></tr><tr><td class="kv-label">세대수</td><td class="kv-value">594세대</td></tr><tr><td class="kv-label">모집공고일</td><td class="kv-value">2026-08-10</td></tr><tr><td class="kv-label">접수기간</td><td class="kv-value">2026-08-31 ~ 2026-09-08</td></tr></tbody></table>
+<a class="apt-notice-link" href="https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026820008&pblancNo=2026820008" target="_blank" rel="noopener">📄 원문 공고 보기</a>
 </div>
-
-</div>
-<footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 이 페이지는 접수 사실만 안내하며 AI 분석이 포함되지 않았습니다.</footer>
+<footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 상세 분석글은 순차적으로 업데이트됩니다.</footer>
 </main></div>
 </body>
 </html>
