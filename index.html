@@ -29,7 +29,11 @@ h1 { font-size: 24px; margin: 0 0 24px; }
 .apt-site-footer a:hover { color: #13294B; text-decoration: underline; }
 
 .apt-shell { display: flex; align-items: flex-start; min-height: 100vh; background: #F4F6F9; }
-.apt-sidebar { width: 224px; flex: none; background: #13294B; padding: 20px 12px 24px; position: sticky; top: 0; align-self: flex-start; min-height: 100vh; }
+.apt-sidebar { width: 224px; flex: none; background: #13294B; padding: 20px 12px 24px; position: sticky; top: 0; align-self: flex-start; min-height: 100vh; overflow: hidden; transition: width .18s ease, padding .18s ease; }
+.apt-sidebar-inner { width: 200px; }
+.apt-collapse-btn { width: 30px; height: 30px; flex: none; border: none; border-radius: 7px; cursor: pointer; background: rgba(255,255,255,.09); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.apt-collapse-btn:hover { background: rgba(255,255,255,.18); }
+.apt-collapse-btn svg { width: 16px; height: 16px; }
 .apt-sidebar .apt-logo { display: block; color: #fff; font-weight: 800; font-size: 16px; text-decoration: none; margin: 0 6px 18px; }
 .apt-nav-group + .apt-nav-group { margin-top: 2px; }
 .apt-nav-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 8px; border-radius: 7px; font-size: 13.5px; font-weight: 700; color: #c7d1e0; text-align: left; }
@@ -43,19 +47,25 @@ h1 { font-size: 24px; margin: 0 0 24px; }
 .apt-nav-ic { width: 18px; height: 18px; flex: none; border-radius: 5px; background: rgba(255,255,255,.09); display: flex; align-items: center; justify-content: center; }
 .apt-nav-ic i { width: 6px; height: 6px; border-radius: 2px; background: rgba(255,255,255,.55); display: block; }
 .apt-main { flex: 1; min-width: 0; }
+.apt-shell.apt-collapsed .apt-sidebar { width: 56px; padding-left: 13px; padding-right: 13px; }
+.apt-shell.apt-collapsed .apt-logo,
+.apt-shell.apt-collapsed .apt-nav-group { display: none; }
 @media (max-width: 760px) {
   .apt-shell { flex-direction: column; }
-  .apt-sidebar { width: 100%; position: static; min-height: 0; }
+  .apt-sidebar { width: 100% !important; position: static; min-height: 0; padding: 14px 12px !important; }
   .apt-nav-sub { padding-left: 4px; }
+  .apt-shell.apt-collapsed .apt-logo,
+  .apt-shell.apt-collapsed .apt-nav-group { display: flex; }
 }
 
 </style>
 </head>
 <body>
-<div class="apt-shell"><aside class="apt-sidebar">
+<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner">
+<button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 <a href="/" class="apt-logo">청약콕</a>
 <div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">분양모집공고<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>📅 분양달력</a><a href="/apt/"><span class="apt-nav-ic"><i></i></span>📋 모집공고 분석</a><a href="/apt/new/"><span class="apt-nav-ic"><i></i></span>🆕 방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/rate/"><span class="apt-nav-ic"><i></i></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><i></i></span>커트라인</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>내 가점 계산기</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><i></i></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><i></i></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><i></i></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><i></i></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><i></i></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><i></i></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><i></i></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><i></i></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><i></i></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><i></i></span>안전마진 계산기</a></div></div>
-</aside>
+</div></aside>
 <script>
 function _aptNavToggle(btn) {
   var panel = btn.parentElement.querySelector('.apt-nav-sub');
@@ -63,6 +73,11 @@ function _aptNavToggle(btn) {
   document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });
   document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });
   if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+}
+function _aptSidebarToggle() {
+  var shell = document.querySelector('.apt-shell');
+  var collapsed = shell.classList.toggle('apt-collapsed');
+  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}
 }
 </script>
 <main class="apt-main">
