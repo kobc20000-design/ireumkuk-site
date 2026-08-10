@@ -12,11 +12,18 @@ body { font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif; ma
 h1 { font-size: 24px; margin: 0 0 8px; }
 .apt-sub { color: #666; font-size: 14px; margin: 0 0 20px; }
 .apt-sub a { color: #13294B; }
-.apt-card-list { display: flex; flex-direction: column; gap: 12px; }
-.apt-card { display: block; background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 16px 20px; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-.apt-card:hover { border-color: #13294B; }
-.apt-card-date { font-size: 12px; color: #888; margin-bottom: 4px; }
-.apt-card-title { font-size: 17px; font-weight: 700; }
+.apt-subhead { display: flex; align-items: baseline; gap: 8px; margin: 0 0 12px; flex-wrap: wrap; }
+.apt-subhead h2 { font-size: 14px; font-weight: 800; margin: 0; }
+.apt-subhead .cnt { font-size: 12px; color: #888; }
+.apt-subhead .note { margin-left: auto; font-size: 11.5px; color: #999; }
+.pending-list { display: flex; flex-direction: column; gap: 1px; border: 1px dashed #C3CEDC; border-radius: 10px; overflow: hidden; }
+.pending-item { display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: #fff; text-decoration: none; color: inherit; }
+.pending-item:hover { background: #fafbfc; }
+.pending-item + .pending-item { border-top: 1px dashed #eaeaea; }
+.pending-dot { width: 6px; height: 6px; border-radius: 50%; background: #999; flex: none; }
+.pending-date { font-size: 12px; color: #888; flex: none; width: 66px; }
+.pending-title { font-size: 14px; font-weight: 600; flex: 1; color: #555; }
+.pending-badge { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: #FBE9E3; color: #C24A2C; flex: none; }
 .apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
 .apt-site-footer a { color: #888; text-decoration: none; }
 .apt-site-footer a:hover { color: #13294B; text-decoration: underline; }
@@ -77,12 +84,13 @@ function _aptSidebarToggle() {
 <div class="apt-wrap">
 <h1>🆕 방금 접수된 공고</h1>
 <p class="apt-sub">아직 상세 분석 전인 공고입니다. 분석 글이 올라오면 <a href="/apt/">모집공고 분석</a>으로 자동 이동합니다.</p>
-<div class="apt-card-list">
-<a class="apt-card" href="/apt/성남복정2-A1블록-신혼희망타운(공공분양)(본청약)/">
-<div class="apt-card-date">2026.08.10</div>
-<div class="apt-card-title">성남복정2 A1블록 신혼희망타운(공공분양)(본청약)</div>
-</a>
-</div>
+<div class="apt-subhead"><h2>방금 접수된 공고</h2><span class="cnt">1건</span><span class="note">분석 전 — 사진 없음</span></div>
+<div class="pending-list"><a class="pending-item" href="/apt/성남복정2-A1블록-신혼희망타운(공공분양)(본청약)/">
+<span class="pending-dot"></span>
+<span class="pending-date">2026.08.10</span>
+<span class="pending-title">성남복정2 A1블록 신혼희망타운(공공분양)(본청약)</span>
+<span class="pending-badge">NEW</span>
+</a></div>
 
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 이 페이지는 접수 사실만 안내하며 AI 분석이 포함되지 않았습니다.</footer>
