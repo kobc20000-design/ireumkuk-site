@@ -43,10 +43,11 @@ table.apt-table-kv2 td.kv-value { background: #fff; padding: 10px 12px; }
 </style>
 </head>
 <body>
-<div class="apt-shell"><aside class="apt-sidebar">
+<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner">
+<button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 <a href="/" class="apt-logo">청약콕</a>
 <div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">분양모집공고<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>📅 분양달력</a><a href="/apt/"><span class="apt-nav-ic"><i></i></span>📋 모집공고 분석</a><a href="/apt/new/"><span class="apt-nav-ic"><i></i></span>🆕 방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/rate/"><span class="apt-nav-ic"><i></i></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><i></i></span>커트라인</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>내 가점 계산기</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><i></i></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><i></i></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><i></i></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><i></i></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><i></i></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><i></i></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><i></i></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><i></i></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><i></i></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><i></i></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><i></i></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><i></i></span>안전마진 계산기</a></div></div>
-</aside>
+</div></aside>
 <script>
 function _aptNavToggle(btn) {
   var panel = btn.parentElement.querySelector('.apt-nav-sub');
@@ -54,6 +55,11 @@ function _aptNavToggle(btn) {
   document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });
   document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });
   if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+}
+function _aptSidebarToggle() {
+  var shell = document.querySelector('.apt-shell');
+  var collapsed = shell.classList.toggle('apt-collapsed');
+  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}
 }
 </script>
 <main class="apt-main">
