@@ -176,7 +176,7 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <button class="cal-filter-btn" data-kind="rank2"><i style="background:#3E7CB1"></i>2순위</button>
 <button class="cal-filter-btn" data-kind="result"><i style="background:#D33"></i>당첨발표</button>
 <button class="cal-filter-btn" data-kind="contract"><i style="background:#1D9A54"></i>계약</button>
-<button class="cal-filter-btn" id="calActiveBtn">🟣 지금 진행중인 단지</button>
+<button class="cal-filter-btn" id="calActiveBtn">🟣 모집공고~접수전 단지</button>
 </div>
 <div class="cal-grid cal-head">
 <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
@@ -245,20 +245,23 @@ function renderDetail(){
   const q=_searchQuery.trim();
 
   if (_showActive){
-    const ranges={};
+    const info={};
     _ev.forEach(e=>{
-      if(!ranges[e.name]) ranges[e.name]={name:e.name,url:e.url,min:e.date,max:e.date};
-      else { if(e.date<ranges[e.name].min) ranges[e.name].min=e.date; if(e.date>ranges[e.name].max) ranges[e.name].max=e.date; }
+      if(!info[e.name]) info[e.name]={name:e.name,url:e.url};
+      if(e.kind==='notice' && (!info[e.name].notice || e.date<info[e.name].notice)) info[e.name].notice=e.date;
+      if((e.kind==='sp'||e.kind==='rank1'||e.kind==='rank2') && (!info[e.name].recept || e.date<info[e.name].recept)) info[e.name].recept=e.date;
     });
-    const list=Object.values(ranges).filter(c=>c.min<=_todayStr && _todayStr<=c.max).sort((a,b)=>a.min.localeCompare(b.min));
+    const list=Object.values(info)
+      .filter(c=>c.notice && c.recept && c.notice<=_todayStr && _todayStr<c.recept)
+      .sort((a,b)=>a.notice.localeCompare(b.notice));
     panel.classList.remove('hidden');
-    document.getElementById('calDetailDate').textContent = '지금 접수중~계약중인 단지 ('+list.length+'건)';
+    document.getElementById('calDetailDate').textContent = '지금 모집공고~청약접수 전인 단지 ('+list.length+'건)';
     const listEl=document.getElementById('calDetailList');
-    if (!list.length){ listEl.innerHTML='<div class="cal-detail-empty">현재 진행중인 단지가 없습니다.</div>'; return; }
+    if (!list.length){ listEl.innerHTML='<div class="cal-detail-empty">현재 해당하는 단지가 없습니다.</div>'; return; }
     listEl.innerHTML = list.map(c=>{
-      const inner = '<span class="cal-search-date">'+c.min+' ~ '+c.max+'</span>'
+      const inner = '<span class="cal-search-date">'+c.notice+' ~ '+c.recept+'</span>'
         + '<span class="cal-detail-name">'+c.name+'</span>';
-      return '<a class="cal-detail-item cal-jump" href="#" data-date="'+c.min+'">'+inner+'</a>';
+      return '<a class="cal-detail-item cal-jump" href="#" data-date="'+c.notice+'">'+inner+'</a>';
     }).join('');
     document.querySelectorAll('.cal-jump').forEach(row=>{
       row.addEventListener('click', ev=>{
