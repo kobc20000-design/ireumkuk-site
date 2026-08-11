@@ -97,21 +97,59 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .cal-toolbar button { background:#EBEDF0; border:none; border-radius:6px; padding:8px 14px; font-size:14px; cursor:pointer; font-weight:700; color:#13294B; font-family:inherit; }
 .cal-toolbar button:hover { background:#dfe1e5; }
 #cal-title { font-size:17px; font-weight:800; }
+.cal-search-row { margin-bottom:12px; min-width:900px; }
+.cal-search { width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px; font-family:inherit; }
+.cal-search:focus { outline:none; border-color:#13294B; }
+.cal-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; min-width:900px; }
+.cal-filter-btn { border:1px solid #e2e2e2; background:#fff; border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:700; color:#666; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
+.cal-filter-btn i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+.cal-filter-btn:hover { border-color:#c9c9c9; }
+.cal-filter-btn.active { background:#13294B; border-color:#13294B; color:#fff; }
+.cal-filter-btn.active i { outline:1.5px solid rgba(255,255,255,.7); outline-offset:1px; }
 .cal-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; min-width:900px; }
 .cal-head div { text-align:center; font-size:13px; color:#888; font-weight:700; padding:4px 0; }
 .cal-head div:first-child { color:#d33; }
-.cal-cell { min-height:120px; min-width:0; border:1px solid #f0f0f0; border-radius:6px; padding:6px; }
-.cal-cell.empty { border:none; }
+.cal-cell { min-height:74px; min-width:0; border:1px solid #f0f0f0; border-radius:6px; padding:6px; cursor:pointer; transition:border-color .12s ease, background .12s ease; }
+.cal-cell:hover { border-color:#cdd6e3; }
+.cal-cell.empty { border:none; cursor:default; }
 .cal-cell.today { border-color:#13294B; background:#f8fafd; }
-.cal-daynum { font-size:13px; color:#555; font-weight:700; margin-bottom:4px; }
-.cal-ev { display:block; border-radius:4px; padding:3px 6px; margin-bottom:3px; text-decoration:none; font-size:12px; line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.cal-ev.notice { background:#EBEDF0; color:#333; }
-.cal-ev.apply { background:#13294B; color:#fff; }
-.cal-ev.result { background:#D33; color:#fff; }
-.cal-ev.contract { background:#1D9A54; color:#fff; }
-.legend { display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:#666; }
+.cal-cell.selected { border-color:#13294B; background:#eef2f8; box-shadow:inset 0 0 0 1px #13294B; }
+.cal-cell.hit { background:#FFF8E5; border-color:#E8B44D; }
+.cal-cell.hit.selected { background:#FFF1CC; border-color:#13294B; box-shadow:inset 0 0 0 1px #13294B; }
+.cal-daynum { font-size:13px; color:#555; font-weight:700; margin-bottom:5px; }
+.cal-dots { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
+.cal-dot { width:7px; height:7px; border-radius:50%; flex:none; }
+.cal-dot.notice { background:#C9CDD3; }
+.cal-dot.apply { background:#13294B; }
+.cal-dot.result { background:#D33; }
+.cal-dot.contract { background:#1D9A54; }
+.cal-dot.sp { box-shadow:inset 0 0 0 1.5px #fff; }
+.cal-more { font-size:10px; color:#999; font-weight:700; }
+.legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:#666; }
 .legend span { display:inline-flex; align-items:center; gap:5px; }
-.legend i { width:11px; height:11px; border-radius:3px; display:inline-block; }
+.legend i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+.legend i.sp { background:#999; box-shadow:inset 0 0 0 1.5px #fff; }
+.cal-detail { margin-top:16px; border:1px solid #eaeaea; border-radius:10px; overflow:hidden; min-width:900px; }
+.cal-detail.hidden { display:none; }
+.cal-detail-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#f7f8fa; border-bottom:1px solid #eaeaea; }
+.cal-detail-head span { font-size:14px; font-weight:800; color:#13294B; }
+.cal-detail-head button { border:none; background:none; font-size:14px; color:#999; cursor:pointer; padding:4px; }
+.cal-detail-list { display:flex; flex-direction:column; }
+.cal-detail-item { display:flex; align-items:center; gap:10px; padding:11px 16px; text-decoration:none; color:inherit; }
+.cal-detail-item:hover { background:#fafbfc; }
+.cal-detail-item + .cal-detail-item { border-top:1px solid #f2f2f2; }
+.cal-kind-chip { width:9px; height:9px; border-radius:50%; flex:none; }
+.cal-kind-chip.notice { background:#C9CDD3; }
+.cal-kind-chip.apply { background:#13294B; }
+.cal-kind-chip.result { background:#D33; }
+.cal-kind-chip.contract { background:#1D9A54; }
+.cal-detail-name { font-size:14px; font-weight:700; flex:1; }
+.cal-search-date { font-size:12px; color:#888; flex:none; width:74px; }
+.cal-type-badge { font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:999px; flex:none; }
+.cal-type-badge.sp { background:#FFF1DC; color:#92600C; }
+.cal-type-badge.gen { background:#E7ECF3; color:#445; }
+.cal-type-badge.plain { background:#F0F0F0; color:#777; }
+.cal-detail-empty { padding:24px 16px; text-align:center; color:#999; font-size:13px; }
 
 </style>
 </head>
@@ -127,15 +165,28 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <div id="cal-title"></div>
 <button id="cal-next">다음달 ▶</button>
 </div>
+<div class="cal-search-row"><input class="cal-search" id="calSearch" placeholder="단지명으로 검색 (예: 자이, 푸르지오)"></div>
+<div class="cal-filters" id="calFilters">
+<button class="cal-filter-btn active" data-kind="all">전체</button>
+<button class="cal-filter-btn" data-kind="notice"><i style="background:#C9CDD3"></i>모집공고</button>
+<button class="cal-filter-btn" data-kind="apply"><i style="background:#13294B"></i>청약접수</button>
+<button class="cal-filter-btn" data-kind="result"><i style="background:#D33"></i>당첨발표</button>
+<button class="cal-filter-btn" data-kind="contract"><i style="background:#1D9A54"></i>계약</button>
+</div>
 <div class="cal-grid cal-head">
 <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
 </div>
 <div id="cal-body"></div>
 <div class="legend">
-<span><i style="background:#EBEDF0"></i>모집공고</span>
+<span><i style="background:#C9CDD3"></i>모집공고</span>
 <span><i style="background:#13294B"></i>청약접수</span>
 <span><i style="background:#D33"></i>당첨발표</span>
 <span><i style="background:#1D9A54"></i>계약</span>
+<span><i class="sp"></i>특별공급 (흰 테두리 점)</span>
+</div>
+<div class="cal-detail hidden" id="calDetail">
+<div class="cal-detail-head"><span id="calDetailDate"></span><button id="calDetailClose">닫기 ✕</button></div>
+<div class="cal-detail-list" id="calDetailList"></div>
 </div>
 </div>
 <div class="disclaimer">일정은 청약홈 공공 API를 기준으로 하며, 단지 사정에 따라 변경될 수 있습니다. 반드시 원문 공고를 확인하세요.</div>
@@ -145,32 +196,103 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <script>
 let _cur = new Date(); _cur.setDate(1);
 let _ev = [];
+let _activeKind = 'all';
+let _selectedDate = null;
+let _searchQuery = '';
 const _todayStr = (d => d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0'))(new Date());
 
-fetch('/data/schedule.json').then(r=>r.json()).then(d=>{_ev=d;render();}).catch(()=>{_ev=[];render();});
+fetch('/data/schedule.json').then(r=>r.json()).then(d=>{_ev=d;render();renderDetail();}).catch(()=>{_ev=[];render();renderDetail();});
+
+function fmt(y,m,d){ return y+'.'+String(m+1).padStart(2,'0')+'.'+String(d).padStart(2,'0'); }
+function isSp(e){ return e.label === '특별공급'; }
+function typeBadge(e){
+  if (e.label === '특별공급') return '<span class="cal-type-badge sp">특공</span>';
+  if (e.label === '1순위' || e.label === '2순위') return '<span class="cal-type-badge gen">일반·'+e.label+'</span>';
+  return '<span class="cal-type-badge plain">'+e.label+'</span>';
+}
 
 function render() {
   const y=_cur.getFullYear(), m=_cur.getMonth();
   document.getElementById('cal-title').textContent = y+'년 '+(m+1)+'월';
   const start=new Date(y,m,1).getDay(), days=new Date(y,m+1,0).getDate();
-  let h='<div class="cal-grid">';
+  const q=_searchQuery.trim();
+  let h='';
   for(let i=0;i<start;i++) h+='<div class="cal-cell empty"></div>';
   for(let d=1;d<=days;d++){
-    const ds=y+'.'+String(m+1).padStart(2,'0')+'.'+String(d).padStart(2,'0');
-    const evs=_ev.filter(e=>e.date===ds);
-    h+='<div class="cal-cell'+(ds===_todayStr?' today':'')+'"><div class="cal-daynum">'+d+'</div>';
-    evs.slice(0,4).forEach(e=>{
-      const t=e.name+' · '+e.label;
-      h+= e.url ? '<a class="cal-ev '+e.kind+'" href="'+e.url+'" target="_blank" title="'+t+'">'+t+'</a>'
-                : '<span class="cal-ev '+e.kind+'" title="'+t+'">'+t+'</span>';
-    });
-    if(evs.length>4) h+='<div style="font-size:10px;color:#888;padding-left:4px">+'+(evs.length-4)+'건</div>';
-    h+='</div>';
+    const ds=fmt(y,m,d);
+    const evs=_ev.filter(e=>e.date===ds && (_activeKind==='all' || e.kind===_activeKind));
+    const hasHit = q && evs.some(e=>e.name.indexOf(q)!==-1);
+    const cls='cal-cell'+(ds===_todayStr?' today':'')+(ds===_selectedDate?' selected':'')+(hasHit?' hit':'');
+    h+='<div class="'+cls+'" data-date="'+ds+'"><div class="cal-daynum">'+d+'</div><div class="cal-dots">';
+    evs.slice(0,6).forEach(e=>{ h+='<span class="cal-dot '+e.kind+(isSp(e)?' sp':'')+'"></span>'; });
+    if(evs.length>6) h+='<span class="cal-more">+'+(evs.length-6)+'</span>';
+    h+='</div></div>';
   }
-  document.getElementById('cal-body').innerHTML=h+'</div>';
+  document.getElementById('cal-body').innerHTML=h;
+  document.querySelectorAll('.cal-cell[data-date]').forEach(cell=>{
+    cell.addEventListener('click', ()=>{ _selectedDate=cell.getAttribute('data-date'); render(); renderDetail(); });
+  });
 }
-document.getElementById('cal-prev').onclick=()=>{_cur.setMonth(_cur.getMonth()-1);render();};
-document.getElementById('cal-next').onclick=()=>{_cur.setMonth(_cur.getMonth()+1);render();};
+
+function renderDetail(){
+  const panel=document.getElementById('calDetail');
+  const q=_searchQuery.trim();
+
+  if (q){
+    const hits=_ev.filter(e=>e.name.indexOf(q)!==-1 && (_activeKind==='all' || e.kind===_activeKind))
+                  .slice().sort((a,b)=>a.date.localeCompare(b.date));
+    panel.classList.remove('hidden');
+    document.getElementById('calDetailDate').textContent = '"'+q+'" 검색 결과 ('+hits.length+'건)';
+    const list=document.getElementById('calDetailList');
+    if (!hits.length){ list.innerHTML='<div class="cal-detail-empty">일치하는 단지가 없습니다.</div>'; return; }
+    list.innerHTML = hits.map(e=>{
+      const inner = '<span class="cal-kind-chip '+e.kind+'"></span>'
+        + '<span class="cal-search-date">'+e.date+'</span>'
+        + '<span class="cal-detail-name">'+e.name+'</span>'
+        + typeBadge(e);
+      return '<a class="cal-detail-item cal-jump" href="#" data-date="'+e.date+'">'+inner+'</a>';
+    }).join('');
+    document.querySelectorAll('.cal-jump').forEach(row=>{
+      row.addEventListener('click', ev=>{
+        ev.preventDefault();
+        const ds=row.getAttribute('data-date');
+        const p=ds.split('.').map(Number);
+        _cur=new Date(p[0],p[1]-1,1);
+        _selectedDate=ds; _searchQuery=''; document.getElementById('calSearch').value='';
+        render(); renderDetail();
+      });
+    });
+    return;
+  }
+
+  if (!_selectedDate){ panel.classList.add('hidden'); return; }
+  const evs=_ev.filter(e=>e.date===_selectedDate && (_activeKind==='all' || e.kind===_activeKind));
+  panel.classList.remove('hidden');
+  document.getElementById('calDetailDate').textContent = _selectedDate+' ('+evs.length+'건)';
+  const list=document.getElementById('calDetailList');
+  if (!evs.length){ list.innerHTML='<div class="cal-detail-empty">이 날짜엔 선택한 필터에 해당하는 일정이 없습니다.</div>'; return; }
+  list.innerHTML = evs.map(e=>{
+    const inner = '<span class="cal-kind-chip '+e.kind+'"></span>'
+      + '<span class="cal-detail-name">'+e.name+'</span>'
+      + typeBadge(e);
+    return e.url
+      ? '<a class="cal-detail-item" href="'+e.url+'" target="_blank" rel="noopener">'+inner+'</a>'
+      : '<span class="cal-detail-item">'+inner+'</span>';
+  }).join('');
+}
+
+document.getElementById('cal-prev').onclick=()=>{_cur.setMonth(_cur.getMonth()-1);render();renderDetail();};
+document.getElementById('cal-next').onclick=()=>{_cur.setMonth(_cur.getMonth()+1);render();renderDetail();};
+document.getElementById('calDetailClose').onclick=()=>{_selectedDate=null;_searchQuery='';document.getElementById('calSearch').value='';render();renderDetail();};
+document.getElementById('calSearch').addEventListener('input', e=>{_searchQuery=e.target.value;render();renderDetail();});
+document.querySelectorAll('.cal-filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.cal-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    _activeKind=btn.getAttribute('data-kind');
+    render(); renderDetail();
+  });
+});
 </script>
 </main></div>
 </body>
