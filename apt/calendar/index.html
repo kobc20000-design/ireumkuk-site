@@ -119,10 +119,10 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .cal-daynum { font-size:13px; color:#555; font-weight:700; margin-bottom:5px; }
 .cal-dots { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
 .cal-dot { width:7px; height:7px; border-radius:50%; flex:none; }
-.cal-dot.notice { background:#C9CDD3; }
-.cal-dot.apply { background:#13294B; }
-.cal-dot.result { background:#D33; }
-.cal-dot.contract { background:#1D9A54; }
+.cal-dot.cal-k-notice { background:#C9CDD3; }
+.cal-dot.cal-k-apply { background:#13294B; }
+.cal-dot.cal-k-result { background:#D33; }
+.cal-dot.cal-k-contract { background:#1D9A54; }
 .cal-dot.sp { box-shadow:inset 0 0 0 1.5px #fff; }
 .cal-more { font-size:10px; color:#999; font-weight:700; }
 .legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:#666; }
@@ -139,10 +139,10 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .cal-detail-item:hover { background:#fafbfc; }
 .cal-detail-item + .cal-detail-item { border-top:1px solid #f2f2f2; }
 .cal-kind-chip { width:9px; height:9px; border-radius:50%; flex:none; }
-.cal-kind-chip.notice { background:#C9CDD3; }
-.cal-kind-chip.apply { background:#13294B; }
-.cal-kind-chip.result { background:#D33; }
-.cal-kind-chip.contract { background:#1D9A54; }
+.cal-kind-chip.cal-k-notice { background:#C9CDD3; }
+.cal-kind-chip.cal-k-apply { background:#13294B; }
+.cal-kind-chip.cal-k-result { background:#D33; }
+.cal-kind-chip.cal-k-contract { background:#1D9A54; }
 .cal-detail-name { font-size:14px; font-weight:700; flex:1; }
 .cal-search-date { font-size:12px; color:#888; flex:none; width:74px; }
 .cal-type-badge { font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:999px; flex:none; }
@@ -224,7 +224,7 @@ function render() {
     const hasHit = q && evs.some(e=>e.name.indexOf(q)!==-1);
     const cls='cal-cell'+(ds===_todayStr?' today':'')+(ds===_selectedDate?' selected':'')+(hasHit?' hit':'');
     h+='<div class="'+cls+'" data-date="'+ds+'"><div class="cal-daynum">'+d+'</div><div class="cal-dots">';
-    evs.slice(0,6).forEach(e=>{ h+='<span class="cal-dot '+e.kind+(isSp(e)?' sp':'')+'"></span>'; });
+    evs.slice(0,6).forEach(e=>{ h+='<span class="cal-dot cal-k-'+e.kind+(isSp(e)?' sp':'')+'"></span>'; });
     if(evs.length>6) h+='<span class="cal-more">+'+(evs.length-6)+'</span>';
     h+='</div></div>';
   }
@@ -246,7 +246,7 @@ function renderDetail(){
     const list=document.getElementById('calDetailList');
     if (!hits.length){ list.innerHTML='<div class="cal-detail-empty">일치하는 단지가 없습니다.</div>'; return; }
     list.innerHTML = hits.map(e=>{
-      const inner = '<span class="cal-kind-chip '+e.kind+'"></span>'
+      const inner = '<span class="cal-kind-chip cal-k-'+e.kind+'"></span>'
         + '<span class="cal-search-date">'+e.date+'</span>'
         + '<span class="cal-detail-name">'+e.name+'</span>'
         + typeBadge(e);
@@ -272,7 +272,7 @@ function renderDetail(){
   const list=document.getElementById('calDetailList');
   if (!evs.length){ list.innerHTML='<div class="cal-detail-empty">이 날짜엔 선택한 필터에 해당하는 일정이 없습니다.</div>'; return; }
   list.innerHTML = evs.map(e=>{
-    const inner = '<span class="cal-kind-chip '+e.kind+'"></span>'
+    const inner = '<span class="cal-kind-chip cal-k-'+e.kind+'"></span>'
       + '<span class="cal-detail-name">'+e.name+'</span>'
       + typeBadge(e);
     return e.url
