@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>📊 단지별 경쟁률·커트라인 - 청약콕</title>
-<meta name="description" content="최근 90일 이내 모집공고 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.">
+<meta name="description" content="최근 분양 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.">
 <style>
 
 * { box-sizing: border-box; }
@@ -94,15 +94,25 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 </style>
 </head>
 <body>
-<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner"><button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="/" class="apt-logo">청약콕</a><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양모집공고<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>분양달력</a><a href="/apt/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>모집공고 분석</a><a href="/apt/new/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 0-4 4v3c0 1.7-.6 3.2-1.7 4.3L5 17h14l-1.3-1.7C16.6 14.2 16 12.7 16 11V8a4 4 0 0 0-4-4z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M17 8v8"/><circle cx="17" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg></span>커트라인</a><a href="/rate/past/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg></span>과거 단지 경쟁률</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>내 가점 계산기</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7 21l5-3 5 3-2-7.5"/></svg></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6 4 4 6-8"/><path d="M14 7h6v6"/></svg></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 12l2 2 4-4"/></svg></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/><circle cx="16" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 9l9 5 9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 10"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v6c0 5-3 8.5-7 9-4-.5-7-4-7-9V6z"/></svg></span>안전마진 계산기</a></div></div></div></aside><script>function _aptNavToggle(btn) {  var panel = btn.parentElement.querySelector('.apt-nav-sub');  var isOpen = panel.classList.contains('open');  document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });  document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });  if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }}function _aptSidebarToggle() {  var shell = document.querySelector('.apt-shell');  var collapsed = shell.classList.toggle('apt-collapsed');  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}}</script><main class="apt-main">
+<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner"><button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="/" class="apt-logo">청약콕</a><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양모집공고<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>분양달력</a><a href="/apt/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>모집공고 분석</a><a href="/apt/new/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 0-4 4v3c0 1.7-.6 3.2-1.7 4.3L5 17h14l-1.3-1.7C16.6 14.2 16 12.7 16 11V8a4 4 0 0 0-4-4z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M17 8v8"/><circle cx="17" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg></span>커트라인</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7 21l5-3 5 3-2-7.5"/></svg></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6 4 4 6-8"/><path d="M14 7h6v6"/></svg></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 12l2 2 4-4"/></svg></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/><circle cx="16" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 9l9 5 9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 10"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v6c0 5-3 8.5-7 9-4-.5-7-4-7-9V6z"/></svg></span>안전마진 계산기</a></div></div></div></aside><script>function _aptNavToggle(btn) {  var panel = btn.parentElement.querySelector('.apt-nav-sub');  var isOpen = panel.classList.contains('open');  document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });  document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });  if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }}function _aptSidebarToggle() {  var shell = document.querySelector('.apt-shell');  var collapsed = shell.classList.toggle('apt-collapsed');  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}}</script><main class="apt-main">
 <div class="apt-wrap">
 <h1>📊 단지별 경쟁률·커트라인</h1>
-<div class="tool-desc">최근 90일 이내 모집공고 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.</div>
+<div class="tool-desc">최근 분양 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.</div>
 
 <div class="f-row" style="margin-bottom:10px">
+<label style="flex:0 0 auto">지역</label>
+<select id="r-sido" onchange="onSidoChange()" style="max-width:150px"><option value="">시/도 전체</option></select>
+<select id="r-sigungu" onchange="renderR()" style="max-width:150px"><option value="">시/군/구 전체</option></select>
 <label style="flex:0 0 auto">내 가점</label>
-<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" style="max-width:120px" oninput="renderR()">
+<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" style="max-width:110px" oninput="renderR()">
 <span class="unit">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/" style="color:#13294B">가점 계산기</a></span>
+</div>
+<div class="f-row" style="margin-bottom:10px">
+<label style="flex:0 0 auto">모집공고 기간</label>
+<input type="month" id="r-from" onchange="renderR()" style="max-width:150px">
+<span class="unit">~</span>
+<input type="month" id="r-to" onchange="renderR()" style="max-width:150px">
+<span class="unit">기본값: 최근 12개월</span>
 </div>
 <input class="searchbox" id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
 <div class="f-row" style="margin-bottom:16px">
@@ -129,13 +139,69 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
 let _R=[];
-fetch('/data/rate.json').then(r=>r.json()).then(d=>{_R=d;renderR();}).catch(()=>{});
+fetch('/data/rate.json').then(r=>r.json()).then(d=>{_R=d;initFilters();renderR();}).catch(()=>{});
+
+function _addrParts(addr){
+  const p=(addr||'').trim().split(' ').filter(Boolean);
+  return {sido:p[0]||'', sigungu:p[1]||''};
+}
+
+function initFilters(){
+  const sidoSet=new Set();
+  _R.forEach(r=>{ const p=_addrParts(r.addr); if(p.sido) sidoSet.add(p.sido); });
+  const sidoSel=document.getElementById('r-sido');
+  [...sidoSet].sort().forEach(s=>{
+    const o=document.createElement('option'); o.value=s; o.textContent=s; sidoSel.appendChild(o);
+  });
+  fillSigungu();
+
+  const now=new Date();
+  const toM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const fromD=new Date(now.getFullYear(), now.getMonth()-11, 1);
+  const fromM=fromD.getFullYear()+'-'+String(fromD.getMonth()+1).padStart(2,'0');
+  document.getElementById('r-from').value=fromM;
+  document.getElementById('r-to').value=toM;
+}
+
+function fillSigungu(){
+  const sido=document.getElementById('r-sido').value;
+  const sel=document.getElementById('r-sigungu');
+  sel.innerHTML='<option value="">시/군/구 전체</option>';
+  const set=new Set();
+  _R.forEach(r=>{
+    const p=_addrParts(r.addr);
+    if((!sido || p.sido===sido) && p.sigungu) set.add(p.sigungu);
+  });
+  [...set].sort().forEach(s=>{
+    const o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o);
+  });
+}
+
+function onSidoChange(){ fillSigungu(); renderR(); }
+
 function renderR(){
   const q=(document.getElementById('r-search').value||'').trim();
   const sort=document.getElementById('r-sort').value;
   const myRaw=document.getElementById('r-myscore').value;
   const my=myRaw===''?null:+myRaw;
-  let rows=_R.filter(r=>!q||r.name.includes(q)||r.addr.includes(q));
+  const sido=document.getElementById('r-sido').value;
+  const sigungu=document.getElementById('r-sigungu').value;
+  const fromM=document.getElementById('r-from').value;
+  const toM=document.getElementById('r-to').value;
+  let rows=_R.filter(r=>{
+    if(q && !r.name.includes(q) && !r.addr.includes(q)) return false;
+    if(sido || sigungu){
+      const p=_addrParts(r.addr);
+      if(sido && p.sido!==sido) return false;
+      if(sigungu && p.sigungu!==sigungu) return false;
+    }
+    if(fromM || toM){
+      const rm=(r.date||'').slice(0,7).replace('.','-');
+      if(fromM && rm && rm<fromM) return false;
+      if(toM && rm && rm>toM) return false;
+    }
+    return true;
+  });
   if(sort==='rate-desc') rows.sort((a,b)=>(b.rate??-1)-(a.rate??-1));
   else if(sort==='rate-asc') rows.sort((a,b)=>(a.rate??999999)-(b.rate??999999));
   else if(sort==='lwet-desc') rows.sort((a,b)=>(b.lwet??-1)-(a.lwet??-1));
