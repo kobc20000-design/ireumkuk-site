@@ -117,18 +117,18 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .cal-cell.hit { background:#FFF8E5; border-color:#E8B44D; }
 .cal-cell.hit.selected { background:#FFF1CC; border-color:#13294B; box-shadow:inset 0 0 0 1px #13294B; }
 .cal-daynum { font-size:13px; color:#555; font-weight:700; margin-bottom:5px; }
-.cal-dots { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
-.cal-dot { width:7px; height:7px; border-radius:50%; flex:none; }
-.cal-dot.cal-k-notice { background:#C9CDD3; }
+.cal-dots { display:flex; flex-wrap:wrap; gap:5px; align-items:center; }
+.cal-dot { width:10px; height:10px; border-radius:50%; flex:none; box-sizing:border-box; }
+.cal-dot.cal-k-notice { background:#8B95A3; }
 .cal-dot.cal-k-apply { background:#13294B; }
 .cal-dot.cal-k-result { background:#D33; }
 .cal-dot.cal-k-contract { background:#1D9A54; }
-.cal-dot.sp { box-shadow:inset 0 0 0 1.5px #fff; }
+.cal-dot.sp { border:2px solid #E8A33D; }
 .cal-more { font-size:10px; color:#999; font-weight:700; }
 .legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:#666; }
 .legend span { display:inline-flex; align-items:center; gap:5px; }
-.legend i { width:9px; height:9px; border-radius:50%; display:inline-block; }
-.legend i.sp { background:#999; box-shadow:inset 0 0 0 1.5px #fff; }
+.legend i { width:11px; height:11px; border-radius:50%; display:inline-block; box-sizing:border-box; }
+.legend i.sp { background:#fff; border:2px solid #E8A33D; }
 .cal-detail { margin-top:16px; border:1px solid #eaeaea; border-radius:10px; overflow:hidden; min-width:900px; }
 .cal-detail.hidden { display:none; }
 .cal-detail-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#f7f8fa; border-bottom:1px solid #eaeaea; }
@@ -138,7 +138,7 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .cal-detail-item { display:flex; align-items:center; gap:10px; padding:11px 16px; text-decoration:none; color:inherit; }
 .cal-detail-item:hover { background:#fafbfc; }
 .cal-detail-item + .cal-detail-item { border-top:1px solid #f2f2f2; }
-.cal-kind-chip { width:9px; height:9px; border-radius:50%; flex:none; }
+.cal-kind-chip { width:11px; height:11px; border-radius:50%; flex:none; }
 .cal-kind-chip.cal-k-notice { background:#C9CDD3; }
 .cal-kind-chip.cal-k-apply { background:#13294B; }
 .cal-kind-chip.cal-k-result { background:#D33; }
@@ -182,7 +182,7 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <span><i style="background:#13294B"></i>청약접수</span>
 <span><i style="background:#D33"></i>당첨발표</span>
 <span><i style="background:#1D9A54"></i>계약</span>
-<span><i class="sp"></i>특별공급 (흰 테두리 점)</span>
+<span><i class="sp"></i>특별공급 (노란 테두리 점)</span>
 </div>
 <div class="cal-detail hidden" id="calDetail">
 <div class="cal-detail-head"><span id="calDetailDate"></span><button id="calDetailClose">닫기 ✕</button></div>
