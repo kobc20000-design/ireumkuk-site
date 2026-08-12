@@ -68,7 +68,7 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .apt-collapse-btn svg { width: 16px; height: 16px; }
 .apt-sidebar .apt-logo { display: block; color: #fff; font-weight: 800; font-size: 16px; text-decoration: none; margin: 0 6px 18px; }
 .apt-nav-group + .apt-nav-group { margin-top: 2px; }
-.apt-nav-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 8px; border-radius: 7px; font-size: 13.5px; font-weight: 700; color: #c7d1e0; text-align: left; }
+.apt-nav-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 8px; border-radius: 7px; font-size: 13.5px; font-weight: 700; color: #c7d1e0; text-align: left; text-decoration: none; }
 .apt-nav-toggle:hover, .apt-nav-toggle.active { background: rgba(255,255,255,.09); color: #fff; }
 .apt-nav-toggle svg { width: 12px; height: 12px; opacity: .55; flex: none; transition: transform .18s ease; }
 .apt-nav-toggle[aria-expanded="true"] svg { transform: rotate(180deg); opacity: 1; }
@@ -91,59 +91,359 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 }
 
 
+.rate2-page { max-width: 980px; }
+.rate2-filters { background:#fff; border:1px solid #eef0f3; border-radius:16px; padding:24px 26px 22px; margin-bottom:20px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+.rate2-hint { font-size:12.5px; color:#a6adb8; margin-top:6px; }
+.rate2-hint a { color:#13294B; font-weight:600; text-decoration:none; }
+.rate2-hint a:hover { text-decoration:underline; }
+.rate2-fieldlabel { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; margin:0 0 8px; display:block; }
+.rate2-pillrow { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+.rate2-pilldrop { position:relative; }
+.rate2-pill {
+  appearance:none; border:none; cursor:pointer; font-family:inherit;
+  background:#13294B; color:#fff; font-size:13.5px; font-weight:700;
+  padding:10px 16px; border-radius:999px; display:inline-flex; align-items:center; gap:7px;
+  white-space:nowrap; transition:background .15s ease;
+}
+.rate2-pill:hover { background:#1d3a68; }
+.rate2-pill svg { width:13px; height:13px; flex:none; opacity:.85; transition:transform .15s ease; }
+.rate2-pilldrop.open .rate2-pill { background:#1d3a68; }
+.rate2-pilldrop.open .rate2-pill svg { transform:rotate(180deg); }
+.rate2-panel {
+  position:absolute; top:calc(100% + 8px); left:0; z-index:20; min-width:170px; max-height:320px; overflow-y:auto;
+  display:none; flex-direction:column; background:#13294B; border-radius:24px; box-shadow:0 8px 24px rgba(16,24,40,.2);
+}
+.rate2-pilldrop.open .rate2-panel { display:flex; }
+.rate2-panel button {
+  display:block; width:100%; text-align:left; appearance:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:600; white-space:nowrap;
+  background:transparent; color:rgba(255,255,255,.8); padding:11px 20px;
+  transition:background .12s ease, color .12s ease;
+}
+.rate2-panel button:hover { background:rgba(255,255,255,.14); color:#fff; }
+.rate2-panel button.selected { background:rgba(255,255,255,.18); color:#fff; }
+.rate2-panel button.selected::after { content:'✓'; float:right; }
+.rate2-customrange { display:none; align-items:center; gap:8px; }
+.rate2-customrange.show { display:flex; }
+.rate2-customrange input { border:1px solid #e3e6eb; border-radius:10px; padding:9px 11px; font-size:13.5px; font-family:inherit; background:#fff; color:#222; width:128px; }
+.rate2-customrange input:focus { outline:none; border-color:#13294B; }
+.rate2-customrange .sep { color:#9aa2ad; font-size:13px; }
+.rate2-pill-input {
+  appearance:none; border:none; font-family:inherit; padding:11px 18px; font-size:14px; font-weight:600;
+  background:#13294B; color:#fff; border-radius:999px; transition:background .15s ease;
+}
+.rate2-pill-input::placeholder { color:rgba(255,255,255,.72); font-weight:500; }
+.rate2-pill-input:focus { outline:none; background:#1d3a68; }
+.rate2-score { width:160px; }
+.rate2-pill-input-wide { width:100%; }
+.rate2-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:22px 2px 14px; }
+.rate2-toolbar-sort { display:flex; align-items:center; gap:8px; }
+.rate2-toolbar label { font-size:12.5px; font-weight:700; color:#8a93a3; }
+.rate2-toolbar select { border:1px solid #e3e6eb; border-radius:10px; padding:9px 12px; font-size:13.5px; font-family:inherit; background:#fff; color:#222; }
+.rate2-count { font-size:13px; color:#9aa2ad; font-weight:600; }
+.rate2-tablewrap { background:#fff; border:1px solid #eef0f3; border-radius:16px; overflow:auto; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+table.rate2-t { width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+table.rate2-t th { background:#fafbfc; color:#8a93a3; font-weight:700; font-size:11.5px; letter-spacing:.03em; padding:14px 16px; text-align:right; border-bottom:1px solid #eef0f3; white-space:nowrap; }
+table.rate2-t th:first-child, table.rate2-t td:first-child { text-align:left; }
+table.rate2-t td { padding:15px 16px; text-align:right; border-bottom:1px solid #f3f4f6; color:#333; vertical-align:middle; }
+table.rate2-t tr:last-child td { border-bottom:none; }
+table.rate2-t tr:hover td { background:#fafbfc; }
+table.rate2-t td.r2-name a { color:#13294B; font-weight:700; text-decoration:none; }
+table.rate2-t td.r2-name a:hover { text-decoration:underline; }
+table.rate2-t .r2-addr { font-size:11.5px; color:#a6adb8; margin-top:3px; font-weight:400; }
+table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:tabular-nums; }
+.r2-pill { display:inline-block; padding:3px 11px; border-radius:999px; font-size:12.5px; font-weight:700; }
+.r2-pill.ok { background:#E9F7EF; color:#1D9A54; }
+.r2-pill.no { background:#FDEEEE; color:#D33; }
+.rate2-note { font-size:12.5px; color:#9aa2ad; line-height:1.85; margin-top:22px; padding:16px 18px; background:#fafbfc; border-radius:12px; }
+.rate2-note b { color:#6b7280; }
+@media (max-width:640px){
+  .rate2-filters{padding:18px;}
+  table.rate2-t{font-size:12.5px;}
+  table.rate2-t th, table.rate2-t td{padding:11px 10px;}
+}
+
 </style>
 </head>
 <body>
-<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner"><button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="/" class="apt-logo">청약콕</a><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">모집공고 분석<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>모집공고 분석</a><a href="/apt/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>경쟁률 분석</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">모집일정<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>분양달력</a><a href="/apt/new/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 0-4 4v3c0 1.7-.6 3.2-1.7 4.3L5 17h14l-1.3-1.7C16.6 14.2 16 12.7 16 11V8a4 4 0 0 0-4-4z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>방금 접수된 공고</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">경쟁률<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>단지별 경쟁률</a><a href="/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M17 8v8"/><circle cx="17" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg></span>커트라인</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/price/pyeong/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7 21l5-3 5 3-2-7.5"/></svg></span>평당 분양가 랭킹</a><a href="/price/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6 4 4 6-8"/><path d="M14 7h6v6"/></svg></span>분양가 대비 얼마나 올랐나</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">기타<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></span>미분양·무순위 추적기</a><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>청약 캘린더</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 12l2 2 4-4"/></svg></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/><circle cx="16" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 9l9 5 9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 10"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v6c0 5-3 8.5-7 9-4-.5-7-4-7-9V6z"/></svg></span>안전마진 계산기</a></div></div></div></aside><script>function _aptNavToggle(btn) {  var panel = btn.parentElement.querySelector('.apt-nav-sub');  var isOpen = panel.classList.contains('open');  document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });  document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });  if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }}function _aptSidebarToggle() {  var shell = document.querySelector('.apt-shell');  var collapsed = shell.classList.toggle('apt-collapsed');  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}}</script><main class="apt-main">
+<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner"><button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="/" class="apt-logo">청약콕</a><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">모집공고 분석<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>모집공고 분석</a><a href="/apt/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>경쟁률 분석</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">모집일정<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>분양달력</a><a href="/apt/new/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 0-4 4v3c0 1.7-.6 3.2-1.7 4.3L5 17h14l-1.3-1.7C16.6 14.2 16 12.7 16 11V8a4 4 0 0 0-4-4z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>방금 접수된 공고</a></div></div><div class="apt-nav-group"><a class="apt-nav-toggle" href="/rate/">경쟁률</a></div><div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/price/pyeong/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7 21l5-3 5 3-2-7.5"/></svg></span>평당 분양가 랭킹</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></span>미분양·무순위 추적기</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 12l2 2 4-4"/></svg></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/><circle cx="16" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 9l9 5 9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 10"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v6c0 5-3 8.5-7 9-4-.5-7-4-7-9V6z"/></svg></span>안전마진 계산기</a></div></div></div></aside><script>function _aptNavToggle(btn) {  var panel = btn.parentElement.querySelector('.apt-nav-sub');  var isOpen = panel.classList.contains('open');  document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });  document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });  if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }}function _aptSidebarToggle() {  var shell = document.querySelector('.apt-shell');  var collapsed = shell.classList.toggle('apt-collapsed');  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}}</script><main class="apt-main">
 <div class="apt-wrap">
 <h1>📐 평당 분양가 랭킹</h1>
 <div class="tool-desc">최근 분양 단지의 평당 분양가를 비교합니다. 단지명·지역으로 검색하고 평당가 순으로 정렬할 수 있습니다.</div>
 
-<input class="searchbox" id="p-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderP()">
-<div class="f-row" style="margin-bottom:16px">
-<label style="flex:0 0 auto">정렬</label>
-<select id="p-sort" onchange="renderP()" style="max-width:220px">
-<option value="py-desc">평당가 높은 순</option>
-<option value="py-asc">평당가 낮은 순</option>
-<option value="date-desc">최근 공고 순</option>
-<option value="amt-desc">분양가 높은 순</option>
-</select>
-<span class="unit" id="p-count"></span>
+<div class="rate2-page">
+<div class="rate2-filters">
+
+<span class="rate2-fieldlabel">시/도 · 시/군/구</span>
+<div class="rate2-pillrow">
+<div class="rate2-pilldrop" id="pd-sido">
+<button type="button" class="rate2-pill" id="pd-sido-btn">시/도 전체 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-sido-panel"></div>
 </div>
-<div class="card" style="padding:0;overflow-x:auto">
-<table class="rt" id="p-table" style="margin:0"></table>
+<div class="rate2-pilldrop" id="pd-sigungu">
+<button type="button" class="rate2-pill" id="pd-sigungu-btn">시/군/구 전체 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-sigungu-panel"></div>
 </div>
-<div class="disclaimer">
+</div>
+<input type="hidden" id="r-sido" value="">
+<input type="hidden" id="r-sigungu" value="">
+
+<span class="rate2-fieldlabel">모집공고 기간</span>
+<div class="rate2-pillrow">
+<div class="rate2-pilldrop" id="pd-period">
+<button type="button" class="rate2-pill" id="pd-period-btn">최근 1개월 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-period-panel"></div>
+</div>
+<div class="rate2-customrange" id="rate2-customrange">
+<input type="month" id="r-from-custom"><span class="sep">~</span><input type="month" id="r-to-custom">
+</div>
+</div>
+<input type="hidden" id="r-from" value="">
+<input type="hidden" id="r-to" value="">
+
+<span class="rate2-fieldlabel">단지명</span>
+<div class="rate2-pillrow">
+<input id="r-search" class="rate2-pill-input rate2-pill-input-wide" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
+</div>
+</div>
+
+<div class="rate2-toolbar">
+<div class="rate2-toolbar-sort">
+<div class="rate2-pilldrop" id="pd-sort">
+<button type="button" class="rate2-pill" id="pd-sort-btn">평당가 높은 순 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-sort-panel"></div>
+</div>
+<input type="hidden" id="r-sort" value="py-desc">
+</div>
+<span class="rate2-count" id="r-count"></span>
+</div>
+
+<div class="rate2-tablewrap">
+<table class="rate2-t" id="p-table"></table>
+</div>
+
+<div class="rate2-note">
 평당 분양가 = <b>주택형별 분양가 최고액 ÷ (공급면적 ÷ 3.3058)</b>로 계산했습니다.
 공급면적(계약면적) 기준이므로 전용면적 기준 평당가와는 다릅니다. 발코니 확장비·유상옵션은 포함되지 않은 순수 분양가입니다.
 출처: 한국부동산원 청약홈 공공 API.
+</div>
 </div>
 
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
-let _P=[];
-fetch('/data/pyeong.json').then(r=>r.json()).then(d=>{_P=d;renderP();}).catch(()=>{});
-function renderP(){
-  const q=(document.getElementById('p-search').value||'').trim();
-  const sort=document.getElementById('p-sort').value;
-  let rows=_P.filter(r=>!q||r.name.includes(q)||r.addr.includes(q));
+const _SIDO_FULL={'서울':'서울특별시','부산':'부산광역시','대구':'대구광역시','인천':'인천광역시','광주':'광주광역시','대전':'대전광역시','울산':'울산광역시','세종':'세종특별자치시','경기':'경기도','강원':'강원특별자치도','충북':'충청북도','충남':'충청남도','전북':'전북특별자치도','전남':'전라남도','경북':'경상북도','경남':'경상남도','제주':'제주특별자치도'};
+function _sidoFull(code){ return _SIDO_FULL[code] || code || ''; }
+
+const _SIDO_TOKEN_RE=/(특별시|광역시|특별자치시|특별자치도|도)$/;
+const _SIDO_ABBR_SI=new Set(['서울시','인천시','부산시','대구시','대전시','울산시','세종시']);
+function _addrParts(addr){
+  const p=(addr||'').trim().split(/\s+/).filter(Boolean);
+  const sigungu=p.find(t=>!_SIDO_TOKEN_RE.test(t) && !_SIDO_ABBR_SI.has(t) && /(시|군|구)$/.test(t)) || '';
+  return {sigungu};
+}
+
+function _monthList(){
+  const monthSet=new Set();
+  _R.forEach(r=>{ const m=(r.date||'').slice(0,7).replace('.','-'); if(/^\d{4}-\d{2}$/.test(m)) monthSet.add(m); });
+  const now=new Date();
+  const nowM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  monthSet.add(nowM);
+  return [...monthSet].sort();
+}
+
+function closeAllDrops(){
+  document.querySelectorAll('.rate2-pilldrop').forEach(function(d){ d.classList.remove('open'); });
+}
+
+function toggleDrop(id){
+  const el=document.getElementById(id);
+  const wasOpen=el.classList.contains('open');
+  closeAllDrops();
+  if(!wasOpen) el.classList.add('open');
+}
+
+function buildSidoPanel(){
+  const panel=document.getElementById('pd-sido-panel');
+  const cur=document.getElementById('r-sido').value;
+  const sidoSet=new Set();
+  _R.forEach(function(r){ const s=_sidoFull(r.sido); if(s) sidoSet.add(s); });
+  const opts=[''].concat([...sidoSet].sort());
+  panel.innerHTML='';
+  opts.forEach(function(s){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=s||'전체';
+    if(s===cur) b.className='selected';
+    b.onclick=function(){
+      document.getElementById('r-sido').value=s;
+      document.getElementById('pd-sido-btn').firstChild.textContent=(s||'시/도 전체')+' ';
+      document.getElementById('r-sigungu').value='';
+      document.getElementById('pd-sigungu-btn').firstChild.textContent='시/군/구 전체 ';
+      closeAllDrops();
+      buildSidoPanel(); buildSigunguPanel(); renderR();
+    };
+    panel.appendChild(b);
+  });
+}
+
+function buildSigunguPanel(){
+  const panel=document.getElementById('pd-sigungu-panel');
+  const sido=document.getElementById('r-sido').value;
+  const cur=document.getElementById('r-sigungu').value;
+  const set=new Set();
+  _R.forEach(function(r){
+    const p=_addrParts(r.addr);
+    if((!sido || _sidoFull(r.sido)===sido) && p.sigungu) set.add(p.sigungu);
+  });
+  const opts=[''].concat([...set].sort());
+  panel.innerHTML='';
+  opts.forEach(function(s){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=s||'전체';
+    if(s===cur) b.className='selected';
+    b.onclick=function(){
+      document.getElementById('r-sigungu').value=s;
+      document.getElementById('pd-sigungu-btn').firstChild.textContent=(s||'시/군/구 전체')+' ';
+      closeAllDrops();
+      buildSigunguPanel(); renderR();
+    };
+    panel.appendChild(b);
+  });
+}
+
+function _applyPeriod(fromM, toM, label){
+  document.getElementById('r-from').value=fromM;
+  document.getElementById('r-to').value=toM;
+  document.getElementById('pd-period-btn').firstChild.textContent=label+' ';
+  document.getElementById('rate2-customrange').classList.remove('show');
+  renderR();
+}
+
+function buildPeriodPanel(){
+  const panel=document.getElementById('pd-period-panel');
+  const months=_monthList();
+  const toIdx=months.length-1;
+  const toM=months[toIdx];
+  const presets=[['최근 1개월',0],['최근 3개월',2],['최근 6개월',5],['최근 12개월',11],['전체 기간',null]];
+  panel.innerHTML='';
+  presets.forEach(function(p){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=p[0];
+    b.onclick=function(){
+      const fromM = p[1]===null ? '' : months[Math.max(0, toIdx-p[1])];
+      const toV = p[1]===null ? '' : toM;
+      closeAllDrops();
+      _applyPeriod(fromM, toV, p[0]);
+    };
+    panel.appendChild(b);
+  });
+  const customBtn=document.createElement('button');
+  customBtn.type='button'; customBtn.textContent='직접 입력';
+  customBtn.onclick=function(){
+    document.getElementById('pd-period-btn').firstChild.textContent='직접 입력 ';
+    document.getElementById('rate2-customrange').classList.add('show');
+    closeAllDrops();
+    const fromEl=document.getElementById('r-from-custom'), toEl=document.getElementById('r-to-custom');
+    if(!fromEl.value) fromEl.value=document.getElementById('r-from').value||months[Math.max(0,toIdx-11)];
+    if(!toEl.value) toEl.value=document.getElementById('r-to').value||toM;
+    document.getElementById('r-from').value=fromEl.value;
+    document.getElementById('r-to').value=toEl.value;
+    renderR();
+  };
+  panel.appendChild(customBtn);
+}
+
+function buildSortPanel(){
+  const panel=document.getElementById('pd-sort-panel');
+  const cur=document.getElementById('r-sort').value;
+  panel.innerHTML='';
+  _SORT_OPTIONS.forEach(function(o){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=o[1];
+    if(o[0]===cur) b.className='selected';
+    b.onclick=function(){
+      document.getElementById('r-sort').value=o[0];
+      document.getElementById('pd-sort-btn').firstChild.textContent=o[1]+' ';
+      closeAllDrops();
+      buildSortPanel(); renderR();
+    };
+    panel.appendChild(b);
+  });
+}
+
+function initFilters(){
+  buildSidoPanel();
+  buildSigunguPanel();
+  buildPeriodPanel();
+  buildSortPanel();
+
+  const months=_monthList();
+  const toIdx=months.length-1;
+  document.getElementById('r-from').value=months[toIdx];
+  document.getElementById('r-to').value=months[toIdx];
+
+  document.getElementById('pd-sido').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-sido'); e.stopPropagation(); };
+  document.getElementById('pd-sigungu').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-sigungu'); e.stopPropagation(); };
+  document.getElementById('pd-period').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-period'); e.stopPropagation(); };
+  document.getElementById('pd-sort').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-sort'); e.stopPropagation(); };
+  document.querySelectorAll('.rate2-panel').forEach(function(p){ p.addEventListener('click', function(e){ e.stopPropagation(); }); });
+  document.addEventListener('click', closeAllDrops);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAllDrops(); });
+
+  document.getElementById('r-from-custom').addEventListener('change', function(){
+    document.getElementById('r-from').value=this.value;
+    renderR();
+  });
+  document.getElementById('r-to-custom').addEventListener('change', function(){
+    document.getElementById('r-to').value=this.value;
+    renderR();
+  });
+}
+
+let _R=[];
+fetch('/data/pyeong.json').then(r=>r.json()).then(d=>{_R=d;initFilters();renderR();}).catch(()=>{});
+
+const _SORT_OPTIONS=[['py-desc','평당가 높은 순'],['py-asc','평당가 낮은 순'],['date-desc','최근 공고 순'],['amt-desc','분양가 높은 순']];
+
+function renderR(){
+  const q=(document.getElementById('r-search').value||'').trim();
+  const sort=document.getElementById('r-sort').value;
+  const sido=document.getElementById('r-sido').value;
+  const sigungu=document.getElementById('r-sigungu').value;
+  const fromM=document.getElementById('r-from').value;
+  const toM=document.getElementById('r-to').value;
+  let rows=_R.filter(r=>{
+    if(q && !r.name.includes(q) && !r.addr.includes(q)) return false;
+    if(sido || sigungu){
+      if(sido && _sidoFull(r.sido)!==sido) return false;
+      if(sigungu){
+        const p=_addrParts(r.addr);
+        if(p.sigungu!==sigungu) return false;
+      }
+    }
+    if(fromM || toM){
+      const rm=(r.date||'').slice(0,7).replace('.','-');
+      if(fromM && rm && rm<fromM) return false;
+      if(toM && rm && rm>toM) return false;
+    }
+    return true;
+  });
   if(sort==='py-desc') rows.sort((a,b)=>b.py-a.py);
   else if(sort==='py-asc') rows.sort((a,b)=>a.py-b.py);
   else if(sort==='date-desc') rows.sort((a,b)=>b.date.localeCompare(a.date));
   else rows.sort((a,b)=>b.amt-a.amt);
-  document.getElementById('p-count').textContent = rows.length.toLocaleString()+'건';
+  document.getElementById('r-count').textContent = rows.length.toLocaleString()+'건';
   let h='<tr><th>단지명</th><th>주택형</th><th>공급면적</th><th>분양가</th><th>평당가</th><th>공고일</th></tr>';
   rows.slice(0,300).forEach(r=>{
-    const nm = r.url ? '<a href="'+r.url+'" target="_blank" style="color:#13294B">'+r.name+'</a>' : r.name;
-    h+='<tr><td>'+nm+'<div style="font-size:11px;color:#999">'+(r.addr||'').slice(0,30)+'</div></td>'+
+    const nm = r.url ? '<a href="'+r.url+'" target="_blank">'+r.name+'</a>' : r.name;
+    h+='<tr><td class="r2-name">'+nm+'<div class="r2-addr">'+(r.addr||'').slice(0,30)+'</div></td>'+
        '<td style="text-align:center">'+r.ty+'</td>'+
        '<td>'+r.ar.toFixed(1)+'㎡</td>'+
        '<td>'+r.amt.toLocaleString()+'만</td>'+
-       '<td style="font-weight:700;color:#13294B">'+r.py.toLocaleString()+'만</td>'+
-       '<td style="text-align:center;font-size:12px;color:#888">'+r.date+'</td></tr>';
+       '<td class="r2-rate">'+r.py.toLocaleString()+'만</td>'+
+       '<td style="text-align:center;font-size:12px;color:#a6adb8">'+r.date+'</td></tr>';
   });
-  if(rows.length>300) h+='<tr><td colspan="6" style="text-align:center;color:#999">상위 300건만 표시됩니다</td></tr>';
+  if(rows.length>300) h+='<tr><td colspan="6" style="text-align:center;color:#9aa2ad">상위 300건만 표시됩니다</td></tr>';
   document.getElementById('p-table').innerHTML=h;
 }
 </script>
