@@ -141,14 +141,20 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 let _R=[];
 fetch('/data/rate.json').then(r=>r.json()).then(d=>{_R=d;initFilters();renderR();}).catch(()=>{});
 
+const _SIDO_FULL={'서울':'서울특별시','부산':'부산광역시','대구':'대구광역시','인천':'인천광역시','광주':'광주광역시','대전':'대전광역시','울산':'울산광역시','세종':'세종특별자치시','경기':'경기도','강원':'강원특별자치도','충북':'충청북도','충남':'충청남도','전북':'전북특별자치도','전남':'전라남도','경북':'경상북도','경남':'경상남도','제주':'제주특별자치도'};
+function _sidoFull(code){ return _SIDO_FULL[code] || code || ''; }
+
+const _SIDO_TOKEN_RE=/(특별시|광역시|특별자치시|특별자치도|도)$/;
+const _SIDO_ABBR_SI=new Set(['서울시','인천시','부산시','대구시','대전시','울산시','세종시']);
 function _addrParts(addr){
-  const p=(addr||'').trim().split(' ').filter(Boolean);
-  return {sido:p[0]||'', sigungu:p[1]||''};
+  const p=(addr||'').trim().split(/\s+/).filter(Boolean);
+  const sigungu=p.find(t=>!_SIDO_TOKEN_RE.test(t) && !_SIDO_ABBR_SI.has(t) && /(시|군|구)$/.test(t)) || '';
+  return {sigungu};
 }
 
 function initFilters(){
   const sidoSet=new Set();
-  _R.forEach(r=>{ const p=_addrParts(r.addr); if(p.sido) sidoSet.add(p.sido); });
+  _R.forEach(r=>{ const s=_sidoFull(r.sido); if(s) sidoSet.add(s); });
   const sidoSel=document.getElementById('r-sido');
   [...sidoSet].sort().forEach(s=>{
     const o=document.createElement('option'); o.value=s; o.textContent=s; sidoSel.appendChild(o);
@@ -182,7 +188,7 @@ function fillSigungu(){
   const set=new Set();
   _R.forEach(r=>{
     const p=_addrParts(r.addr);
-    if((!sido || p.sido===sido) && p.sigungu) set.add(p.sigungu);
+    if((!sido || _sidoFull(r.sido)===sido) && p.sigungu) set.add(p.sigungu);
   });
   [...set].sort().forEach(s=>{
     const o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o);
@@ -203,9 +209,11 @@ function renderR(){
   let rows=_R.filter(r=>{
     if(q && !r.name.includes(q) && !r.addr.includes(q)) return false;
     if(sido || sigungu){
-      const p=_addrParts(r.addr);
-      if(sido && p.sido!==sido) return false;
-      if(sigungu && p.sigungu!==sigungu) return false;
+      if(sido && _sidoFull(r.sido)!==sido) return false;
+      if(sigungu){
+        const p=_addrParts(r.addr);
+        if(p.sigungu!==sigungu) return false;
+      }
     }
     if(fromM || toM){
       const rm=(r.date||'').slice(0,7).replace('.','-');
