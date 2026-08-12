@@ -93,29 +93,49 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 
 .rate2-page { max-width: 980px; }
 .rate2-filters { background:#fff; border:1px solid #eef0f3; border-radius:16px; padding:24px 26px 22px; margin-bottom:20px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
-.rate2-filter-grid { display:flex; flex-wrap:wrap; gap:18px 26px; margin-bottom:16px; }
-.rate2-field { display:flex; flex-direction:column; gap:6px; min-width:130px; }
-.rate2-field label { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; }
-.rate2-field select, .rate2-field input { border:1px solid #e3e6eb; border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; transition:border-color .15s ease, background .15s ease; }
-.rate2-field select:hover, .rate2-field input:hover { border-color:#c7cdd6; }
-.rate2-field select:focus, .rate2-field input:focus { outline:none; border-color:#13294B; background:#fff; }
-.rate2-search input { width:100%; border:1px solid #e3e6eb; border-radius:10px; padding:12px 16px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; }
-.rate2-search input:focus { outline:none; border-color:#13294B; background:#fff; }
-.rate2-hint { font-size:12.5px; color:#a6adb8; margin-top:14px; }
-.rate2-chiplabel { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; margin-bottom:8px; display:block; }
-.rate2-chiprow { display:flex; gap:6px; overflow-x:auto; padding:6px; border-radius:12px; margin-bottom:16px; scrollbar-width:none; }
-.rate2-chiprow::-webkit-scrollbar { display:none; }
-.rate2-chip { flex:none; padding:8px 16px; border-radius:8px; font-size:13.5px; font-weight:600; border:none; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background .15s ease, color .15s ease; }
-.rate2-chiprow-sido { background:#13294B; }
-.rate2-chiprow-sido .rate2-chip { color:#c7d1e0; background:transparent; }
-.rate2-chiprow-sido .rate2-chip:hover { background:rgba(255,255,255,.1); color:#fff; }
-.rate2-chiprow-sido .rate2-chip.active { background:#fff; color:#13294B; }
-.rate2-chiprow-period { background:#f4f5f7; border:1px solid #eef0f3; }
-.rate2-chiprow-period .rate2-chip { color:#6b7280; background:transparent; }
-.rate2-chiprow-period .rate2-chip:hover { background:rgba(19,41,75,.07); color:#13294B; }
-.rate2-chiprow-period .rate2-chip.active { background:#13294B; color:#fff; }
+.rate2-hint { font-size:12.5px; color:#a6adb8; margin-top:6px; }
 .rate2-hint a { color:#13294B; font-weight:600; text-decoration:none; }
 .rate2-hint a:hover { text-decoration:underline; }
+.rate2-fieldlabel { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; margin:0 0 8px; display:block; }
+.rate2-pillrow { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+.rate2-pilldrop { position:relative; }
+.rate2-pill {
+  appearance:none; border:none; cursor:pointer; font-family:inherit;
+  background:#13294B; color:#fff; font-size:13.5px; font-weight:700;
+  padding:10px 16px; border-radius:999px; display:inline-flex; align-items:center; gap:7px;
+  white-space:nowrap; transition:background .15s ease;
+}
+.rate2-pill:hover { background:#1d3a68; }
+.rate2-pill svg { width:13px; height:13px; flex:none; opacity:.85; transition:transform .15s ease; }
+.rate2-pilldrop.open .rate2-pill { background:#1d3a68; }
+.rate2-pilldrop.open .rate2-pill svg { transform:rotate(180deg); }
+.rate2-panel {
+  position:absolute; top:calc(100% + 8px); left:0; z-index:20; min-width:170px; max-height:320px; overflow-y:auto;
+  display:none; flex-direction:column; background:#13294B; border-radius:24px; box-shadow:0 8px 24px rgba(16,24,40,.2);
+}
+.rate2-pilldrop.open .rate2-panel { display:flex; }
+.rate2-panel button {
+  display:block; width:100%; text-align:left; appearance:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:600; white-space:nowrap;
+  background:transparent; color:rgba(255,255,255,.8); padding:11px 20px;
+  transition:background .12s ease, color .12s ease;
+}
+.rate2-panel button:hover { background:rgba(255,255,255,.14); color:#fff; }
+.rate2-panel button.selected { background:rgba(255,255,255,.18); color:#fff; }
+.rate2-panel button.selected::after { content:'✓'; float:right; }
+.rate2-customrange { display:none; align-items:center; gap:8px; }
+.rate2-customrange.show { display:flex; }
+.rate2-customrange input { border:1px solid #e3e6eb; border-radius:10px; padding:9px 11px; font-size:13.5px; font-family:inherit; background:#fff; color:#222; width:128px; }
+.rate2-customrange input:focus { outline:none; border-color:#13294B; }
+.rate2-customrange .sep { color:#9aa2ad; font-size:13px; }
+.rate2-pill-input {
+  appearance:none; border:none; font-family:inherit; padding:11px 18px; font-size:14px; font-weight:600;
+  background:#13294B; color:#fff; border-radius:999px; transition:background .15s ease;
+}
+.rate2-pill-input::placeholder { color:rgba(255,255,255,.72); font-weight:500; }
+.rate2-pill-input:focus { outline:none; background:#1d3a68; }
+.rate2-score { width:160px; }
+.rate2-pill-input-wide { width:100%; }
 .rate2-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:22px 2px 14px; }
 .rate2-toolbar-sort { display:flex; align-items:center; gap:8px; }
 .rate2-toolbar label { font-size:12.5px; font-weight:700; color:#8a93a3; }
@@ -139,7 +159,6 @@ table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:ta
 .rate2-note b { color:#6b7280; }
 @media (max-width:640px){
   .rate2-filters{padding:18px;}
-  .rate2-field{min-width:44%; flex:1;}
   table.rate2-t{font-size:12.5px;}
   table.rate2-t th, table.rate2-t td{padding:11px 10px;}
 }
@@ -154,26 +173,44 @@ table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:ta
 
 <div class="rate2-page">
 <div class="rate2-filters">
-<span class="rate2-chiplabel">시/도</span>
-<div class="rate2-chiprow rate2-chiprow-sido" id="r-sido-chips"></div>
-<input type="hidden" id="r-sido" value="">
 
-<span class="rate2-chiplabel">모집공고 기간</span>
-<div class="rate2-chiprow rate2-chiprow-period" id="r-period-chips"></div>
+<span class="rate2-fieldlabel">시/도 · 시/군/구</span>
+<div class="rate2-pillrow">
+<div class="rate2-pilldrop" id="pd-sido">
+<button type="button" class="rate2-pill" id="pd-sido-btn">시/도 전체 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-sido-panel"></div>
+</div>
+<div class="rate2-pilldrop" id="pd-sigungu">
+<button type="button" class="rate2-pill" id="pd-sigungu-btn">시/군/구 전체 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-sigungu-panel"></div>
+</div>
+</div>
+<input type="hidden" id="r-sido" value="">
+<input type="hidden" id="r-sigungu" value="">
+
+<span class="rate2-fieldlabel">모집공고 기간</span>
+<div class="rate2-pillrow">
+<div class="rate2-pilldrop" id="pd-period">
+<button type="button" class="rate2-pill" id="pd-period-btn">최근 1개월 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+<div class="rate2-panel" id="pd-period-panel"></div>
+</div>
+<div class="rate2-customrange" id="rate2-customrange">
+<input type="month" id="r-from-custom"><span class="sep">~</span><input type="month" id="r-to-custom">
+</div>
+</div>
 <input type="hidden" id="r-from" value="">
 <input type="hidden" id="r-to" value="">
 
-<div class="rate2-filter-grid">
-<div class="rate2-field">
-<label>시/군/구</label>
-<select id="r-sigungu" onchange="renderR()"><option value="">전체</option></select>
+<span class="rate2-fieldlabel">내 가점</span>
+<div class="rate2-pillrow">
+<input type="number" id="r-myscore" class="rate2-pill-input rate2-score" placeholder="예: 65" min="0" max="84" oninput="renderR()">
 </div>
-<div class="rate2-field">
-<label>내 가점</label>
-<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" oninput="renderR()">
+
+<span class="rate2-fieldlabel">단지명</span>
+<div class="rate2-pillrow">
+<input id="r-search" class="rate2-pill-input rate2-pill-input-wide" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
 </div>
-</div>
-<div class="rate2-search"><input id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()"></div>
+
 <div class="rate2-hint">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/">가점 계산기</a></div>
 </div>
 
@@ -219,71 +256,140 @@ function _addrParts(addr){
   return {sigungu};
 }
 
-function _chipBtn(label, active, onClick){
-  const b=document.createElement('button');
-  b.type='button'; b.className='rate2-chip'+(active?' active':''); b.textContent=label;
-  b.onclick=onClick;
-  return b;
-}
-
-function chooseSido(value, btn){
-  document.getElementById('r-sido').value=value;
-  btn.parentElement.querySelectorAll('.rate2-chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
-  fillSigungu();
-  renderR();
-}
-
-function choosePeriod(fromV, toV, btn){
-  document.getElementById('r-from').value=fromV;
-  document.getElementById('r-to').value=toV;
-  btn.parentElement.querySelectorAll('.rate2-chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
-  renderR();
-}
-
-function initFilters(){
-  const sidoSet=new Set();
-  _R.forEach(r=>{ const s=_sidoFull(r.sido); if(s) sidoSet.add(s); });
-  const sidoRow=document.getElementById('r-sido-chips');
-  sidoRow.appendChild(_chipBtn('전체', true, function(){ chooseSido('', this); }));
-  [...sidoSet].sort().forEach(s=>{
-    sidoRow.appendChild(_chipBtn(s, false, function(){ chooseSido(s, this); }));
-  });
-  fillSigungu();
-
+function _monthList(){
   const monthSet=new Set();
   _R.forEach(r=>{ const m=(r.date||'').slice(0,7).replace('.','-'); if(/^\d{4}-\d{2}$/.test(m)) monthSet.add(m); });
   const now=new Date();
   const nowM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
   monthSet.add(nowM);
-  const months=[...monthSet].sort();
-  const toIdx=months.length-1;
-  const toM=months[toIdx];
-
-  const periodRow=document.getElementById('r-period-chips');
-  const presets=[['1개월',0],['3개월',2],['6개월',5],['12개월',11]];
-  presets.forEach(function(p){
-    const fromM=months[Math.max(0, toIdx-p[1])];
-    const active=(p[0]==='12개월');
-    const btn=_chipBtn('최근 '+p[0], active, function(){ choosePeriod(fromM, toM, this); });
-    periodRow.appendChild(btn);
-    if(active){ document.getElementById('r-from').value=fromM; document.getElementById('r-to').value=toM; }
-  });
-  periodRow.appendChild(_chipBtn('전체', false, function(){ choosePeriod('', '', this); }));
+  return [...monthSet].sort();
 }
 
-function fillSigungu(){
+function closeAllDrops(){
+  document.querySelectorAll('.rate2-pilldrop').forEach(function(d){ d.classList.remove('open'); });
+}
+
+function toggleDrop(id){
+  const el=document.getElementById(id);
+  const wasOpen=el.classList.contains('open');
+  closeAllDrops();
+  if(!wasOpen) el.classList.add('open');
+}
+
+function buildSidoPanel(){
+  const panel=document.getElementById('pd-sido-panel');
+  const cur=document.getElementById('r-sido').value;
+  const sidoSet=new Set();
+  _R.forEach(function(r){ const s=_sidoFull(r.sido); if(s) sidoSet.add(s); });
+  const opts=[''].concat([...sidoSet].sort());
+  panel.innerHTML='';
+  opts.forEach(function(s){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=s||'전체';
+    if(s===cur) b.className='selected';
+    b.onclick=function(){
+      document.getElementById('r-sido').value=s;
+      document.getElementById('pd-sido-btn').firstChild.textContent=(s||'시/도 전체')+' ';
+      document.getElementById('r-sigungu').value='';
+      document.getElementById('pd-sigungu-btn').firstChild.textContent='시/군/구 전체 ';
+      closeAllDrops();
+      buildSidoPanel(); buildSigunguPanel(); renderR();
+    };
+    panel.appendChild(b);
+  });
+}
+
+function buildSigunguPanel(){
+  const panel=document.getElementById('pd-sigungu-panel');
   const sido=document.getElementById('r-sido').value;
-  const sel=document.getElementById('r-sigungu');
-  sel.innerHTML='<option value="">시/군/구 전체</option>';
+  const cur=document.getElementById('r-sigungu').value;
   const set=new Set();
-  _R.forEach(r=>{
+  _R.forEach(function(r){
     const p=_addrParts(r.addr);
     if((!sido || _sidoFull(r.sido)===sido) && p.sigungu) set.add(p.sigungu);
   });
-  [...set].sort().forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o);
+  const opts=[''].concat([...set].sort());
+  panel.innerHTML='';
+  opts.forEach(function(s){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=s||'전체';
+    if(s===cur) b.className='selected';
+    b.onclick=function(){
+      document.getElementById('r-sigungu').value=s;
+      document.getElementById('pd-sigungu-btn').firstChild.textContent=(s||'시/군/구 전체')+' ';
+      closeAllDrops();
+      buildSigunguPanel(); renderR();
+    };
+    panel.appendChild(b);
+  });
+}
+
+function _applyPeriod(fromM, toM, label){
+  document.getElementById('r-from').value=fromM;
+  document.getElementById('r-to').value=toM;
+  document.getElementById('pd-period-btn').firstChild.textContent=label+' ';
+  document.getElementById('rate2-customrange').classList.remove('show');
+  renderR();
+}
+
+function buildPeriodPanel(){
+  const panel=document.getElementById('pd-period-panel');
+  const months=_monthList();
+  const toIdx=months.length-1;
+  const toM=months[toIdx];
+  const presets=[['최근 1개월',0],['최근 3개월',2],['최근 6개월',5],['최근 12개월',11],['전체 기간',null]];
+  panel.innerHTML='';
+  presets.forEach(function(p){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=p[0];
+    b.onclick=function(){
+      const fromM = p[1]===null ? '' : months[Math.max(0, toIdx-p[1])];
+      const toV = p[1]===null ? '' : toM;
+      closeAllDrops();
+      _applyPeriod(fromM, toV, p[0]);
+    };
+    panel.appendChild(b);
+  });
+  const customBtn=document.createElement('button');
+  customBtn.type='button'; customBtn.textContent='직접 입력';
+  customBtn.onclick=function(){
+    document.getElementById('pd-period-btn').firstChild.textContent='직접 입력 ';
+    document.getElementById('rate2-customrange').classList.add('show');
+    closeAllDrops();
+    const fromEl=document.getElementById('r-from-custom'), toEl=document.getElementById('r-to-custom');
+    if(!fromEl.value) fromEl.value=document.getElementById('r-from').value||months[Math.max(0,toIdx-11)];
+    if(!toEl.value) toEl.value=document.getElementById('r-to').value||toM;
+    document.getElementById('r-from').value=fromEl.value;
+    document.getElementById('r-to').value=toEl.value;
+    renderR();
+  };
+  panel.appendChild(customBtn);
+}
+
+function initFilters(){
+  buildSidoPanel();
+  buildSigunguPanel();
+  buildPeriodPanel();
+
+  const months=_monthList();
+  const toIdx=months.length-1;
+  document.getElementById('r-from').value=months[toIdx];
+  document.getElementById('r-to').value=months[toIdx];
+
+  document.getElementById('pd-sido').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-sido'); e.stopPropagation(); };
+  document.getElementById('pd-sigungu').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-sigungu'); e.stopPropagation(); };
+  document.getElementById('pd-period').querySelector('.rate2-pill').onclick=function(e){ toggleDrop('pd-period'); e.stopPropagation(); };
+  document.querySelectorAll('.rate2-panel').forEach(function(p){ p.addEventListener('click', function(e){ e.stopPropagation(); }); });
+  document.addEventListener('click', closeAllDrops);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAllDrops(); });
+
+  document.getElementById('r-from-custom').addEventListener('change', function(){
+    document.getElementById('r-from').value=this.value;
+    renderR();
+  });
+  document.getElementById('r-to-custom').addEventListener('change', function(){
+    document.getElementById('r-to').value=this.value;
+    renderR();
   });
 }
 
