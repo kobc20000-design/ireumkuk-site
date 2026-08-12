@@ -99,12 +99,21 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 .rate2-field select, .rate2-field input { border:1px solid #e3e6eb; border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; transition:border-color .15s ease, background .15s ease; }
 .rate2-field select:hover, .rate2-field input:hover { border-color:#c7cdd6; }
 .rate2-field select:focus, .rate2-field input:focus { outline:none; border-color:#13294B; background:#fff; }
-.rate2-period { display:flex; align-items:center; gap:8px; }
-.rate2-period select { min-width:110px; }
-.rate2-period .sep { color:#c2c8d1; font-size:13px; }
 .rate2-search input { width:100%; border:1px solid #e3e6eb; border-radius:10px; padding:12px 16px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; }
 .rate2-search input:focus { outline:none; border-color:#13294B; background:#fff; }
 .rate2-hint { font-size:12.5px; color:#a6adb8; margin-top:14px; }
+.rate2-chiplabel { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; margin-bottom:8px; display:block; }
+.rate2-chiprow { display:flex; gap:6px; overflow-x:auto; padding:6px; border-radius:12px; margin-bottom:16px; scrollbar-width:none; }
+.rate2-chiprow::-webkit-scrollbar { display:none; }
+.rate2-chip { flex:none; padding:8px 16px; border-radius:8px; font-size:13.5px; font-weight:600; border:none; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background .15s ease, color .15s ease; }
+.rate2-chiprow-sido { background:#13294B; }
+.rate2-chiprow-sido .rate2-chip { color:#c7d1e0; background:transparent; }
+.rate2-chiprow-sido .rate2-chip:hover { background:rgba(255,255,255,.1); color:#fff; }
+.rate2-chiprow-sido .rate2-chip.active { background:#fff; color:#13294B; }
+.rate2-chiprow-period { background:#f4f5f7; border:1px solid #eef0f3; }
+.rate2-chiprow-period .rate2-chip { color:#6b7280; background:transparent; }
+.rate2-chiprow-period .rate2-chip:hover { background:rgba(19,41,75,.07); color:#13294B; }
+.rate2-chiprow-period .rate2-chip.active { background:#13294B; color:#fff; }
 .rate2-hint a { color:#13294B; font-weight:600; text-decoration:none; }
 .rate2-hint a:hover { text-decoration:underline; }
 .rate2-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:22px 2px 14px; }
@@ -145,11 +154,16 @@ table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:ta
 
 <div class="rate2-page">
 <div class="rate2-filters">
+<span class="rate2-chiplabel">시/도</span>
+<div class="rate2-chiprow rate2-chiprow-sido" id="r-sido-chips"></div>
+<input type="hidden" id="r-sido" value="">
+
+<span class="rate2-chiplabel">모집공고 기간</span>
+<div class="rate2-chiprow rate2-chiprow-period" id="r-period-chips"></div>
+<input type="hidden" id="r-from" value="">
+<input type="hidden" id="r-to" value="">
+
 <div class="rate2-filter-grid">
-<div class="rate2-field">
-<label>시/도</label>
-<select id="r-sido" onchange="onSidoChange()"><option value="">전체</option></select>
-</div>
 <div class="rate2-field">
 <label>시/군/구</label>
 <select id="r-sigungu" onchange="renderR()"><option value="">전체</option></select>
@@ -158,17 +172,9 @@ table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:ta
 <label>내 가점</label>
 <input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" oninput="renderR()">
 </div>
-<div class="rate2-field">
-<label>모집공고 기간</label>
-<div class="rate2-period">
-<select id="r-from" onchange="renderR()"></select>
-<span class="sep">~</span>
-<select id="r-to" onchange="renderR()"></select>
-</div>
-</div>
 </div>
 <div class="rate2-search"><input id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()"></div>
-<div class="rate2-hint">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/">가점 계산기</a> · 기본값: 최근 12개월</div>
+<div class="rate2-hint">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/">가점 계산기</a></div>
 </div>
 
 <div class="rate2-toolbar">
@@ -213,12 +219,36 @@ function _addrParts(addr){
   return {sigungu};
 }
 
+function _chipBtn(label, active, onClick){
+  const b=document.createElement('button');
+  b.type='button'; b.className='rate2-chip'+(active?' active':''); b.textContent=label;
+  b.onclick=onClick;
+  return b;
+}
+
+function chooseSido(value, btn){
+  document.getElementById('r-sido').value=value;
+  btn.parentElement.querySelectorAll('.rate2-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  fillSigungu();
+  renderR();
+}
+
+function choosePeriod(fromV, toV, btn){
+  document.getElementById('r-from').value=fromV;
+  document.getElementById('r-to').value=toV;
+  btn.parentElement.querySelectorAll('.rate2-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderR();
+}
+
 function initFilters(){
   const sidoSet=new Set();
   _R.forEach(r=>{ const s=_sidoFull(r.sido); if(s) sidoSet.add(s); });
-  const sidoSel=document.getElementById('r-sido');
+  const sidoRow=document.getElementById('r-sido-chips');
+  sidoRow.appendChild(_chipBtn('전체', true, function(){ chooseSido('', this); }));
   [...sidoSet].sort().forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s; sidoSel.appendChild(o);
+    sidoRow.appendChild(_chipBtn(s, false, function(){ chooseSido(s, this); }));
   });
   fillSigungu();
 
@@ -228,18 +258,19 @@ function initFilters(){
   const nowM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
   monthSet.add(nowM);
   const months=[...monthSet].sort();
-
-  const fromSel=document.getElementById('r-from');
-  const toSel=document.getElementById('r-to');
-  months.forEach(m=>{
-    fromSel.appendChild(new Option(m, m));
-    toSel.appendChild(new Option(m, m));
-  });
-
   const toIdx=months.length-1;
-  const fromIdx=Math.max(0, toIdx-11);
-  fromSel.value=months[fromIdx];
-  toSel.value=months[toIdx];
+  const toM=months[toIdx];
+
+  const periodRow=document.getElementById('r-period-chips');
+  const presets=[['1개월',0],['3개월',2],['6개월',5],['12개월',11]];
+  presets.forEach(function(p){
+    const fromM=months[Math.max(0, toIdx-p[1])];
+    const active=(p[0]==='12개월');
+    const btn=_chipBtn('최근 '+p[0], active, function(){ choosePeriod(fromM, toM, this); });
+    periodRow.appendChild(btn);
+    if(active){ document.getElementById('r-from').value=fromM; document.getElementById('r-to').value=toM; }
+  });
+  periodRow.appendChild(_chipBtn('전체', false, function(){ choosePeriod('', '', this); }));
 }
 
 function fillSigungu(){
@@ -255,8 +286,6 @@ function fillSigungu(){
     const o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o);
   });
 }
-
-function onSidoChange(){ fillSigungu(); renderR(); }
 
 function renderR(){
   const q=(document.getElementById('r-search').value||'').trim();
