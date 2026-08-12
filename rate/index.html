@@ -91,6 +91,50 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 }
 
 
+.rate2-page { max-width: 980px; }
+.rate2-filters { background:#fff; border:1px solid #eef0f3; border-radius:16px; padding:24px 26px 22px; margin-bottom:20px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+.rate2-filter-grid { display:flex; flex-wrap:wrap; gap:18px 26px; margin-bottom:16px; }
+.rate2-field { display:flex; flex-direction:column; gap:6px; min-width:130px; }
+.rate2-field label { font-size:12px; font-weight:700; color:#8a93a3; letter-spacing:.02em; }
+.rate2-field select, .rate2-field input { border:1px solid #e3e6eb; border-radius:10px; padding:10px 12px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; transition:border-color .15s ease, background .15s ease; }
+.rate2-field select:hover, .rate2-field input:hover { border-color:#c7cdd6; }
+.rate2-field select:focus, .rate2-field input:focus { outline:none; border-color:#13294B; background:#fff; }
+.rate2-period { display:flex; align-items:center; gap:8px; }
+.rate2-period select { min-width:110px; }
+.rate2-period .sep { color:#c2c8d1; font-size:13px; }
+.rate2-search input { width:100%; border:1px solid #e3e6eb; border-radius:10px; padding:12px 16px; font-size:14px; font-family:inherit; background:#fbfbfc; color:#222; }
+.rate2-search input:focus { outline:none; border-color:#13294B; background:#fff; }
+.rate2-hint { font-size:12.5px; color:#a6adb8; margin-top:14px; }
+.rate2-hint a { color:#13294B; font-weight:600; text-decoration:none; }
+.rate2-hint a:hover { text-decoration:underline; }
+.rate2-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:22px 2px 14px; }
+.rate2-toolbar-sort { display:flex; align-items:center; gap:8px; }
+.rate2-toolbar label { font-size:12.5px; font-weight:700; color:#8a93a3; }
+.rate2-toolbar select { border:1px solid #e3e6eb; border-radius:10px; padding:9px 12px; font-size:13.5px; font-family:inherit; background:#fff; color:#222; }
+.rate2-count { font-size:13px; color:#9aa2ad; font-weight:600; }
+.rate2-tablewrap { background:#fff; border:1px solid #eef0f3; border-radius:16px; overflow:auto; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+table.rate2-t { width:100%; border-collapse:collapse; font-size:13.5px; min-width:720px; }
+table.rate2-t th { background:#fafbfc; color:#8a93a3; font-weight:700; font-size:11.5px; letter-spacing:.03em; padding:14px 16px; text-align:right; border-bottom:1px solid #eef0f3; white-space:nowrap; }
+table.rate2-t th:first-child, table.rate2-t td:first-child { text-align:left; }
+table.rate2-t td { padding:15px 16px; text-align:right; border-bottom:1px solid #f3f4f6; color:#333; vertical-align:middle; }
+table.rate2-t tr:last-child td { border-bottom:none; }
+table.rate2-t tr:hover td { background:#fafbfc; }
+table.rate2-t td.r2-name a { color:#13294B; font-weight:700; text-decoration:none; }
+table.rate2-t td.r2-name a:hover { text-decoration:underline; }
+table.rate2-t .r2-addr { font-size:11.5px; color:#a6adb8; margin-top:3px; font-weight:400; }
+table.rate2-t .r2-rate { font-weight:800; color:#13294B; font-variant-numeric:tabular-nums; }
+.r2-pill { display:inline-block; padding:3px 11px; border-radius:999px; font-size:12.5px; font-weight:700; }
+.r2-pill.ok { background:#E9F7EF; color:#1D9A54; }
+.r2-pill.no { background:#FDEEEE; color:#D33; }
+.rate2-note { font-size:12.5px; color:#9aa2ad; line-height:1.85; margin-top:22px; padding:16px 18px; background:#fafbfc; border-radius:12px; }
+.rate2-note b { color:#6b7280; }
+@media (max-width:640px){
+  .rate2-filters{padding:18px;}
+  .rate2-field{min-width:44%; flex:1;}
+  table.rate2-t{font-size:12.5px;}
+  table.rate2-t th, table.rate2-t td{padding:11px 10px;}
+}
+
 </style>
 </head>
 <body>
@@ -99,40 +143,57 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 <h1>📊 단지별 경쟁률·커트라인</h1>
 <div class="tool-desc">최근 분양 단지의 타입별 청약 경쟁률과 최저 당첨가점을 확인하세요. 내 가점을 입력하면 당첨권 여부를 바로 볼 수 있습니다.</div>
 
-<div class="f-row" style="margin-bottom:10px">
-<label style="flex:0 0 auto">지역</label>
-<select id="r-sido" onchange="onSidoChange()" style="max-width:150px"><option value="">시/도 전체</option></select>
-<select id="r-sigungu" onchange="renderR()" style="max-width:150px"><option value="">시/군/구 전체</option></select>
-<label style="flex:0 0 auto">내 가점</label>
-<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" style="max-width:110px" oninput="renderR()">
-<span class="unit">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/" style="color:#13294B">가점 계산기</a></span>
+<div class="rate2-page">
+<div class="rate2-filters">
+<div class="rate2-filter-grid">
+<div class="rate2-field">
+<label>시/도</label>
+<select id="r-sido" onchange="onSidoChange()"><option value="">전체</option></select>
 </div>
-<div class="f-row" style="margin-bottom:10px">
-<label style="flex:0 0 auto">모집공고 기간</label>
-<select id="r-from" onchange="renderR()" style="max-width:150px"></select>
-<span class="unit">~</span>
-<select id="r-to" onchange="renderR()" style="max-width:150px"></select>
-<span class="unit">기본값: 최근 12개월</span>
+<div class="rate2-field">
+<label>시/군/구</label>
+<select id="r-sigungu" onchange="renderR()"><option value="">전체</option></select>
 </div>
-<input class="searchbox" id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
-<div class="f-row" style="margin-bottom:16px">
-<label style="flex:0 0 auto">정렬</label>
-<select id="r-sort" onchange="renderR()" style="max-width:220px">
+<div class="rate2-field">
+<label>내 가점</label>
+<input type="number" id="r-myscore" placeholder="예: 65" min="0" max="84" oninput="renderR()">
+</div>
+<div class="rate2-field">
+<label>모집공고 기간</label>
+<div class="rate2-period">
+<select id="r-from" onchange="renderR()"></select>
+<span class="sep">~</span>
+<select id="r-to" onchange="renderR()"></select>
+</div>
+</div>
+</div>
+<div class="rate2-search"><input id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()"></div>
+<div class="rate2-hint">점 입력 시 당첨권/불가권을 표시합니다 · <a href="/tools/gajeom/">가점 계산기</a> · 기본값: 최근 12개월</div>
+</div>
+
+<div class="rate2-toolbar">
+<div class="rate2-toolbar-sort">
+<label>정렬</label>
+<select id="r-sort" onchange="renderR()">
 <option value="date-desc" selected>최근 공고 순</option>
 <option value="rate-desc">경쟁률 높은 순</option>
 <option value="rate-asc">경쟁률 낮은 순</option>
 <option value="lwet-desc">커트라인 높은 순</option>
 <option value="lwet-asc">커트라인 낮은 순</option>
 </select>
-<span class="unit" id="r-count"></span>
 </div>
-<div class="card" style="padding:0;overflow-x:auto">
-<table class="rt" id="r-table" style="margin:0"></table>
+<span class="rate2-count" id="r-count"></span>
 </div>
-<div class="disclaimer">
+
+<div class="rate2-tablewrap">
+<table class="rate2-t" id="r-table"></table>
+</div>
+
+<div class="rate2-note">
 경쟁률·최저당첨가점은 <b>해당지역·1순위</b> 기준을 우선 표시하며, 해당 조건 신청이 없으면 다른 조건값으로 대체됩니다.
 표시되는 값은 대부분 <b>일반공급 가점제</b> 기준이며, 추첨제 물량·특별공급은 최저가점이 0 또는 공란으로 나올 수 있습니다.
 반드시 청약홈 원문에서 타입·순위·거주지역별 정확한 수치를 다시 확인하세요. 출처: 한국부동산원 청약홈 공공 API.
+</div>
 </div>
 
 </div>
@@ -230,20 +291,20 @@ function renderR(){
   document.getElementById('r-count').textContent = rows.length.toLocaleString()+'건';
   let h='<tr><th>단지명</th><th>주택형</th><th>거주지역·순위</th><th>경쟁률</th><th>접수건수</th><th>최저가점</th><th>공고일</th></tr>';
   rows.slice(0,300).forEach(r=>{
-    const nm = r.url ? '<a href="'+r.url+'" target="_blank" style="color:#13294B">'+r.name+'</a>' : r.name;
-    let rowStyle='';
+    const nm = r.url ? '<a href="'+r.url+'" target="_blank">'+r.name+'</a>' : r.name;
+    let lwetCell = (r.lwet!=null&&r.lwet>0?r.lwet+'점':'-');
     if(my!==null && r.lwet!=null && r.lwet>0){
-      rowStyle = my>=r.lwet ? 'background:#E7F6EC' : 'background:#FDECEC';
+      lwetCell = '<span class="r2-pill '+(my>=r.lwet?'ok':'no')+'">'+r.lwet+'점</span>';
     }
-    h+='<tr style="'+rowStyle+'"><td>'+nm+'<div style="font-size:11px;color:#999">'+(r.addr||'').slice(0,30)+'</div></td>'+
+    h+='<tr><td class="r2-name">'+nm+'<div class="r2-addr">'+(r.addr||'').slice(0,30)+'</div></td>'+
        '<td style="text-align:center">'+r.ty+'</td>'+
-       '<td style="text-align:center;font-size:12px">'+(r.reside||'-')+' · '+r.rank+'순위</td>'+
-       '<td style="font-weight:700;color:#13294B">'+(r.rate!=null?r.rate.toFixed(2)+':1':'-')+'</td>'+
+       '<td style="text-align:center;font-size:12px;color:#8a93a3">'+(r.reside||'-')+' · '+r.rank+'순위</td>'+
+       '<td class="r2-rate">'+(r.rate!=null?r.rate.toFixed(2)+':1':'-')+'</td>'+
        '<td>'+(+r.req||0).toLocaleString()+'명</td>'+
-       '<td>'+(r.lwet!=null&&r.lwet>0?r.lwet+'점':'-')+'</td>'+
-       '<td style="text-align:center;font-size:12px;color:#888">'+r.date+'</td></tr>';
+       '<td>'+lwetCell+'</td>'+
+       '<td style="text-align:center;font-size:12px;color:#a6adb8">'+r.date+'</td></tr>';
   });
-  if(rows.length>300) h+='<tr><td colspan="7" style="text-align:center;color:#999">상위 300건만 표시됩니다</td></tr>';
+  if(rows.length>300) h+='<tr><td colspan="7" style="text-align:center;color:#9aa2ad">상위 300건만 표시됩니다</td></tr>';
   document.getElementById('r-table').innerHTML=h;
 }
 </script>
