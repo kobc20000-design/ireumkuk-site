@@ -109,9 +109,9 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 </div>
 <div class="f-row" style="margin-bottom:10px">
 <label style="flex:0 0 auto">모집공고 기간</label>
-<input type="month" id="r-from" onchange="renderR()" style="max-width:150px">
+<select id="r-from" onchange="renderR()" style="max-width:150px"></select>
 <span class="unit">~</span>
-<input type="month" id="r-to" onchange="renderR()" style="max-width:150px">
+<select id="r-to" onchange="renderR()" style="max-width:150px"></select>
 <span class="unit">기본값: 최근 12개월</span>
 </div>
 <input class="searchbox" id="r-search" placeholder="단지명 또는 지역으로 검색 (예: 자이, 서울, 경기)" oninput="renderR()">
@@ -155,12 +155,24 @@ function initFilters(){
   });
   fillSigungu();
 
+  const monthSet=new Set();
+  _R.forEach(r=>{ const m=(r.date||'').slice(0,7).replace('.','-'); if(/^\d{4}-\d{2}$/.test(m)) monthSet.add(m); });
   const now=new Date();
-  const toM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
-  const fromD=new Date(now.getFullYear(), now.getMonth()-11, 1);
-  const fromM=fromD.getFullYear()+'-'+String(fromD.getMonth()+1).padStart(2,'0');
-  document.getElementById('r-from').value=fromM;
-  document.getElementById('r-to').value=toM;
+  const nowM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  monthSet.add(nowM);
+  const months=[...monthSet].sort();
+
+  const fromSel=document.getElementById('r-from');
+  const toSel=document.getElementById('r-to');
+  months.forEach(m=>{
+    fromSel.appendChild(new Option(m, m));
+    toSel.appendChild(new Option(m, m));
+  });
+
+  const toIdx=months.length-1;
+  const fromIdx=Math.max(0, toIdx-11);
+  fromSel.value=months[fromIdx];
+  toSel.value=months[toIdx];
 }
 
 function fillSigungu(){
