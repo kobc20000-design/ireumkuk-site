@@ -1,8 +1,8 @@
-name: 사이트 데이터 매시간 갱신
+name: 사이트 데이터 15분마다 갱신
 
 on:
   schedule:
-    - cron: '0 * * * *'   # 매시 정각
+    - cron: '*/15 * * * *'   # 15분마다
   workflow_dispatch:
 
 permissions:
