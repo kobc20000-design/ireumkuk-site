@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# 원본 JSON 은 사람이 읽는 문서가 아니라 색인 대상이 아니다
+Disallow: /data/
+
+Sitemap: https://ireumkuk.co.kr/sitemap.xml

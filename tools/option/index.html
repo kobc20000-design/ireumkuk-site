@@ -91,6 +91,30 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 }
 
 
+.tguide { margin-top: 44px; }
+.tguide h2 { font-size: 19px; color: #13294B; margin: 36px 0 12px; }
+.tguide h3 { font-size: 15.5px; color: #222; margin: 22px 0 6px; }
+.tguide p { font-size: 15px; line-height: 1.85; color: #444; margin: 0 0 14px; }
+.tguide ul { margin: 0 0 16px; padding-left: 20px; }
+.tguide li { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 7px; }
+.tguide b { color: #13294B; }
+.tguide table { width: 100%; border-collapse: collapse; margin: 4px 0 18px; font-size: 14px; }
+.tguide th, .tguide td { border: 1px solid #e9ecf1; padding: 10px 12px; text-align: left;
+  word-break: keep-all; }
+.tguide th { background: #f7f9fb; color: #13294B; font-weight: 700; white-space: nowrap; }
+.tguide .formula { background: #f7f9fb; border: 1px solid #e9ecf1; border-radius: 8px;
+  padding: 13px 16px; font-size: 14.5px; color: #13294B; font-weight: 600; margin: 0 0 16px;
+  line-height: 1.7; }
+.tguide .take { background: #fff; border: 1px solid #e9ecf1; border-left: 3px solid #13294B;
+  border-radius: 8px; padding: 18px 20px; margin: 4px 0 18px; }
+.tguide .take p { margin: 0 0 12px; }
+.tguide .take p:last-child { margin-bottom: 0; }
+.tguide .faq { border-top: 1px solid #eef0f3; padding-top: 14px; margin-top: 6px; }
+.tguide .faq:first-of-type { border-top: none; }
+.tguide .faq .q { font-weight: 700; color: #13294B; font-size: 15px; margin-bottom: 6px; }
+.tguide .asof { font-size: 12.5px; color: #a6adb8; margin-top: 30px; padding-top: 14px;
+  border-top: 1px solid #eef0f3; line-height: 1.8; }
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V57WRQFKH"></script>
 <script>
@@ -128,7 +152,44 @@ gtag('config', 'G-9V57WRQFKH');
 발코니 확장비와 유상옵션은 <b>분양가에 포함되지 않은 별도 비용</b>이며, 중도금 대출 대상에서 제외되는 경우가 많아
 자기자금 부담이 커집니다. 특히 발코니 확장은 사실상 필수인 단지가 많으므로 처음부터 총액에 넣고 계산하는 것이 안전합니다.
 </div>
-
+<div class="tguide"><h2>어떻게 계산되나</h2>
+<p>공고문에 적힌 분양가는 <b>옵션이 하나도 안 들어간 금액</b>입니다.
+실제로 계약할 때 내는 돈은 여기에 발코니 확장비와 유상옵션이 더해진 값인데요.
+이 계산기는 그 합계와, 옵션이 분양가에서 차지하는 비중을 같이 보여줍니다.</p>
+<div class="formula">실부담 분양가 = 공고 분양가 + 발코니 확장비 + 선택한 유상옵션 합계</div>
+<h3>옵션은 크게 두 갈래입니다</h3>
+<ul>
+<li><b>지금 아니면 못 하는 것</b> — 발코니 확장이 대표적입니다. 구조를 건드리는 일이라
+입주 후에는 사실상 불가능하거나, 하더라도 훨씬 비쌉니다.</li>
+<li><b>나중에도 되는 것</b> — 시스템에어컨, 중문, 붙박이장 같은 품목입니다.
+입주 후에 따로 시공해도 되고, 그쪽이 더 싼 경우가 많습니다.</li>
+</ul>
+<h3>옵션 대금은 언제 내나</h3>
+<p>보통 계약금 일부를 계약 시점에 내고 나머지는 <b>입주 지정 기간에 잔금과 함께</b> 냅니다.
+중도금 대출 대상이 아닌 경우가 많아서, 입주 시점에 현금이 그만큼 더 필요합니다.
+자금 계획을 짤 때 이 금액을 빼놓으면 입주 때 모자랍니다.</p>
+<h2>자주 틀리는 부분</h2>
+<h3>발코니 확장비를 분양가와 따로 보는 경우</h3>
+<p>확장비는 액수가 작지 않습니다. 84㎡ 기준으로 천만원대가 흔한데요.
+<b>대부분의 단지에서 사실상 필수</b>로 취급되므로 처음부터 분양가에 더해서 봐야
+그 단지가 비싼지 싼지 제대로 판단됩니다.</p>
+<h3>평당가를 계산할 때 옵션을 빼는 경우</h3>
+<p>단지끼리 비교할 때 한쪽은 확장 포함, 한쪽은 미포함으로 계산하면 비교가 성립하지 않습니다.
+기준을 맞춰야 합니다.</p>
+<h3>취득세 과세표준을 잘못 잡는 경우</h3>
+<p>취득세는 실제 취득가액을 기준으로 매기는데요. <b>발코니 확장비는 통상 과세표준에
+포함</b>됩니다. 다만 개별 선택품목은 지자체와 계약 형태에 따라 판단이 갈리는 부분이 있어,
+금액이 크다면 관할 시·군·구청 세무과에 확인해 보시는 게 안전합니다.</p>
+<h3>옵션을 나중에 취소하려는 경우</h3>
+<p>유상옵션은 <b>계약 시점에 결정하면 되돌리기 어렵습니다.</b> 시공이 이미 발주에
+들어가기 때문인데요. 애매하면 처음부터 넣지 않는 쪽이 안전합니다.</p>
+<h2>이렇게 보면 됩니다</h2><div class="take">
+<p>옵션은 발코니 확장만 넣고 나머지는 빼는 걸 기본으로 두시면 됩니다.</p>
+<p>확장은 지금 아니면 못 하는 데다 없으면 실제 쓰는 면적이 눈에 띄게 줄어드는데요.</p>
+<p>시스템에어컨이나 중문은 입주 뒤에 시공해도 되고, 견적을 몇 군데 받아보면 대체로 더 쌉니다.</p>
+<p>무엇보다 옵션 대금은 <b>중도금 대출이 안 나오는 현금</b>이라, 입주 시점에 부담이 그대로 몰립니다.</p>
+<p>옵션 합계가 분양가의 5%를 넘어가고 있다면 목록을 한 번 줄여보고 결정하시는 게 좋겠습니다.</p>
+</div><h2>자주 묻는 질문</h2><div class="faq"><div class="q">발코니 확장은 꼭 해야 하나요?</div><p>의무는 아니지만 대부분의 단지에서 사실상 기본으로 취급됩니다. 구조 변경이라 입주 후에는 시공이 어렵거나 훨씬 비싸고, 확장하지 않으면 실사용 면적이 줄어듭니다.</p></div><div class="faq"><div class="q">옵션 비용도 중도금 대출이 되나요?</div><p>일반적으로 되지 않습니다. 계약금 일부와 잔금 시점 현금으로 납부하는 구조가 많아 입주 시점 자금 계획에 반드시 포함해야 합니다.</p></div><div class="faq"><div class="q">옵션 비용도 취득세에 포함되나요?</div><p>발코니 확장비는 통상 취득세 과세표준에 포함됩니다. 개별 선택품목은 계약 형태와 지자체 판단에 따라 달라질 수 있어 관할 세무과 확인을 권합니다.</p></div><div class="faq"><div class="q">계약 후에 옵션을 취소할 수 있나요?</div><p>일반적으로 어렵습니다. 시공 발주가 들어가기 때문에 단지별 계약 조건에 따라 위약금이 발생하거나 취소 자체가 불가능한 경우가 많습니다.</p></div><p class="asof">2026년 8월 기준로 정리한 내용입니다. 청약 제도와 세법은 자주 바뀌고 단지별 공고 내용이 우선하므로, 실제 신청 전에는 해당 단지의 입주자모집공고문과 청약홈 안내를 반드시 확인하세요. 이 페이지의 계산 결과는 참고용이며 투자·세무 자문이 아닙니다.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "발코니 확장은 꼭 해야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "의무는 아니지만 대부분의 단지에서 사실상 기본으로 취급됩니다. 구조 변경이라 입주 후에는 시공이 어렵거나 훨씬 비싸고, 확장하지 않으면 실사용 면적이 줄어듭니다."}}, {"@type": "Question", "name": "옵션 비용도 중도금 대출이 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "일반적으로 되지 않습니다. 계약금 일부와 잔금 시점 현금으로 납부하는 구조가 많아 입주 시점 자금 계획에 반드시 포함해야 합니다."}}, {"@type": "Question", "name": "옵션 비용도 취득세에 포함되나요?", "acceptedAnswer": {"@type": "Answer", "text": "발코니 확장비는 통상 취득세 과세표준에 포함됩니다. 개별 선택품목은 계약 형태와 지자체 판단에 따라 달라질 수 있어 관할 세무과 확인을 권합니다."}}, {"@type": "Question", "name": "계약 후에 옵션을 취소할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "일반적으로 어렵습니다. 시공 발주가 들어가기 때문에 단지별 계약 조건에 따라 위약금이 발생하거나 취소 자체가 불가능한 경우가 많습니다."}}]}</script>
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>

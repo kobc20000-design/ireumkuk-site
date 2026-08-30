@@ -91,6 +91,30 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 }
 
 
+.tguide { margin-top: 44px; }
+.tguide h2 { font-size: 19px; color: #13294B; margin: 36px 0 12px; }
+.tguide h3 { font-size: 15.5px; color: #222; margin: 22px 0 6px; }
+.tguide p { font-size: 15px; line-height: 1.85; color: #444; margin: 0 0 14px; }
+.tguide ul { margin: 0 0 16px; padding-left: 20px; }
+.tguide li { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 7px; }
+.tguide b { color: #13294B; }
+.tguide table { width: 100%; border-collapse: collapse; margin: 4px 0 18px; font-size: 14px; }
+.tguide th, .tguide td { border: 1px solid #e9ecf1; padding: 10px 12px; text-align: left;
+  word-break: keep-all; }
+.tguide th { background: #f7f9fb; color: #13294B; font-weight: 700; white-space: nowrap; }
+.tguide .formula { background: #f7f9fb; border: 1px solid #e9ecf1; border-radius: 8px;
+  padding: 13px 16px; font-size: 14.5px; color: #13294B; font-weight: 600; margin: 0 0 16px;
+  line-height: 1.7; }
+.tguide .take { background: #fff; border: 1px solid #e9ecf1; border-left: 3px solid #13294B;
+  border-radius: 8px; padding: 18px 20px; margin: 4px 0 18px; }
+.tguide .take p { margin: 0 0 12px; }
+.tguide .take p:last-child { margin-bottom: 0; }
+.tguide .faq { border-top: 1px solid #eef0f3; padding-top: 14px; margin-top: 6px; }
+.tguide .faq:first-of-type { border-top: none; }
+.tguide .faq .q { font-weight: 700; color: #13294B; font-size: 15px; margin-bottom: 6px; }
+.tguide .asof { font-size: 12.5px; color: #a6adb8; margin-top: 30px; padding-top: 14px;
+  border-top: 1px solid #eef0f3; line-height: 1.8; }
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V57WRQFKH"></script>
 <script>
@@ -142,7 +166,60 @@ gtag('config', 'G-9V57WRQFKH');
 생애최초 구입 시 최대 200만원 감면 등 별도 감면제도가 있을 수 있으며, 일시적 2주택은 중과가 배제될 수 있습니다.
 정확한 세액은 관할 지자체 세무과 또는 세무사에게 확인하세요.
 </div>
-
+<div class="tguide"><h2>어떻게 계산되나</h2>
+<p>취득세는 <b>취득가액·보유 주택 수·조정대상지역 여부·전용면적</b> 네 가지로 정해집니다.
+여기에 지방교육세와 농어촌특별세가 따라붙어 실제로 내는 금액이 됩니다.</p>
+<h3>1주택 (표준세율)</h3>
+<table>
+<tr><th>취득가액</th><th>취득세율</th></tr>
+<tr><td>6억원 이하</td><td>1%</td></tr>
+<tr><td>6억원 초과 ~ 9억원 이하</td><td>(취득가액 × 2 ÷ 3 − 3) %</td></tr>
+<tr><td>9억원 초과</td><td>3%</td></tr>
+</table>
+<p>가운데 구간은 계단식이 아니라 <b>가격에 따라 세율이 연속으로 올라가는 구조</b>입니다.
+7억이면 약 1.67%, 8억이면 약 2.33%가 되는 식인데요. 6억에서 1원만 넘어도 세율이
+확 뛰던 예전 방식의 문제를 없앤 겁니다.</p>
+<h3>다주택·법인 중과</h3>
+<table>
+<tr><th>구분</th><th>조정대상지역</th><th>비조정지역</th></tr>
+<tr><td>2주택</td><td>8%</td><td>표준세율</td></tr>
+<tr><td>3주택</td><td>12%</td><td>8%</td></tr>
+<tr><td>4주택 이상 · 법인</td><td>12%</td><td>12%</td></tr>
+</table>
+<h3>같이 붙는 세금</h3>
+<ul>
+<li><b>지방교육세</b> — 취득세에 연동됩니다. 표준세율 구간에서는 대략 0.1~0.3% 수준입니다.</li>
+<li><b>농어촌특별세</b> — <b>전용면적 85㎡를 넘을 때만</b> 붙습니다. 표준세율 구간은 0.2%이고
+중과 구간에서는 더 높습니다. 85㎡ 이하는 아예 비과세라 이 항목이 0입니다.</li>
+</ul>
+<h2>자주 틀리는 부분</h2>
+<h3>전용면적 85㎡를 공급면적으로 착각하는 경우</h3>
+<p>농특세 기준은 <b>전용면적</b>입니다. 공급면적 기준으로 84㎡라고 생각했다가
+실제 전용이 85㎡를 넘어 농특세가 붙는 경우가 있습니다. 공고문의 주택형 표기를
+확인해야 합니다.</p>
+<h3>분양권 취득 시점을 계약일로 보는 경우</h3>
+<p>분양받은 아파트의 취득세는 계약할 때가 아니라 <b>잔금을 치를 때</b> 냅니다.
+세율은 그 시점 기준으로 판단하는데요. 계약과 입주 사이에 몇 년이 걸리므로
+그동안 세대의 주택 수가 바뀌면 세율도 달라집니다.</p>
+<h3>과세표준을 공고 분양가로만 잡는 경우</h3>
+<p>실제 취득가액이 기준이라 <b>발코니 확장비가 통상 포함</b>됩니다.
+분양가만 넣고 계산하면 실제 고지서보다 적게 나옵니다.</p>
+<h3>일시적 2주택을 자동으로 봐주는 줄 아는 경우</h3>
+<p>기존 집을 정해진 기간 안에 처분하는 조건으로 중과를 피할 수 있는데요.
+<b>기한 안에 실제로 팔아야</b> 하고, 못 팔면 차액을 나중에 추징당합니다.</p>
+<h3>생애최초 감면을 놓치는 경우</h3>
+<p>생애최초로 주택을 사는 경우 취득세를 일정 한도까지 감면받을 수 있습니다.
+소득·주택가액 요건이 있고 내용이 자주 바뀌니, 잔금 전에 관할 시·군·구청에
+확인해 보시는 게 좋습니다.</p>
+<h2>이렇게 보면 됩니다</h2><div class="take">
+<p>취득세는 청약 자금 계획에서 가장 자주 빠뜨리는 항목입니다.</p>
+<p>분양가와 중도금 이자까지는 다들 계산하는데, 잔금 때 목돈으로 나가는 취득세를
+빼놓고 계산하는 경우가 많은데요.</p>
+<p>9억짜리 아파트라면 취득세만 2천만원대가 한 번에 나갑니다.</p>
+<p>그리고 이 계산기 결과는 <b>잔금 시점의 주택 수 기준</b>으로 다시 봐야 정확합니다.</p>
+<p>지금은 무주택이어도 입주까지 몇 년 사이에 다른 집이 생기면 세율 구간이 통째로 바뀌니,
+그 사이 계획까지 넣고 따져보고 지원해야겠습니다.</p>
+</div><h2>자주 묻는 질문</h2><div class="faq"><div class="q">6억원과 9억원 사이 구간의 취득세율은 어떻게 되나요?</div><p>(취득가액 × 2 ÷ 3 − 3)% 로 계산합니다. 예를 들어 7억원이면 약 1.67%, 8억원이면 약 2.33%가 되며 가격에 따라 연속적으로 올라갑니다.</p></div><div class="faq"><div class="q">농어촌특별세는 언제 붙나요?</div><p>전용면적 85㎡를 초과할 때만 붙습니다. 85㎡ 이하 국민주택 규모는 비과세입니다.</p></div><div class="faq"><div class="q">분양받은 아파트의 취득세는 언제 내나요?</div><p>잔금을 지급한 날이 취득일이며, 그로부터 60일 이내에 신고·납부해야 합니다. 세율도 잔금 시점의 주택 수를 기준으로 판단합니다.</p></div><div class="faq"><div class="q">발코니 확장비도 취득세 과세표준에 들어가나요?</div><p>실제 취득가액이 과세표준이므로 발코니 확장비는 통상 포함됩니다. 개별 선택옵션은 지자체 판단에 따라 달라질 수 있습니다.</p></div><p class="asof">2026년 8월 기준로 정리한 내용입니다. 청약 제도와 세법은 자주 바뀌고 단지별 공고 내용이 우선하므로, 실제 신청 전에는 해당 단지의 입주자모집공고문과 청약홈 안내를 반드시 확인하세요. 이 페이지의 계산 결과는 참고용이며 투자·세무 자문이 아닙니다.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "6억원과 9억원 사이 구간의 취득세율은 어떻게 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "(취득가액 × 2 ÷ 3 − 3)% 로 계산합니다. 예를 들어 7억원이면 약 1.67%, 8억원이면 약 2.33%가 되며 가격에 따라 연속적으로 올라갑니다."}}, {"@type": "Question", "name": "농어촌특별세는 언제 붙나요?", "acceptedAnswer": {"@type": "Answer", "text": "전용면적 85㎡를 초과할 때만 붙습니다. 85㎡ 이하 국민주택 규모는 비과세입니다."}}, {"@type": "Question", "name": "분양받은 아파트의 취득세는 언제 내나요?", "acceptedAnswer": {"@type": "Answer", "text": "잔금을 지급한 날이 취득일이며, 그로부터 60일 이내에 신고·납부해야 합니다. 세율도 잔금 시점의 주택 수를 기준으로 판단합니다."}}, {"@type": "Question", "name": "발코니 확장비도 취득세 과세표준에 들어가나요?", "acceptedAnswer": {"@type": "Answer", "text": "실제 취득가액이 과세표준이므로 발코니 확장비는 통상 포함됩니다. 개별 선택옵션은 지자체 판단에 따라 달라질 수 있습니다."}}]}</script>
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>

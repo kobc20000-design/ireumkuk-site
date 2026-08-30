@@ -91,6 +91,30 @@ table.rt tr.hi td { background: #FFF8E1; font-weight: 700; }
 }
 
 
+.tguide { margin-top: 44px; }
+.tguide h2 { font-size: 19px; color: #13294B; margin: 36px 0 12px; }
+.tguide h3 { font-size: 15.5px; color: #222; margin: 22px 0 6px; }
+.tguide p { font-size: 15px; line-height: 1.85; color: #444; margin: 0 0 14px; }
+.tguide ul { margin: 0 0 16px; padding-left: 20px; }
+.tguide li { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 7px; }
+.tguide b { color: #13294B; }
+.tguide table { width: 100%; border-collapse: collapse; margin: 4px 0 18px; font-size: 14px; }
+.tguide th, .tguide td { border: 1px solid #e9ecf1; padding: 10px 12px; text-align: left;
+  word-break: keep-all; }
+.tguide th { background: #f7f9fb; color: #13294B; font-weight: 700; white-space: nowrap; }
+.tguide .formula { background: #f7f9fb; border: 1px solid #e9ecf1; border-radius: 8px;
+  padding: 13px 16px; font-size: 14.5px; color: #13294B; font-weight: 600; margin: 0 0 16px;
+  line-height: 1.7; }
+.tguide .take { background: #fff; border: 1px solid #e9ecf1; border-left: 3px solid #13294B;
+  border-radius: 8px; padding: 18px 20px; margin: 4px 0 18px; }
+.tguide .take p { margin: 0 0 12px; }
+.tguide .take p:last-child { margin-bottom: 0; }
+.tguide .faq { border-top: 1px solid #eef0f3; padding-top: 14px; margin-top: 6px; }
+.tguide .faq:first-of-type { border-top: none; }
+.tguide .faq .q { font-weight: 700; color: #13294B; font-size: 15px; margin-bottom: 6px; }
+.tguide .asof { font-size: 12.5px; color: #a6adb8; margin-top: 30px; padding-top: 14px;
+  border-top: 1px solid #eef0f3; line-height: 1.8; }
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9V57WRQFKH"></script>
 <script>
@@ -139,7 +163,53 @@ DSR(총부채원리금상환비율)은 <b>연간 원리금 상환액 ÷ 연소�
 실제 한도는 이와 별도로 <b>LTV(담보인정비율)</b>와 <b>DTI</b>, 지역별 규제, 상품별 조건(디딤돌·보금자리·신생아특례 등)에 따라 더 낮아질 수 있습니다.
 중도금 대출은 DSR 산정에서 제외되지만 잔금대출 전환 시 포함됩니다.
 </div>
-
+<div class="tguide"><h2>어떻게 계산되나</h2>
+<p>DSR은 <b>내 연소득 중에서 대출 원리금을 갚는 데 쓰는 비율</b>입니다.
+새로 받을 대출뿐 아니라 이미 갖고 있는 대출까지 전부 더해서 계산합니다.</p>
+<div class="formula">DSR = (모든 대출의 연간 원리금 상환액 ÷ 연소득) × 100</div>
+<p>은행권은 이 값이 <b>40%</b>, 제2금융권은 <b>50%</b>를 넘지 않는 선에서 대출이 나옵니다.
+그래서 한도를 구하려면 이 식을 거꾸로 풀어야 하는데요. 이 계산기는
+연소득에 한도 비율을 곱한 뒤 기존 대출 상환액을 빼고, 남은 금액으로 갚을 수 있는
+원금을 원리금균등 방식으로 역산합니다.</p>
+<h3>LTV·DTI 와 무엇이 다른가</h3>
+<table>
+<tr><th>지표</th><th>보는 것</th></tr>
+<tr><td>LTV</td><td>집값 대비 얼마까지 빌려주나 — <b>담보</b> 기준</td></tr>
+<tr><td>DTI</td><td>주택담보대출 원리금 + 기타 대출 <b>이자</b>만 계산</td></tr>
+<tr><td>DSR</td><td>모든 대출의 <b>원금과 이자를 전부</b> 계산 — 가장 빡빡하다</td></tr>
+</table>
+<p>셋 중 가장 작게 나오는 값이 실제 한도가 됩니다. 요즘은 대부분 DSR에서 먼저 막힙니다.</p>
+<h3>스트레스 DSR</h3>
+<p>앞으로 금리가 오를 상황을 미리 반영하려고, 실제 금리에 <b>가산금리를 얹어서</b>
+한도를 계산하는 제도입니다. 지금 금리가 낮아도 한도는 더 높은 금리 기준으로 잡히는데요.
+그만큼 빌릴 수 있는 금액이 줄어듭니다. 단계적으로 강화되어 왔으니
+실제 실행 시점의 가산 폭은 은행에 확인하셔야 합니다.</p>
+<h2>자주 틀리는 부분</h2>
+<h3>중도금 대출도 DSR에 잡힌다고 보는 경우</h3>
+<p>분양 아파트의 <b>중도금 집단대출은 DSR 산정에서 빠집니다.</b>
+다만 입주 시점에 <b>잔금 대출로 갈아탈 때는 DSR이 적용</b>됩니다.
+계약할 때는 통과했는데 입주 때 한도가 모자라는 상황이 여기서 생깁니다.</p>
+<h3>마이너스통장을 안 세는 경우</h3>
+<p>쓰지 않고 열어만 둔 마이너스통장도 <b>한도 금액 기준으로</b> 부채에 잡힙니다.
+대출을 앞두고 있다면 안 쓰는 마이너스통장은 정리해 두는 게 낫습니다.</p>
+<h3>신용대출 상환기간을 실제 약정대로 보는 경우</h3>
+<p>신용대출은 실제 만기와 무관하게 <b>정해진 산정 만기</b>를 적용해 연간 상환액을 계산합니다.
+그래서 체감보다 DSR을 많이 잡아먹습니다.</p>
+<h3>소득을 세후로 넣는 경우</h3>
+<p>DSR의 연소득은 <b>세전</b>이고, 증빙 가능한 소득만 인정됩니다.</p>
+<h3>정책자금대출을 같은 기준으로 보는 경우</h3>
+<p>디딤돌·신생아 특례·보금자리론 같은 정책 상품은 요건과 한도 체계가 따로 있습니다.
+소득·주택가액 제한이 붙는 대신 금리가 낮은데요. 조건에 든다면 일반 주담대보다
+먼저 확인해 볼 만합니다.</p>
+<h2>이렇게 보면 됩니다</h2><div class="take">
+<p>DSR은 계약 시점이 아니라 <b>입주 시점을 기준으로</b> 봐야 합니다.</p>
+<p>중도금 대출은 DSR에서 빠지기 때문에 계약할 때는 아무 문제가 없어 보이는데요.</p>
+<p>입주 때 잔금 대출로 바꾸는 순간 DSR이 적용되면서 한도가 확 줄어듭니다.</p>
+<p>입주까지 2~3년이 걸리는 분양 아파트라면 그 사이 소득이 어떻게 될지,
+다른 대출을 새로 받을 일은 없는지까지 넣고 계산해 보셔야겠습니다.</p>
+<p>여기서 나온 한도가 잔금에 못 미친다면 계약 전에 미리 대응할 수 있지만,
+입주 통보를 받고 나서 알게 되면 선택지가 거의 없습니다.</p>
+</div><h2>자주 묻는 질문</h2><div class="faq"><div class="q">DSR 40%는 무슨 뜻인가요?</div><p>연소득 중 모든 대출의 연간 원리금 상환액이 40%를 넘지 않아야 한다는 뜻입니다. 은행권은 40%, 제2금융권은 50%가 기준입니다.</p></div><div class="faq"><div class="q">중도금 대출도 DSR에 포함되나요?</div><p>분양 아파트의 중도금 집단대출은 DSR 산정에서 제외됩니다. 다만 입주 시점에 잔금 대출로 전환할 때는 DSR이 적용됩니다.</p></div><div class="faq"><div class="q">스트레스 DSR이란 무엇인가요?</div><p>향후 금리 상승 가능성을 반영하기 위해 실제 금리에 가산금리를 더해 한도를 산정하는 제도입니다. 그만큼 대출 가능 금액이 줄어듭니다.</p></div><div class="faq"><div class="q">쓰지 않는 마이너스통장도 영향이 있나요?</div><p>있습니다. 사용 금액이 아니라 약정 한도 기준으로 부채에 반영되므로, 대출을 계획 중이라면 미리 정리하는 편이 유리합니다.</p></div><p class="asof">2026년 8월 기준로 정리한 내용입니다. 청약 제도와 세법은 자주 바뀌고 단지별 공고 내용이 우선하므로, 실제 신청 전에는 해당 단지의 입주자모집공고문과 청약홈 안내를 반드시 확인하세요. 이 페이지의 계산 결과는 참고용이며 투자·세무 자문이 아닙니다.</p></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "DSR 40%는 무슨 뜻인가요?", "acceptedAnswer": {"@type": "Answer", "text": "연소득 중 모든 대출의 연간 원리금 상환액이 40%를 넘지 않아야 한다는 뜻입니다. 은행권은 40%, 제2금융권은 50%가 기준입니다."}}, {"@type": "Question", "name": "중도금 대출도 DSR에 포함되나요?", "acceptedAnswer": {"@type": "Answer", "text": "분양 아파트의 중도금 집단대출은 DSR 산정에서 제외됩니다. 다만 입주 시점에 잔금 대출로 전환할 때는 DSR이 적용됩니다."}}, {"@type": "Question", "name": "스트레스 DSR이란 무엇인가요?", "acceptedAnswer": {"@type": "Answer", "text": "향후 금리 상승 가능성을 반영하기 위해 실제 금리에 가산금리를 더해 한도를 산정하는 제도입니다. 그만큼 대출 가능 금액이 줄어듭니다."}}, {"@type": "Question", "name": "쓰지 않는 마이너스통장도 영향이 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "있습니다. 사용 금액이 아니라 약정 한도 기준으로 부채에 반영되므로, 대출을 계획 중이라면 미리 정리하는 편이 유리합니다."}}]}</script>
 </div>
 <footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 페이지의 계산 결과는 참고용이며, 실제 청약·세금·대출 조건은 반드시 모집공고문 및 관계기관을 통해 확인하세요.</footer>
 <script>
