@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 # 원본 JSON 은 사람이 읽는 문서가 아니라 색인 대상이 아니다
 Disallow: /data/
+# 발행 전 검토용 초안 — 색인 금지
+Disallow: /drafts/
 
 Sitemap: https://ireumkuk.co.kr/sitemap.xml
