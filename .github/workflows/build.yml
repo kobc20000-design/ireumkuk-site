@@ -48,6 +48,7 @@ jobs:
         env:
           APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
           EMAIL_SMTP_USER: ${{ secrets.EMAIL_SMTP_USER }}
           EMAIL_SMTP_PASS: ${{ secrets.EMAIL_SMTP_PASS }}
           EMAIL_NOTIFY_TO: ${{ secrets.EMAIL_NOTIFY_TO }}
