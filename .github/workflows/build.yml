@@ -39,6 +39,20 @@ jobs:
           SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
         run: python notify_bot.py
 
+      - name: 분석용 의존성 설치
+        run: pip install pdfplumber pypdf google-generativeai
+
+      - name: 신규 공고 자동 분석 (auto_analyze.py)
+        working-directory: apply
+        continue-on-error: true   # GEMINI_API_KEY 미설정 등으로 실패해도 사이트 빌드는 계속
+        env:
+          APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EMAIL_SMTP_USER: ${{ secrets.EMAIL_SMTP_USER }}
+          EMAIL_SMTP_PASS: ${{ secrets.EMAIL_SMTP_PASS }}
+          EMAIL_NOTIFY_TO: ${{ secrets.EMAIL_NOTIFY_TO }}
+        run: python auto_analyze.py --days 7 --limit 5
+
       - name: 사이트 데이터 빌드 + 배포 (build_site.py)
         working-directory: apply
         env:
@@ -46,9 +60,9 @@ jobs:
           SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
         run: python build_site.py --push
 
-      - name: apply 상태 파일(pending/seen) 커밋
+      - name: apply 상태 파일 커밋 (pending/seen/analyzed + 분석 결과)
         working-directory: apply
         run: |
-          git -c user.email=kobc20000@gmail.com -c user.name=이름콕 add pending_announcements.json seen_announcements.json
-          git -c user.email=kobc20000@gmail.com -c user.name=이름콕 commit -m "notify_bot 상태 갱신" || echo "변경 없음"
+          git -c user.email=kobc20000@gmail.com -c user.name=청약콕 add -A pending_announcements.json seen_announcements.json analyzed_announcements.json auto_analyzed
+          git -c user.email=kobc20000@gmail.com -c user.name=청약콕 commit -m "자동: 공고 상태 + 분석 결과 갱신" || echo "변경 없음"
           git push
