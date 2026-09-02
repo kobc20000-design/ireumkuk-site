@@ -2,8 +2,7 @@ name: 사이트 데이터 15분마다 갱신
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # 15분마다 — notify_bot + build_site (가벼움)
-    - cron: '17 */3 * * *'   # 3시간마다 — auto_analyze 도 함께 (Gemini 호출·메일)
+    - cron: '*/15 * * * *'   # 15분마다 (notify_bot + auto_analyze + build_site)
   workflow_dispatch:
 
 permissions:
@@ -41,12 +40,9 @@ jobs:
         run: python notify_bot.py
 
       - name: 분석용 의존성 설치
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 */3 * * *'
         run: pip install pdfplumber pypdf google-generativeai
 
       - name: 신규 공고 자동 분석 (auto_analyze.py)
-        # 3시간마다 또는 수동 실행일 때만 (15분 크론에서는 건너뜀 → 메일·쿼터 절약)
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 */3 * * *'
         working-directory: apply
         continue-on-error: true   # GEMINI_API_KEY 미설정 등으로 실패해도 사이트 빌드는 계속
         env:
