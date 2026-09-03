@@ -52,7 +52,7 @@ jobs:
           EMAIL_SMTP_USER: ${{ secrets.EMAIL_SMTP_USER }}
           EMAIL_SMTP_PASS: ${{ secrets.EMAIL_SMTP_PASS }}
           EMAIL_NOTIFY_TO: ${{ secrets.EMAIL_NOTIFY_TO }}
-        run: python auto_analyze.py --days 7 --limit 5
+        run: python auto_analyze.py --days 7 --limit 5 --since 2026-09-03
 
       - name: 사이트 데이터 빌드 + 배포 (build_site.py)
         working-directory: apply
