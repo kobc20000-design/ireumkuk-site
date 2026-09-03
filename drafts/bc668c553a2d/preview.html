@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고촌센트럴자이 분양 정보 - 청약콕</title>
+<meta name="description" content="고촌센트럴자이 분양 공고 분석 - 일정, 세대수, 분양가, 자금 스케줄">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif; margin: 0; padding: 0; background: #f4f5f7; color: #222; }
+.apt-wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 60px; }
+.apt-hero { width: 100%; height: 480px; max-height: 480px; overflow: hidden; background: #e7edf2; }
+.apt-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.apt-post-header { margin-bottom: 24px; }
+.apt-post-header .apt-date { color: #888; font-size: 13px; margin-bottom: 6px; }
+h1 { font-size: 26px; margin: 0 0 8px; line-height: 1.4; }
+h3 { font-size: 19px; margin: 28px 0 32px; padding-top: 4px; scroll-margin-top: 16px; }
+a { color: #003E89; }
+.apt-toc { background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 16px 20px; margin: 20px 0 32px; }
+.apt-toc-title { font-weight: 700; margin-bottom: 8px; }
+.apt-toc ol { margin: 0; padding-left: 20px; }
+.apt-toc li { margin: 4px 0; }
+.apt-toc a { text-decoration: none; }
+.apt-toc a:hover { text-decoration: underline; }
+.apt-block { margin: 0 0 64px; }
+.apt-text { font-size: 16px; line-height: 1.9; }
+.apt-text p { margin: 0 0 16px; }
+.apt-text h3 { margin: 28px 0 32px; }
+.apt-text p.apt-check { margin: 0 0 4px; }
+.apt-pdf-link { display: inline-block; margin: 4px 0 20px; background: #13294B; color: #fff !important; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.apt-pdf-link:hover { background: #0d1d38; }
+.apt-site-footer { text-align: center; color: #999; font-size: 12px; padding: 30px 16px; }
+.apt-site-footer a { color: #888; text-decoration: none; }
+.apt-site-footer a:hover { color: #13294B; text-decoration: underline; }
+
+.apt-shell { display: flex; align-items: flex-start; min-height: 100vh; background: #F4F6F9; }
+.apt-sidebar { width: 224px; flex: none; background: #13294B; padding: 20px 12px 24px; position: sticky; top: 0; align-self: flex-start; min-height: 100vh; overflow: hidden; transition: width .18s ease, padding .18s ease; }
+.apt-sidebar-inner { width: 200px; }
+.apt-collapse-btn { width: 30px; height: 30px; flex: none; border: none; border-radius: 7px; cursor: pointer; background: rgba(255,255,255,.09); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.apt-collapse-btn:hover { background: rgba(255,255,255,.18); }
+.apt-collapse-btn svg { width: 16px; height: 16px; }
+.apt-sidebar .apt-logo { display: block; color: #fff; font-weight: 800; font-size: 16px; text-decoration: none; margin: 0 6px 18px; }
+.apt-nav-group + .apt-nav-group { margin-top: 2px; }
+.apt-nav-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 8px; border-radius: 7px; font-size: 13.5px; font-weight: 700; color: #c7d1e0; text-align: left; text-decoration: none; }
+.apt-nav-toggle:hover, .apt-nav-toggle.active { background: rgba(255,255,255,.09); color: #fff; }
+.apt-nav-toggle svg { width: 12px; height: 12px; opacity: .55; flex: none; transition: transform .18s ease; }
+.apt-nav-toggle[aria-expanded="true"] svg { transform: rotate(180deg); opacity: 1; }
+.apt-nav-sub { display: none; flex-direction: column; padding: 2px 0 10px 4px; }
+.apt-nav-sub.open { display: flex; }
+.apt-nav-sub a { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 6px; font-size: 12.5px; font-weight: 600; color: #8ea0b8; text-decoration: none; }
+.apt-nav-sub a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.apt-nav-ic { width: 18px; height: 18px; flex: none; border-radius: 5px; background: rgba(255,255,255,.09); display: flex; align-items: center; justify-content: center; }
+.apt-nav-ic svg { width: 13px; height: 13px; color: rgba(255,255,255,.8); }
+.apt-main { flex: 1; min-width: 0; }
+.apt-shell.apt-collapsed .apt-sidebar { width: 56px; padding-left: 13px; padding-right: 13px; }
+.apt-shell.apt-collapsed .apt-logo,
+.apt-shell.apt-collapsed .apt-nav-group { display: none; }
+@media (max-width: 760px) {
+  .apt-shell { flex-direction: column; }
+  .apt-sidebar { width: 100% !important; position: static; min-height: 0; padding: 14px 12px !important; }
+  .apt-nav-sub { padding-left: 4px; }
+  .apt-shell.apt-collapsed .apt-logo,
+  .apt-shell.apt-collapsed .apt-nav-group { display: flex; }
+}
+
+
+table.apt-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 19px; overflow: hidden; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+table.apt-table caption { caption-side: top; background: #13294B; color: #fff; font-weight: 700; font-size: 32px; padding: 12px; text-align: center; }
+table.apt-table th { background: #fff; color: #000; font-weight: 700; padding: 21px 12px; text-align: center; border-bottom: 1px solid #ddd; word-break: keep-all; }
+table.apt-table td { padding: 21px 12px; text-align: center; color: #000; word-break: keep-all; }
+table.apt-table tr.even td { background: #EBEDF0; }
+table.apt-table tr.odd td { background: #fff; }
+table.apt-table tr.total td { background: #13294B0d; font-weight: 700; color: #000; }
+.apt-table-wide-wrap { width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); overflow-x: auto; padding: 0 16px; box-sizing: border-box; }
+.apt-table-wide-wrap table.apt-table { width: auto; min-width: 100%; }
+table.apt-table-lottery th.apt-th-general { background: #FFE6D7; }
+table.apt-table-lottery th.apt-th-point { background: #D3D3D3; }
+table.apt-table-lottery th.apt-th-lottery { background: #DCF5DC; }
+table.apt-table-kv td.apt-th-cell { font-weight: 700; text-align: left; width: 35%; }
+table.apt-table-kv td:not(.apt-th-cell) { text-align: right; }
+table.apt-table-kv2 td.kv-label { background: #EBEDF0; font-weight: 700; width: 25%; }
+table.apt-table-kv2 td.kv-value { background: #fff; width: 25%; }
+table.apt-table-wide td.kv-label-wide { background: #EBEDF0; font-weight: 700; width: 25%; }
+table.apt-table-wide td.kv-value-wide { background: #fff; text-align: left; }
+
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9V57WRQFKH"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9V57WRQFKH');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2882246787149055" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="apt-shell"><script>try{if(localStorage.getItem('apt_sidebar_collapsed')==='1')document.currentScript.parentElement.classList.add('apt-collapsed');}catch(e){}</script><aside class="apt-sidebar"><div class="apt-sidebar-inner"><button class="apt-collapse-btn" onclick="_aptSidebarToggle()" aria-label="메뉴 접기/펴기" title="메뉴 접기/펴기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a href="/" class="apt-logo">청약콕</a><div class="apt-nav-group"><button class="apt-nav-toggle active" aria-expanded="true" onclick="_aptNavToggle(this)">모집공고 분석<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub open"><a href="/apt/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>모집공고 분석</a><a href="/apt/rate/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V13"/><path d="M10 20V7"/><path d="M16 20v-6"/><path d="M20 20V4"/></svg></span>경쟁률 분석</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">모집일정<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/apt/calendar/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></span>분양달력</a><a href="/apt/new/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a4 4 0 0 0-4 4v3c0 1.7-.6 3.2-1.7 4.3L5 17h14l-1.3-1.7C16.6 14.2 16 12.7 16 11V8a4 4 0 0 0-4-4z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>방금 접수된 공고</a></div></div><div class="apt-nav-group"><a class="apt-nav-toggle" href="/rate/">경쟁률</a></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">분양가<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/price/pyeong/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7 21l5-3 5 3-2-7.5"/></svg></span>평당 분양가 랭킹</a></div></div><div class="apt-nav-group"><button class="apt-nav-toggle" aria-expanded="false" onclick="_aptNavToggle(this)">도구<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="apt-nav-sub"><a href="/etc/unranked/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></span>미분양·무순위 추적기</a><a href="/tools/gajeom/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9 12l2 2 4-4"/></svg></span>청약 가점 계산기</a><a href="/tools/special/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 12l2 2 4-4"/></svg></span>특별공급 자격 자가진단</a><a href="/tools/bankbook/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18"/><circle cx="16" cy="14.5" r="1" fill="currentColor" stroke="none"/></svg></span>청약통장 납입 시뮬레이터</a><a href="/tools/option/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 9l9 5 9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>옵션 조합 시뮬레이터</a><a href="/tools/interest/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>중도금대출 이자 계산기</a><a href="/tools/tax/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>취득세 계산기</a><a href="/tools/dsr/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 10"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>DSR 한도 계산기</a><a href="/tools/margin/"><span class="apt-nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v6c0 5-3 8.5-7 9-4-.5-7-4-7-9V6z"/></svg></span>안전마진 계산기</a></div></div></div></aside><script>function _aptNavToggle(btn) {  var panel = btn.parentElement.querySelector('.apt-nav-sub');  var isOpen = panel.classList.contains('open');  document.querySelectorAll('.apt-nav-toggle').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });  document.querySelectorAll('.apt-nav-sub').forEach(function(p) { p.classList.remove('open'); });  if (!isOpen) { panel.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }}function _aptSidebarToggle() {  var shell = document.querySelector('.apt-shell');  var collapsed = shell.classList.toggle('apt-collapsed');  try { localStorage.setItem('apt_sidebar_collapsed', collapsed ? '1' : '0'); } catch(e) {}}</script><main class="apt-main">
+
+<div class="apt-wrap">
+<div class="apt-post-header">
+<div class="apt-date">2026.09.03</div>
+<h1>고촌센트럴자이 분양 분석 총정리</h1>
+</div>
+<nav class="apt-toc"><div class="apt-toc-title">📑 목차</div><ol><li><a href="#sec-1">모집공고</a></li><li><a href="#sec-2">분양가</a></li><li><a href="#sec-3">중도금이자 및 자금납부계획</a></li></ol></nav>
+
+<div class="apt-block apt-text"><p>안녕하세요!</p><p>이번 포스팅에서는 고촌센트럴자이의 임의공급을 알아보도록 하겠습니다.</p><h3 id="sec-1">1. 모집공고</h3></div>
+<div class="apt-block"><table class="apt-table apt-table-kv2"><caption>주요내용</caption><tbody><tr><td class="kv-label">택지 유형</td><td class="kv-value">민간택지</td><td class="kv-label">전매 제한</td><td class="kv-value">X</td></tr><tr><td class="kv-label">규제 지역</td><td class="kv-value">비규제지역</td><td class="kv-label">거주 의무</td><td class="kv-value">X</td></tr><tr><td class="kv-label">분양가상한</td><td class="kv-value">X</td><td class="kv-label">재당첨제한</td><td class="kv-value">X</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p>이번 단지는 고촌역 인근에 들어서는 민영주택입니다.</p><p class="apt-check">✅ <strong>택지유형 : 민간택지</strong></p><p class="apt-check">✅ <strong>전매제한 : X</strong></p><p class="apt-check">✅ <strong>규제지역 : 비규제지역</strong></p><p class="apt-check">✅ <strong>거주의무 : X</strong></p><p class="apt-check">✅ <strong>분양가상한 : X</strong></p><p class="apt-check">✅ <strong>재당첨제한 : X</strong></p><p>비규제 민간택지에서 공급되는 단지인 만큼 제약이 거의 없는 편인데요.</p><p>전매제한이나 거주의무는 물론이고 재당첨제한까지 적용되지 않아 진입 장벽이 낮습니다.</p><p>거주의무가 없어 입주 시점에 전세를 놓아 잔금을 치르는 시나리오도 충분히 가능합니다.</p><p>규제로 인한 부담이 적은 만큼, 자금 계획을 가볍게 세울 수 있는 분들에게 유리한 조건인 것 같습니다.</p></div>
+<div class="apt-block"><table class="apt-table apt-table-kv2"><caption>청약일정</caption><tbody><tr><td class="kv-label">모집공고</td><td class="kv-value">2026.09.03.(목)</td><td class="kv-label">접수일</td><td class="kv-value">2026.09.07.(월) ~ 2026.09.08.(화)</td></tr><tr><td class="kv-label">당첨발표</td><td class="kv-value">2026.09.11.(금)</td><td class="kv-label">계약체결</td><td class="kv-value">2026.09.13.(일)</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p>청약 일정을 살펴보겠습니다.</p><p class="apt-check">✅ <strong>모집공고 : 2026.09.03.(목)</strong></p><p class="apt-check">✅ <strong>접수일자 : 2026.09.07.(월) ~ 2026.09.08.(화)</strong></p><p class="apt-check">✅ <strong>당첨발표 : 2026.09.11.(금)</strong></p><p class="apt-check">✅ <strong>계약체결 : 2026.09.13.(일)</strong></p><p>모집공고 발표일이 9월 3일로 해당일 기준 자격요건을 만족해야하며</p><p>9월 7일에 청약 접수를 하고 4일 뒤인 9월 11일에 당첨자 발표가 있습니다.</p><p>당첨자 발표 후 2일 뒤 계약을 진행하며 계약일까지 분양가 및 옵션의 계약금이 필요합니다.</p><p>임의공급으로 진행되는 만큼 청약통장이나 가점과 무관하게 100% 추첨으로 주인을 찾게 되는데요.</p><p>모집공고일부터 접수까지의 간격이 짧은 편이라 주민등록등본이나 가족관계증명서 같은 기본 서류를 미리 챙겨두어야겠습니다.</p><p>당첨 발표가 나고 이틀 뒤에 바로 계약이 진행되는 타임라인인데요.</p><p>계약금 납부 일정이 촉박할 수 있으므로 현금 자산을 미리 점검하고 지원해야겠습니다.</p></div>
+<div class="apt-block"><table class="apt-table apt-table-wide"><caption>청약요건</caption><tbody><tr><td class="kv-label-wide">청약통장</td><td class="kv-value-wide">필요없음</td></tr><tr><td class="kv-label-wide">대상자</td><td class="kv-value-wide">국내에 거주하는 만19세 이상인 분 또는 세대주인 미성년자</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p class="apt-check">✅ <strong>통장여부 : 필요없음</strong></p><p class="apt-check">✅ <strong>대상자 : 국내에 거주하는 만19세 이상인 분 또는 세대주인 미성년자</strong></p><p>임의공급은 청약통장 가입 여부나 납입 기간, 가점을 보지 않고 100% 추첨으로 당첨자를 정합니다.</p><p>국내에 거주하는 무주택세대구성원만 신청할 수 있습니다. 무주택세대구성원이란 세대주와 세대원 전원이 주택을 소유하지 않은 세대를 말합니다.</p></div>
+<div class="apt-block"><table class="apt-table apt-table-wide"><caption>공급규모</caption><tbody><tr><td class="kv-label-wide">주택위치</td><td class="kv-value-wide">경기도 김포시 고촌읍 신곡리 김포신곡6지구 도시개발사업구역 A3BL</td></tr><tr><td class="kv-label-wide">공급규모</td><td class="kv-value-wide">지하 2층~지상 16층, 17개동 1,297세대</td></tr><tr><td class="kv-label-wide">입주시기</td><td class="kv-value-wide">2027년 05월</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p>고촌센트럴자이은 지하 2층~지상 16층, 17개동 1,297세대입니다.</p><p>이번 임의공급으로 나온 세대는 총 10세대입니다.</p><p>입주시기는 2027년 05월입니다.</p><p>공급되는 세대를 자세하게 알아보면,</p></div>
+<div class="apt-block"><table class="apt-table"><caption>공급세대</caption><thead><tr><th>타입</th><th>세대수</th><th>동</th><th>호</th></tr></thead><tbody><tr class="even"><td>84A</td><td>5세대</td><td>106동</td><td>901호</td></tr><tr class="odd"><td>84A</td><td>5세대</td><td>107동</td><td>1102호</td></tr><tr class="even"><td>84A</td><td>5세대</td><td>109동</td><td>805호</td></tr><tr class="odd"><td>84A</td><td>5세대</td><td>110동</td><td>505호 등 2세대</td></tr><tr class="even"><td>84B</td><td>3세대</td><td>103동</td><td>1202호 등 2세대</td></tr><tr class="odd"><td>84B</td><td>3세대</td><td>105동</td><td>803호</td></tr><tr class="even"><td>105</td><td>2세대</td><td>103동</td><td>901호</td></tr><tr class="odd"><td>105</td><td>2세대</td><td>104동</td><td>1403호</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p class="apt-check">✅ <strong>84A타입</strong></p><p> - 106동 : 901호</p><p> - 107동 : 1102호</p><p> - 109동 : 805호</p><p> - 110동 : 505호, 804호</p><p class="apt-check">✅ <strong>84B타입</strong></p><p> - 103동 : 1202호, 1303호</p><p> - 105동 : 803호</p><p class="apt-check">✅ <strong>105타입</strong></p><p> - 103동 : 901호</p><p> - 104동 : 1403호</p><h3 id="sec-2">2. 분양가</h3></div>
+<div class="apt-block"><table class="apt-table apt-table-kv2"><caption>분양가</caption><tbody><tr><td class="kv-label">84A</td><td class="kv-value">75,840만원</td><td class="kv-label">84B</td><td class="kv-value">74,520만원</td></tr><tr><td class="kv-label">105</td><td class="kv-value">93,780만원</td><td class="kv-label"></td><td class="kv-value"></td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p class="apt-check">✅ <strong>전용면적 84A : 75,840만원</strong></p><p class="apt-check">✅ <strong>전용면적 84B : 74,520만원</strong></p><p class="apt-check">✅ <strong>전용면적 105 : 93,780만원</strong></p><p>그렇다면 분양가는 어떨까요?</p><p>84A타입 기준 최대 75,840만원으로 나온 모습입니다.</p></div>
+<div class="apt-block"><table class="apt-table"><caption>납부일정</caption><thead><tr><th>항목</th><th>비율</th><th>날짜</th></tr></thead><tbody><tr class="even"><td>계약금 1차</td><td>500만원</td><td>2026.09.13.</td></tr><tr class="odd"><td>계약금 2차</td><td>5% - 500만원</td><td>2026.09.28.</td></tr><tr class="even"><td>잔금</td><td>95%</td><td>2027.05.01.</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p>해당 분양가를 계약금 5%, 잔금 95%로 납부하게 되는데요.</p><p class="apt-check">✨ <strong>계약금</strong></p><p class="apt-check">✅ <strong>1차 계약(2026.09.13.) : 500만원</strong></p><p class="apt-check">✅ <strong>2차 계약(30일 이내) : 5% - 500만원</strong></p><p class="apt-check">✨ <strong>잔금</strong></p><p class="apt-check">✅ <strong>잔금일(2027년 05월 예정) : 잔금</strong></p><p>계약금은 5%로 납부하며 잔금일에 잔금 95%를 납부하게 됩니다.</p></div>
+<div class="apt-block"><table class="apt-table"><caption>옵션, 발코니 납부일정</caption><thead><tr><th>항목</th><th>비율</th><th>날짜</th></tr></thead><tbody><tr class="even"><td>계약금</td><td>계약시</td><td>2026.09.13.</td></tr><tr class="odd"><td>잔금</td><td>입주지정일</td><td>2027.05.01.</td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p class="apt-check">✨ <strong>옵션 및 발코니 확장비 납부일정</strong></p><p class="apt-check">✅ <strong>계약금(2026.09.13.) : 계약시</strong></p><p class="apt-check">✅ <strong>잔금(2027.05.01.) : 입주지정일</strong></p><p>발코니확장비와 옵션은 계약금 계약시, 잔금 입주지정일 조건으로 진행됩니다.</p></div>
+<div class="apt-block"><table class="apt-table apt-table-kv2"><caption>발코니 확장비</caption><tbody><tr><td class="kv-label">84A</td><td class="kv-value">1,795만원</td><td class="kv-label">84B</td><td class="kv-value">1,417만원</td></tr><tr><td class="kv-label">105</td><td class="kv-value">1,917만원</td><td class="kv-label"></td><td class="kv-value"></td></tr></tbody></table></div>
+<div class="apt-block apt-text"><p>발코니 확장비는 84A기준 1,795만원으로 나왔습니다.</p><p>그외 옵션은 위 파일을 참고해주세요!</p></div>
+<div class="apt-block apt-text"><h3 id="sec-3">3. 중도금이자 및 자금납부계획</h3><p>그렇다면 발코니 확장비을 포함한 분양가격은 얼마일까요? 조건은,</p><p class="apt-check" style="text-align:center">👉 <strong>84A 최고층</strong></p><p class="apt-check" style="text-align:center">👉 <strong>발코니 확장</strong></p></div>
+<div class="apt-block"><div class="apt-table-wide-wrap"><table class="apt-table"><caption>분양가 납부 계획</caption><thead><tr><th>항목</th><th>분양가</th><th>발코니확장비</th><th>옵션</th><th>총합</th><th>일자</th></tr></thead><tbody><tr class="even"><td>계약금 1차</td><td>5,000,000</td><td>-</td><td>-</td><td>5,000,000</td><td>2026.09.13.</td></tr><tr class="odd"><td>계약금 2차</td><td>32,920,000</td><td>-</td><td>-</td><td>32,920,000</td><td>2026.09.28.</td></tr><tr class="even"><td>잔금</td><td>720,480,000</td><td>-</td><td>-</td><td>720,480,000</td><td>2027.05.01.</td></tr></tbody></table></div></div>
+<div class="apt-block apt-text"><p class="apt-check">✨<strong>계약금</strong></p><p class="apt-check">✅ <strong>1차 계약(2026.09.13.) : 500만원</strong></p><p class="apt-check">✅ <strong>2차 계약(2026.09.28.) : 3,292만원</strong></p><p class="apt-check">✨<strong>잔금</strong></p><p class="apt-check">✅ <strong>잔금일(2027년 05월 예정) : 73,663만원</strong></p><p>따라서 발코니확장비를 포함한 최종 분양가는 7억 7,635만원입니다.</p></div>
+<div class="apt-block apt-text"><p>SNS_PHOTO</p></div>
+</div>
+<footer class="apt-site-footer"><div style="margin-bottom:10px"><a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · <a href="/contact/">문의</a></div>청약콕 · 본 게시글은 모집공고문을 바탕으로 자동 분석되었으며, 정확한 내용은 반드시 원문 공고를 확인하세요.</footer>
+</main></div>
+</body>
+</html>
