@@ -1,0 +1,65 @@
+name: 청약 경쟁률 자동 발행
+
+# 경쟁률은 매일 저녁(≈19:30 KST) 청약홈에서 발표된다. 발표 직후 스크래핑해서
+# /apt/rate/{slug}/ 에 자동 발행. 늦게 올라오는 경우가 있어 21시대까지 재시도한다.
+# competition_bot.py 는 seen_competition.json 으로 멱등하므로 여러 번 돌아도 안전.
+on:
+  schedule:
+    - cron: '35 10 * * *'     # 19:35 KST
+    - cron: '5,35 11 * * *'   # 20:05, 20:35 KST
+    - cron: '5,35 12 * * *'   # 21:05, 21:35 KST
+  workflow_dispatch:
+    inputs:
+      force_hmno:
+        description: '수동 발행할 주택관리번호 (선택)'
+        required: false
+      force_phase:
+        description: '특별공급 | 일반공급 (비우면 둘 다)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ireumkuk-site 체크아웃
+        uses: actions/checkout@v4
+        with:
+          path: ireumkuk-site
+
+      - name: apply 체크아웃
+        uses: actions/checkout@v4
+        with:
+          repository: kobc20000-design/apply
+          path: apply
+          token: ${{ secrets.APPLY_PUSH_TOKEN }}
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 의존성 설치
+        run: pip install requests python-dotenv matplotlib pillow google-generativeai
+
+      - name: 경쟁률 발행 (competition_bot.py)
+        working-directory: apply
+        env:
+          APPLYHOME_API_KEY: ${{ secrets.APPLYHOME_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SITE_REPO_PATH: ${{ github.workspace }}/ireumkuk-site
+        run: |
+          if [ -n "${{ github.event.inputs.force_hmno }}" ]; then
+            python competition_bot.py --force "${{ github.event.inputs.force_hmno }}" ${{ github.event.inputs.force_phase }}
+          else
+            python competition_bot.py
+          fi
+
+      - name: apply 상태 파일 커밋 (seen_competition.json)
+        working-directory: apply
+        run: |
+          git -c user.email=kobc20000@gmail.com -c user.name=청약콕 add -A seen_competition.json
+          git -c user.email=kobc20000@gmail.com -c user.name=청약콕 commit -m "자동: 경쟁률 발행 상태 갱신" || echo "변경 없음"
+          git push
