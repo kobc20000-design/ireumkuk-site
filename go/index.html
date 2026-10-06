@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>이름콕 앱 받기</title>
+<script>
+// 블로그 CTA 공용 링크: 아이폰·아이패드 → 앱스토어, 그 외 → 플레이스토어.
+// 쿼리(utm_*)는 플레이스토어 링크에 그대로 넘겨 플레이콘솔 유입 집계를 유지한다.
+(function () {
+  var APP_STORE = "https://apps.apple.com/kr/app/id6818559312";
+  var PLAY = "https://play.google.com/store/apps/details?id=com.namingapp.naming_app";
+  var ua = navigator.userAgent || "";
+  var ios = /iPhone|iPad|iPod/i.test(ua) ||
+            (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);   // iPadOS 데스크톱 모드
+  var q = location.search.replace(/^\?/, "");
+  var dest = ios ? APP_STORE : PLAY + (q ? "&" + q : "");
+  window.__dest = dest;
+  location.replace(dest);
+})();
+</script>
+<style>
+body { margin: 0; font-family: -apple-system, "Pretendard", "Malgun Gothic", sans-serif;
+       background: #f4f7fc; color: #222; display: flex; min-height: 100vh;
+       align-items: center; justify-content: center; }
+.box { text-align: center; padding: 32px 16px; max-width: 360px; width: 100%; }
+h1 { font-size: 20px; margin: 0 0 8px; }
+p { color: #666; font-size: 14px; margin: 0 0 24px; }
+a { display: block; margin: 10px 0; padding: 14px; border-radius: 12px;
+    background: #2f7be5; color: #fff; text-decoration: none; font-weight: 700; }
+a.ios { background: #111; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>이름콕 앱으로 이동 중입니다</h1>
+  <p>자동으로 넘어가지 않으면 아래에서 골라주세요.</p>
+  <a href="https://play.google.com/store/apps/details?id=com.namingapp.naming_app&utm_source=naver_blog&utm_medium=blog&utm_campaign=bottom_cta">Google Play에서 받기 (갤럭시·안드로이드)</a>
+  <a class="ios" href="https://apps.apple.com/kr/app/id6818559312">App Store에서 받기 (아이폰·아이패드)</a>
+</div>
+</body>
+</html>
